@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const FlexColumn = css`
  display: flex;
@@ -18,4 +18,6 @@ export const FlexCenter = css`
  align-items: center;
  width: 100%;
 `;
+
+
 

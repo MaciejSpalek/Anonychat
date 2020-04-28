@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './Navbar/navbar';
-import Home from './Home/home';
-import Chat from './Chat/chat';
+import Navbar from './navbar';
+import Home from './home';
+import Chat from './chat';
 import MainTemplate from '../Templates/mainTemplate'
 
 

@@ -10,7 +10,6 @@ const Container = styled.div`
     background-color: black;
 `
 
-
 const MainTemplate = ({ children }) => (
   <Container>
     <GlobalStyle />
