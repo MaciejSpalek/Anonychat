@@ -3,12 +3,12 @@ export const theme = {
      primaryFont: 'Montserrat',
     },
     fontSizes: {
-     xxs: '.5rem',
-     xs: '.8rem',
-     sm: '1rem',
-     md: '1.3rem',
-     lg: '1.8rem',
-     xl: '2.5rem',
+     xxs: '1rem',
+     xs: '1.5rem',
+     sm: '2rem',
+     md: '2.5rem',
+     lg: '3rem',
+     xl: '3.5rem',
     },
     fontWeights: {
      normal: 400,
@@ -25,5 +25,5 @@ export const theme = {
      md: '992px',
      lg: '1200px',
      xl: `1400px`,
-    },
+    }
    };
