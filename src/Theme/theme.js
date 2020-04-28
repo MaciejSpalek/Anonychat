@@ -16,6 +16,11 @@ export const theme = {
     },
     colors: {
      primaryWhite: 'rgb(255,255,255)',
+     primaryGreen: '#69F0AE',
+     secondaryGreen: '#27DC95',
+     tertiaryGreen: '#70A58B',
+     primaryGray: '#757575',
+     secondaryGray: '#273238',
      black: 'rgb(0,0,0)',
     },
     responsive: {
