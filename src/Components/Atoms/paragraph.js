@@ -1,16 +1,25 @@
 import React from 'react';
+import styled from 'styled-components'
 
-const Paragraph = ({ color, fontSize, fontWeight, text, align,  padding, margin }) => {
+const StyledParagraph = styled.p`
+    font-size:  ${theme => theme.fontWeight};
+    font-size:  ${theme => theme.fontSize};
+    align-self: ${theme => theme.align};
+    margin:     ${theme => theme.margin};
+    color:      ${theme => theme.color};
+    line-height:${theme => theme.lineHeight};
+`
+const Paragraph = ({ color, fontSize, fontWeight, text, align, margin, lineHeight }) => {
     return (
-        <p style={{
-            fontSize: fontSize, 
-            fontWeight: fontWeight, 
-            color: color,
-            alignSelf: align,
-            padding: padding,
-            margin: margin}}>
+        <StyledParagraph 
+            fontSize={fontSize}
+            fontWeight={fontWeight} 
+            lineHeight={lineHeight}
+            alignSelf={align}
+            margin={margin}
+            color={color}>
             {text}
-        </p>
+        </StyledParagraph>
     )
 }
 

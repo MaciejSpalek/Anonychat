@@ -6,13 +6,13 @@ export const theme = {
      xxs: '1rem',
      xs: '1.5rem',
      sm: '2rem',
-     md: '2.5rem',
-     lg: '3rem',
-     xl: '3.5rem',
+     md: '3.5rem',
+     lg: '4rem',
+     xl: '5.5rem',
     },
     fontWeights: {
      normal: 400,
-     bold: "bold",
+     bold: 900
     },
     colors: {
      primaryWhite: 'rgb(255,255,255)',
