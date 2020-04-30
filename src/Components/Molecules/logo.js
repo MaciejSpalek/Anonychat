@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import Icon from '../Atoms/icon';
 import Paragraph from '../Atoms/paragraph';
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
@@ -17,28 +17,29 @@ const StyledTextWrapper = styled.div`
     justify-content: flex-start;
 `
 
-const Logo = () => {
+const Logo = ({theme}) => {
+
     return (
         <StyledContainer>
                 <Icon 
                     icon={faUserSecret}
-                    color={({theme}) => theme.colors.secondaryGray}  
-                    fontSize={({theme}) => theme.fontSizes.xl}  
+                    color={theme.colors.secondaryGray}  
+                    fontSize={theme.fontSizes.xl}  
                 />
                 <StyledTextWrapper>
                     <Paragraph 
-                        fontSize={({theme}) => theme.fontSizes.lg} 
-                        fontWeight={({theme}) => theme.fontWeights.bold} 
-                        color={({theme}) => theme.colors.secondaryGray}
+                        fontSize={theme.fontSizes.lg} 
+                        fontWeight={theme.fontWeights.bold} 
+                        color={theme.colors.secondaryGray}
                         text={"Anony"} 
                         margin={"0 0 0 1rem"}
                         lineHeight={".9"}
                     />
                     <Paragraph 
-                        fontSize={({theme}) => theme.fontSizes.sm} 
-                        fontWeight={({theme}) => theme.fontWeights.bold} 
-                        color={({theme}) => theme.colors.primaryWhite}
-                        text={"CHAT"} 
+                        fontSize={theme.fontSizes.sm} 
+                        fontWeight={theme.fontWeights.bold} 
+                        color={theme.colors.primaryWhite}
+                        text={"CHAT ..."} 
                         margin={"0 0 0 1rem"}
                         lineHeight={".9"}
                     />
@@ -47,4 +48,4 @@ const Logo = () => {
     )
 }
 
-export default Logo;
+export default withTheme(Logo);

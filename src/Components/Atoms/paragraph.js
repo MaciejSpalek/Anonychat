@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const StyledParagraph = styled.p`
-    font-size:  ${theme => theme.fontWeight};
-    font-size:  ${theme => theme.fontSize};
-    align-self: ${theme => theme.align};
-    margin:     ${theme => theme.margin};
-    color:      ${theme => theme.color};
-    line-height:${theme => theme.lineHeight};
+const StyledParagraph = styled.h1`
+    font-weight:  ${props => props.fontWeight};
+    font-size:    ${props => props.fontSize};
+    align-self:   ${props => props.align};
+    margin:       ${props => props.margin};
+    color:        ${props => props.color};
+    line-height:  ${props => props.lineHeight};
 `
 const Paragraph = ({ color, fontSize, fontWeight, text, align, margin, lineHeight }) => {
     return (

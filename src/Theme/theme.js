@@ -6,18 +6,18 @@ export const theme = {
      xxs: '1rem',
      xs: '1.5rem',
      sm: '2rem',
-     md: '3.5rem',
-     lg: '4rem',
-     xl: '5.5rem',
+     md: '2.5rem',
+     lg: '3.5rem',
+     xl: '5rem',
     },
     fontWeights: {
      normal: 400,
-     bold: 900
+     bold: "bold"
     },
     colors: {
      primaryWhite: 'rgb(255,255,255)',
      primaryGreen: '#69F0AE',
-     secondaryGreen: '#27DC95',
+     secondaryGreen: '#1ABC9C',
      tertiaryGreen: '#70A58B',
      primaryGray: '#757575',
      secondaryGray: '#273238',
