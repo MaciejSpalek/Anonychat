@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { FlexCenter } from '../../Theme/mixins';
 import { Link } from 'react-router-dom';
+
 const StyledButton = styled.button`
     ${FlexCenter};
     height: 50px;
@@ -14,6 +15,7 @@ const StyledButton = styled.button`
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     padding: .5rem;
 `
+
 const Button = ({text, handleClick}) => {
     return (
         <Link to="/chat">
