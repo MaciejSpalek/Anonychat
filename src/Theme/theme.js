@@ -7,15 +7,20 @@ export const theme = {
      xs: '1.5rem',
      sm: '2rem',
      md: '2.5rem',
-     lg: '3rem',
-     xl: '3.5rem',
+     lg: '3.5rem',
+     xl: '5rem',
     },
     fontWeights: {
      normal: 400,
-     bold: "bold",
+     bold: "bold"
     },
     colors: {
      primaryWhite: 'rgb(255,255,255)',
+     primaryGreen: '#69F0AE',
+     secondaryGreen: '#1ABC9C',
+     tertiaryGreen: '#70A58B',
+     primaryGray: '#757575',
+     secondaryGray: '#273238',
      black: 'rgb(0,0,0)',
     },
     responsive: {

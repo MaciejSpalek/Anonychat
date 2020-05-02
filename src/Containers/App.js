@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './navbar';
+import Navbar from '../Components/Organism/navbar'
 import Home from './home';
 import Chat from './chat';
 import MainTemplate from '../Templates/mainTemplate'
