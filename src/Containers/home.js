@@ -11,16 +11,16 @@ const StyledContainer = styled.div`
     background-color: ${({theme}) => theme.colors.primaryWhite};
 `
 
-const Home = () => {
-    const handleButton = () => {
-        
-    }
+const Home = ({ allUsers }) => {
+    const handleClick = () => {
+        console.log("działa")
+    } 
 
-
+   
     return (
         <StyledContainer>
-            <Main handleButton={()=> handleButton()}/>
-            <InfoSection />
+            <Main handleClick={()=> handleClick()}/>
+            <InfoSection allUsers={allUsers}/>
         </StyledContainer>
     )
 }

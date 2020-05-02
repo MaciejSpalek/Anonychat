@@ -15,11 +15,11 @@ const StyledContainer = styled.main`
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.primaryWhite};
 ` 
-const Main = ({ handleButton }) => {
+const Main = ({ handleClick }) => {
     return (
         <StyledContainer>
            <Header />
-           <Button text={"Draw"} handleClick={()=> handleButton()}/>
+           <Button text={"Draw"}  handleClick={()=> handleClick()}/>
         </StyledContainer>
     )
 }

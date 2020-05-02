@@ -13,14 +13,15 @@ const StyledContainer = styled.div`
     color: ${({theme}) => theme.colors.primaryWhite};
     padding: .5rem;
 `
-const InfoSection = ({theme}) => {
+const InfoSection = ({theme, allUsers}) => {
+    console.log("Info", allUsers)
     return (
         <StyledContainer>
             <Paragraph 
                 fontSize={theme.fontSizes.sm} 
                 fontWeight={theme.fontWeights.bold} 
                 color={theme.colors.primaryWhite}
-                text={`Online: ${10}`} 
+                text={`Online: ${allUsers.length}`} 
             />
         </StyledContainer>
     )

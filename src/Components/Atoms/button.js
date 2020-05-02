@@ -16,10 +16,11 @@ const StyledButton = styled.button`
     padding: .5rem;
 `
 
+
 const Button = ({text, handleClick}) => {
     return (
         <Link to="/chat">
-            <StyledButton onClick={(e)=> handleClick(e)}>
+            <StyledButton onClick={()=> handleClick()}>
                 {text}
             </StyledButton>
         </Link>
