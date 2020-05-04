@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import InfoSection from '../Components/Organism/infoSection';
 import Main from '../Components/Organism/main';
-import { FlexCenter } from '../Theme/mixins'
+import { addRoom } from '../Helpers/requests';
+import { FlexCenter } from '../Theme/mixins';
+import { generateToken } from '../Helpers/token';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -11,16 +13,16 @@ const StyledContainer = styled.div`
     background-color: ${({theme}) => theme.colors.primaryWhite};
 `
 
-const Home = ({ allUsers }) => {
+const Home = () => {
     const handleClick = () => {
-        console.log("działa")
+        // addRoom(234, 34, 22);
     } 
 
    
     return (
         <StyledContainer>
             <Main handleClick={()=> handleClick()}/>
-            <InfoSection allUsers={allUsers}/>
+            <InfoSection/>
         </StyledContainer>
     )
 }

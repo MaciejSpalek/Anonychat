@@ -1,51 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { getTokenFromLocalStorage, setTokenInLocalStorage, isLocalStorageEmpty } from '../Helpers/storageFunctions'
+import MainTemplate from '../Templates/mainTemplate'
 import Navbar from '../Components/Organism/navbar'
 import Home from './home';
 import Chat from './chat';
-import MainTemplate from '../Templates/mainTemplate'
-const TokenGenerator = require('uuid-token-generator');
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { getUserFromLocalStorage, setUserInLocalStorage } from '../Helpers/storageFunctions'
+import { getUsers, addUser, getLastUser } from '../Helpers/requests';
+import { generateToken } from '../Helpers/token';
+
+
 
 const App = () => {
   const [ allUsers, setAllUsers ] = useState([])
-  const [ token, setToken ] = useState(getTokenFromLocalStorage())
+  const [ user, setUser ] = useState(getUserFromLocalStorage());
 
-  const generateToken = () => {
-    const token = new TokenGenerator()
-    return token.generate()
-  }
 
-  const getUsers = () => {
-    fetch('http://localhost:5000/users')
-      .then(response => response.json())
-      .then(({data}) => setAllUsers(data))
-      .catch(error => {
-        console.error(error)
+  const setCurrentUser = async () => {
+    if(!user) {
+      await addUser();
+      await getLastUser().then(({data}) => {
+        setUserInLocalStorage(data[0])
+        setUser(data[0])
       })
-  }
-
-  const addUser = (token) => {
-      fetch(`http://localhost:5000/users/add?token=${token}&onChat=${0}`)
-        .catch(error => {
-          console.error(error)
-        })
-  }
-
-
-  const test = async () => {
-    if(!token) {
-      setTokenInLocalStorage(generateToken())
-      addUser(getTokenFromLocalStorage())
     }
   }
-
+  
   useEffect(() => {
-    test()
-  }, [token])
+    setCurrentUser()
+  }, [user])
 
   useEffect(()=> {
-    getUsers()
+    getUsers().then(({data}) => setAllUsers(data));
   }, [allUsers.length])
 
   return (
@@ -53,7 +38,7 @@ const App = () => {
         <Router>  
           <Navbar />
           <Switch>
-            <Route exact path="/" component={()=> <Home allUsers={allUsers}/>} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/chat" component={Chat}/>
           </Switch>
         </Router> 

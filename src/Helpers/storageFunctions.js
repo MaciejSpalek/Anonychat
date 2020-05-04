@@ -1,12 +1,12 @@
 
-export const setTokenInLocalStorage = (tempToken) => {
-    localStorage.setItem('token', tempToken)  
+export const setUserInLocalStorage = (user) => {
+    localStorage.setItem('user', JSON.stringify(user))  ;
 }
 
-export const getTokenFromLocalStorage = () => {
-    return localStorage.getItem('token')
+export const getUserFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem('user'));
 }
 
-export const isLocalStorageEmpty = () => {
-    return localStorage.getItem('token') === null
+export const isUserExist = () => {
+    return localStorage.getItem('user') === null
 }
