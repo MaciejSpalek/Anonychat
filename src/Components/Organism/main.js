@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../Molecules/header';
 import Button from '../Atoms/button';
+import { Redirect } from 'react-router-dom';
 import { FlexColumn } from '../../Theme/mixins';
 import { getEmptyRooms } from '../../Helpers/requests';
 
@@ -19,21 +20,18 @@ const StyledContainer = styled.main`
 const Main = () => {
     const [ emptyRooms, setEmptyRooms ] = useState([]);
     const searchRoom = () => {
-        console.log(emptyRooms)
+        // getEmptyRooms().then(({data}) => setEmptyRooms(data));
+        // console.log(emptyRooms)
+        return (
+            <Redirect to="chat" />
+        )
     }
-
-
-    useEffect(() => {
-        getEmptyRooms().then(({data}) => setEmptyRooms(data));
-      }, [emptyRooms.length])
-
     
 
     return (
         <StyledContainer>
             <Header />
             <Button 
-                route={"chat"}
                 text={"Draw"}  
                 handleClick={()=> searchRoom()}
             />

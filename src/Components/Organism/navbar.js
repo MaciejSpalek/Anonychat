@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexCenter } from '../../Theme/mixins';
 import Logo from '../Molecules/logo';
-import Paragraph from '../Atoms/paragraph';
-
+import { FlexCenter } from '../../Theme/mixins';
 
 const StyledContainer = styled.div`
     ${FlexCenter};

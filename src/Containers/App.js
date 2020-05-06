@@ -3,6 +3,7 @@ import MainTemplate from '../Templates/mainTemplate'
 import Navbar from '../Components/Organism/navbar'
 import Home from './home';
 import Chat from './chat';
+import PrivateRoute from '../Authentication/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getUserFromLocalStorage, setUserInLocalStorage } from '../Helpers/storageFunctions'
 import { getUsers, getGivenUser, addUser } from '../Helpers/requests';
@@ -11,6 +12,7 @@ import { getUsers, getGivenUser, addUser } from '../Helpers/requests';
 const App = () => {
   const [ allUsers, setAllUsers ] = useState([])
   const [ user, setUser ] = useState(getUserFromLocalStorage());
+  const [ currentRoom, setCurrentRoom] = useState(null)
 
   const setCurrentUser = async () => {
     if(!user) {
@@ -27,7 +29,6 @@ const App = () => {
   
   useEffect(() => {
     setCurrentUser()
-    console.log(user)
   }, [user])
 
   useEffect(()=> {
@@ -40,7 +41,8 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/chat" component={Chat}/>
+            <PrivateRoute exact  component={Chat}/>
+            {/* <Route exact path="/chat" component={Chat} /> */}
           </Switch>
         </Router> 
       </MainTemplate>
