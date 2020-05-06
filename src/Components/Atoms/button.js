@@ -16,10 +16,9 @@ const StyledButton = styled.button`
     padding: .5rem;
 `
 
-
-const Button = ({text, handleClick}) => {
+const Button = ({route ,text, handleClick}) => {
     return (
-        <Link to="/chat">
+        <Link to={`/${route}`}>
             <StyledButton onClick={()=> handleClick()}>
                 {text}
             </StyledButton>

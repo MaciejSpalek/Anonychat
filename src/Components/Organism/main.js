@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { FlexColumn } from '../../Theme/mixins';
 import Header from '../Molecules/header';
 import Button from '../Atoms/button';
+import { FlexColumn } from '../../Theme/mixins';
+import { getEmptyRooms } from '../../Helpers/requests';
 
 const StyledContainer = styled.main`
     ${FlexColumn};
@@ -15,11 +16,27 @@ const StyledContainer = styled.main`
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.primaryWhite};
 ` 
-const Main = ({ handleClick }) => {
+const Main = () => {
+    const [ emptyRooms, setEmptyRooms ] = useState([]);
+    const searchRoom = () => {
+        console.log(emptyRooms)
+    }
+
+
+    useEffect(() => {
+        getEmptyRooms().then(({data}) => setEmptyRooms(data));
+      }, [emptyRooms.length])
+
+    
+
     return (
         <StyledContainer>
-           <Header />
-           <Button text={"Draw"}  handleClick={()=> handleClick()}/>
+            <Header />
+            <Button 
+                route={"chat"}
+                text={"Draw"}  
+                handleClick={()=> searchRoom()}
+            />
         </StyledContainer>
     )
 }

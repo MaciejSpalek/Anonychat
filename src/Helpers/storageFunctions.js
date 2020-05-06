@@ -7,6 +7,3 @@ export const getUserFromLocalStorage = () => {
     return JSON.parse(localStorage.getItem('user'));
 }
 
-export const isUserExist = () => {
-    return localStorage.getItem('user') === null
-}

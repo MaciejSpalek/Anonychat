@@ -5,28 +5,29 @@ import Home from './home';
 import Chat from './chat';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getUserFromLocalStorage, setUserInLocalStorage } from '../Helpers/storageFunctions'
-import { getUsers, addUser, getLastUser } from '../Helpers/requests';
-import { generateToken } from '../Helpers/token';
-
+import { getUsers, getGivenUser, addUser } from '../Helpers/requests';
 
 
 const App = () => {
   const [ allUsers, setAllUsers ] = useState([])
   const [ user, setUser ] = useState(getUserFromLocalStorage());
 
-
   const setCurrentUser = async () => {
     if(!user) {
-      await addUser();
-      await getLastUser().then(({data}) => {
-        setUserInLocalStorage(data[0])
-        setUser(data[0])
-      })
+      await addUser()
+        .then(({data}) => {
+          getGivenUser(data.insertId)
+          .then(({data}) => {
+            setUserInLocalStorage(data[0])
+            setUser(data[0])
+          })
+        })
     }
   }
   
   useEffect(() => {
     setCurrentUser()
+    console.log(user)
   }, [user])
 
   useEffect(()=> {

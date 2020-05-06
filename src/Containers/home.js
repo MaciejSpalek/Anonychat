@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import InfoSection from '../Components/Organism/infoSection';
 import Main from '../Components/Organism/main';
-import { addRoom } from '../Helpers/requests';
 import { FlexCenter } from '../Theme/mixins';
-import { generateToken } from '../Helpers/token';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -14,14 +12,9 @@ const StyledContainer = styled.div`
 `
 
 const Home = () => {
-    const handleClick = () => {
-        // addRoom(234, 34, 22);
-    } 
-
-   
     return (
         <StyledContainer>
-            <Main handleClick={()=> handleClick()}/>
+            <Main />
             <InfoSection/>
         </StyledContainer>
     )
