@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <StyledContainer>
             <Main />
-            <InfoSection/>
+            <InfoSection />
         </StyledContainer>
     )
 }

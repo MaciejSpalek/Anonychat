@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 import { FlexCenter } from '../../Theme/mixins';
+import { Link } from 'react-router-dom';
+import { getStorageItem } from '../../Helpers/localStorage'
 
 const StyledButton = styled.button`
     ${FlexCenter};
@@ -15,11 +17,13 @@ const StyledButton = styled.button`
     padding: .5rem;
 `
 
-const Button = ({ text, handleClick }) => {
+const Button = ({ route, text, handleClick }) => {
     return (
-        <StyledButton onClick={()=> handleClick()}>
-            {text}
-        </StyledButton>
+        <Link to='/chatroom'>
+            <StyledButton onClick={()=> handleClick()}>
+                {text}
+            </StyledButton>
+        </Link>
     )
 }
 

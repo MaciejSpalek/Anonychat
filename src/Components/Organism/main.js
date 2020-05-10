@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../Molecules/header';
 import Button from '../Atoms/button';
-import { Redirect } from 'react-router-dom';
 import { FlexColumn } from '../../Theme/mixins';
 import { getEmptyRooms } from '../../Helpers/requests';
+import { setStorageItem } from '../../Helpers/localStorage';
 
 const StyledContainer = styled.main`
     ${FlexColumn};
@@ -18,23 +18,29 @@ const StyledContainer = styled.main`
     background-color: ${({theme}) => theme.colors.primaryWhite};
 ` 
 const Main = () => {
-    const [ emptyRooms, setEmptyRooms ] = useState([]);
-    const searchRoom = () => {
-        // getEmptyRooms().then(({data}) => setEmptyRooms(data));
-        // console.log(emptyRooms)
-        return (
-            <Redirect to="chat" />
-        )
-    }
+    const [ currentRoom, setCurrentRoom ] = useState(null);
+    
     
 
+    // const manageRoom = () => {
+    //     if(emptyRooms.length) {
+    //         setStorageItem('room', emptyRooms[0])
+    //         setCurrentRoom(emptyRooms[0])
+    //     } 
+    // }
+
+    useEffect(()=> {
+        // manageRoom();
+    })
+    
     return (
         <StyledContainer>
             <Header />
             <Button 
-                text={"Draw"}  
-                handleClick={()=> searchRoom()}
+                handleClick={()=> {}}
+                text={"Draw"}
             />
+            
         </StyledContainer>
     )
 }

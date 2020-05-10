@@ -3,36 +3,50 @@ import MainTemplate from '../Templates/mainTemplate'
 import Navbar from '../Components/Organism/navbar'
 import Home from './home';
 import Chat from './chat';
-import PrivateRoute from '../Authentication/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { getUserFromLocalStorage, setUserInLocalStorage } from '../Helpers/storageFunctions'
-import { getUsers, getGivenUser, addUser } from '../Helpers/requests';
+import { getStorageItem, setStorageItem } from '../Helpers/localStorage'
+import { getUsers, getGivenUser, getEmptyRooms, addUser } from '../Helpers/requests';
 
 
 const App = () => {
+  const [ user, setUser ] = useState(getStorageItem("user"));
+  const [ emptyRooms, setEmptyRooms ] = useState([]);
   const [ allUsers, setAllUsers ] = useState([])
-  const [ user, setUser ] = useState(getUserFromLocalStorage());
-  const [ currentRoom, setCurrentRoom] = useState(null)
 
-  const setCurrentUser = async () => {
+  const searchEmptyRooms = () => {
+      getEmptyRooms().then(({data}) => setEmptyRooms(data));
+  }
+
+  const searchAllUsers = () => {
+    getUsers().then(({data}) => setAllUsers(data));
+  }
+
+  // set your user and if they are not exist in LS save there
+  const setStartData = async () => {
     if(!user) {
       await addUser()
         .then(({data}) => {
           getGivenUser(data.insertId)
           .then(({data}) => {
-            setUserInLocalStorage(data[0])
+            setStorageItem('user', data[0])
             setUser(data[0])
           })
         })
     }
   }
-  
+
+
+
   useEffect(() => {
-    setCurrentUser()
+    setStartData();
   }, [user])
 
+  useEffect(() => {
+      searchEmptyRooms();
+  }, [emptyRooms.length])
+
   useEffect(()=> {
-    getUsers().then(({data}) => setAllUsers(data));
+    searchAllUsers();
   }, [allUsers.length])
 
   return (
@@ -41,8 +55,7 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <PrivateRoute exact  component={Chat}/>
-            {/* <Route exact path="/chat" component={Chat} /> */}
+            <Route exact path={"/chatroom"} component={Chat} />
           </Switch>
         </Router> 
       </MainTemplate>
