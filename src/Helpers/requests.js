@@ -34,10 +34,19 @@ export const getGivenUser = async (id) => {
 
 export const addRoom = (firstID, secondID) => {
   fetch(`http://localhost:5000/rooms/add?firstID=${firstID}&secondID=${secondID}`)
-      .catch(error => {
-          console.error(error)
-      })
+    .catch(error => {
+        console.error(error)
+    })
 }
+
+export const getRooms = async () => {
+  return await fetch('http://localhost:5000/rooms')
+    .then(response => response.json())
+    .catch(error => {
+      console.error(error)
+    })
+}
+
 export const getEmptyRooms = async () => {
   return await fetch('http://localhost:5000/rooms/empty_rooms')
     .then(response => response.json())

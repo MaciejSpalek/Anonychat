@@ -13,10 +13,11 @@ const StyledContainer = styled.div`
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.secondaryGreen};
 ` 
-const Navbar = () => {
+const Navbar = ({data}) => {
     return (
         <StyledContainer>
             <Logo/>
+            <div>{data}</div>
         </StyledContainer>
     )
 }

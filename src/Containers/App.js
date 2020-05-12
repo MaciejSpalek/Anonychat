@@ -5,21 +5,14 @@ import Home from './home';
 import Chat from './chat';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getStorageItem, setStorageItem } from '../Helpers/localStorage'
-import { getUsers, getGivenUser, getEmptyRooms, addUser } from '../Helpers/requests';
+import { getGivenUser, addUser } from '../Helpers/requests';
+
+import { connect } from 'react-redux';
+import { getEmptyRooms } from '../Redux/Actions/actions'
 
 
-const App = () => {
+const App = ({rooms}) => {
   const [ user, setUser ] = useState(getStorageItem("user"));
-  const [ emptyRooms, setEmptyRooms ] = useState([]);
-  const [ allUsers, setAllUsers ] = useState([])
-
-  const searchEmptyRooms = () => {
-      getEmptyRooms().then(({data}) => setEmptyRooms(data));
-  }
-
-  const searchAllUsers = () => {
-    getUsers().then(({data}) => setAllUsers(data));
-  }
 
   // set your user and if they are not exist in LS save there
   const setStartData = async () => {
@@ -42,17 +35,15 @@ const App = () => {
   }, [user])
 
   useEffect(() => {
-      searchEmptyRooms();
-  }, [emptyRooms.length])
+      getEmptyRooms();
+      console.log(rooms)
+  }, [])
 
-  useEffect(()=> {
-    searchAllUsers();
-  }, [allUsers.length])
-
+ 
   return (
       <MainTemplate>
         <Router>  
-          <Navbar />
+          <Navbar data={rooms.length}/>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path={"/chatroom"} component={Chat} />
@@ -62,4 +53,9 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  rooms: state.rooms.emptyRooms
+});
+
+
+export default connect(mapStateToProps)(App);
