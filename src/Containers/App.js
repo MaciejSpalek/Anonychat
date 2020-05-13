@@ -7,12 +7,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getStorageItem, setStorageItem } from '../Helpers/localStorage'
 import { getGivenUser, addUser } from '../Helpers/requests';
 
-import { connect } from 'react-redux';
-import { getEmptyRooms } from '../Redux/Actions/actions'
-
-
-const App = ({rooms}) => {
+const App = () => {
   const [ user, setUser ] = useState(getStorageItem("user"));
+ 
 
   // set your user and if they are not exist in LS save there
   const setStartData = async () => {
@@ -28,22 +25,15 @@ const App = ({rooms}) => {
     }
   }
 
-
-
   useEffect(() => {
     setStartData();
   }, [user])
 
-  useEffect(() => {
-      getEmptyRooms();
-      console.log(rooms)
-  }, [])
 
- 
   return (
       <MainTemplate>
         <Router>  
-          <Navbar data={rooms.length}/>
+          <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path={"/chatroom"} component={Chat} />
@@ -53,9 +43,4 @@ const App = ({rooms}) => {
   );
 }
 
-const mapStateToProps = state => ({
-  rooms: state.rooms.emptyRooms
-});
-
-
-export default connect(mapStateToProps)(App);
+export default App;
