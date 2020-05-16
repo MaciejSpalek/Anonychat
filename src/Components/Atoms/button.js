@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components'
 import { FlexCenter } from '../../Theme/mixins';
 import { Link } from 'react-router-dom';
-import { getStorageItem } from '../../Helpers/localStorage'
 
 const StyledButton = styled.button`
     ${FlexCenter};
@@ -19,7 +18,7 @@ const StyledButton = styled.button`
 
 const Button = ({ route, text, handleClick }) => {
     return (
-        <Link to='/chatroom'>
+        <Link to={`/${route}`}>
             <StyledButton onClick={()=> handleClick()}>
                 {text}
             </StyledButton>

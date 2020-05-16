@@ -9,6 +9,7 @@ export const theme = {
      md: '2.5rem',
      lg: '3.5rem',
      xl: '5rem',
+     xxl: '7rem'
     },
     fontWeights: {
      normal: 400,

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import MainTemplate from '../Templates/mainTemplate'
 import Navbar from '../Components/Organism/navbar'
-import Home from './home';
-import Chat from './chat';
+import Home from './Home';
+import Chat from './Chat';
+import ComponentError from './ErrorView';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getStorageItem, setStorageItem } from '../Helpers/localStorage'
 import { getGivenUser, addUser } from '../Helpers/requests';
 
+
 const App = () => {
   const [ user, setUser ] = useState(getStorageItem("user"));
- 
+  // let location = useLocation();
 
   // set your user and if they are not exist in LS save there
   const setStartData = async () => {
@@ -25,6 +27,12 @@ const App = () => {
     }
   }
 
+  // console.log('Location changed', location);
+  // useEffect(() => {
+  //   console.log('Location changed', location);
+  // });
+
+
   useEffect(() => {
     setStartData();
   }, [user])
@@ -36,7 +44,8 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path={"/chatroom"} component={Chat} />
+            <Route exact path="/chat" component={Chat} />
+            <Route component={ComponentError} />
           </Switch>
         </Router> 
       </MainTemplate>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Header from '../Molecules/header';
 import Button from '../Atoms/button';
 import { FlexColumn } from '../../Theme/mixins';
-import { getEmptyRooms } from '../../Helpers/requests';
-import { setStorageItem } from '../../Helpers/localStorage';
+import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const StyledContainer = styled.main`
     ${FlexColumn};
@@ -18,31 +18,24 @@ const StyledContainer = styled.main`
     background-color: ${({theme}) => theme.colors.primaryWhite};
 ` 
 const Main = () => {
-    const [ currentRoom, setCurrentRoom ] = useState(null);
-    
-    
+  const dispatch = useDispatch()
+  const searchRoom = () => {
 
-    // const manageRoom = () => {
-    //     if(emptyRooms.length) {
-    //         setStorageItem('room', emptyRooms[0])
-    //         setCurrentRoom(emptyRooms[0])
-    //     } 
-    // }
+  }
 
-    useEffect(()=> {
-        // manageRoom();
-    })
-    
-    return (
-        <StyledContainer>
-            <Header />
-            <Button 
-                handleClick={()=> {}}
-                text={"Draw"}
-            />
-            
-        </StyledContainer>
-    )
+  return (
+      <StyledContainer>
+          <Header />
+          <Button 
+              route={"chat"}
+              handleClick={()=> {searchRoom()}}
+              text={"Draw"}
+          />
+      </StyledContainer>
+  )
 }
 
-export default Main;
+
+    
+  
+  export default withRouter(Main);

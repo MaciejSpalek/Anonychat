@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Logo from '../Molecules/logo';
 import { FlexCenter } from '../../Theme/mixins';
-import { useSelector, useDispatch } from 'react-redux';
-import { getEmptyRooms } from '../../Redux/Actions/actions'
 
 
 const StyledContainer = styled.div`
@@ -18,18 +16,9 @@ const StyledContainer = styled.div`
 ` 
 
 const Navbar = () => {
-    const emptyRooms = useSelector(state => state.rooms.emptyRooms)
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getEmptyRooms())
-      }, [emptyRooms.length])
-    
-
     return (
         <StyledContainer>
-            <Logo/>
-            <div>{emptyRooms.length}</div>
+            <Logo />
         </StyledContainer>
     )
 }
