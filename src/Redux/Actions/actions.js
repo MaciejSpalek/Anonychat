@@ -45,3 +45,7 @@ export const getAllRooms = () => dispatch => {
             console.error(error)
         })
 }
+
+export const resetRandomRoom = () => {
+    return { type: 'RESET_EMPTY_RANDOM_ROOM' }
+}

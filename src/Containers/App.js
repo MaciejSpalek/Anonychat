@@ -11,7 +11,6 @@ import { getGivenUser, addUser } from '../Helpers/requests';
 
 const App = () => {
   const [ user, setUser ] = useState(getStorageItem("user"));
-  // let location = useLocation();
 
   // set your user and if they are not exist in LS save there
   const setStartData = async () => {
@@ -27,16 +26,10 @@ const App = () => {
     }
   }
 
-  // console.log('Location changed', location);
-  // useEffect(() => {
-  //   console.log('Location changed', location);
-  // });
-
 
   useEffect(() => {
     setStartData();
   }, [user])
-
 
   return (
       <MainTemplate>

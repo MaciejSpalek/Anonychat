@@ -1,13 +1,15 @@
 import { 
   FETCH_EMPTY_ROOMS,
   FETCH_ALL_ROOMS  ,
-  FETCH_EMPTY_RANDOM_ROOM
+  FETCH_EMPTY_RANDOM_ROOM,
+  RESET_EMPTY_RANDOM_ROOM
+
 } from "../Actions/types"
 
 const INITIAL_STATE = {
   allRooms: [],
   emptyRooms: [],
-  randomRoom: null
+  randomRoom: []
 };
 
 export const roomsReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +30,12 @@ export const roomsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         randomRoom: action.payload
+      };    
+
+    case RESET_EMPTY_RANDOM_ROOM:
+      return {
+        ...state,
+        randomRoom: []
       };    
 
     default:
