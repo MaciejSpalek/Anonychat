@@ -47,9 +47,9 @@ export const getRooms = async () => {
     })
 }
 
-export const getEmptyRooms = async () => {
-  return await fetch('http://localhost:5000/rooms/empty_rooms')
-    .then(response => response.json())
+export const joinToRoom = async (roomID, secondID) => {
+  await fetch(`http://localhost:5000/rooms/join_to_room?roomID=${roomID}&secondID=${secondID}`)
+    .then(response => console.log("joinToRoom turns on!"))
     .catch(error => {
       console.error(error)
     })

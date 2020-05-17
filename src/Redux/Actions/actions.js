@@ -1,7 +1,10 @@
 import { 
     FETCH_EMPTY_ROOMS,
     FETCH_ALL_ROOMS,
-    FETCH_EMPTY_RANDOM_ROOM
+    FETCH_EMPTY_RANDOM_ROOM,
+    RESET_EMPTY_RANDOM_ROOM,
+    FETCH_CURRENT_ROOM,
+    UPDATE_CURRENT_ROOM
 } from './types'
 
 export const getEmptyRooms = () => dispatch => {
@@ -18,13 +21,29 @@ export const getEmptyRooms = () => dispatch => {
         })
 }
 
+
+export const getAllRooms = () => dispatch => {
+    return fetch('http://localhost:5000/rooms')
+    .then(res => res.json())
+    .then(rooms =>
+            dispatch({
+                type: FETCH_ALL_ROOMS,
+                payload: rooms.data
+            })
+            )
+            .catch(error => {
+                console.error(error)
+            })
+        }
+        
+
 export const getRandomRoom = () => dispatch => {
     return fetch('http://localhost:5000/rooms/empty_random_room')
         .then(res => res.json())
         .then(rooms =>
             dispatch({
-              type: FETCH_EMPTY_RANDOM_ROOM,
-              payload: rooms.data
+                type: FETCH_EMPTY_RANDOM_ROOM,
+                payload: rooms.data
             })
         )
         .catch(error => {
@@ -32,12 +51,13 @@ export const getRandomRoom = () => dispatch => {
         })
 }
 
-export const getAllRooms = () => dispatch => {
-    return fetch('http://localhost:5000/rooms')
+
+export const getCurrentRoom = (roomID) => dispatch => {
+    return fetch(`http://localhost:5000/rooms/current_room?id=${roomID}`)
         .then(res => res.json())
         .then(rooms =>
             dispatch({
-              type: FETCH_ALL_ROOMS,
+              type: FETCH_CURRENT_ROOM,
               payload: rooms.data
             })
         )
@@ -46,6 +66,16 @@ export const getAllRooms = () => dispatch => {
         })
 }
 
+
 export const resetRandomRoom = () => {
-    return { type: 'RESET_EMPTY_RANDOM_ROOM' }
+    return { type: RESET_EMPTY_RANDOM_ROOM }
 }
+        
+        
+        // export const updateCurrentRoom = item => dispatch =>{ 
+//     dispatch({
+//         type: UPDATE_CURRENT_ROOM,
+//         payload: item
+//     })
+// }
+
