@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexCenter } from '../../Theme/mixins';
 import Logo from '../Molecules/logo';
-import Paragraph from '../Atoms/paragraph';
+import { FlexCenter } from '../../Theme/mixins';
 
 
 const StyledContainer = styled.div`
@@ -15,10 +14,11 @@ const StyledContainer = styled.div`
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.secondaryGreen};
 ` 
+
 const Navbar = () => {
     return (
         <StyledContainer>
-            <Logo/>
+            <Logo />
         </StyledContainer>
     )
 }

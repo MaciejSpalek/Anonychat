@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
     color: ${({theme}) => theme.colors.primaryWhite};
     padding: .5rem;
 `
-const InfoSection = ({theme}) => {
+const InfoSection = ({ theme }) => {
     return (
         <StyledContainer>
             <Paragraph 

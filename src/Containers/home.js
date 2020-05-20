@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import InfoSection from '../Components/Organism/infoSection';
 import Main from '../Components/Organism/main';
-import { FlexCenter } from '../Theme/mixins'
+import { FlexCenter } from '../Theme/mixins';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -12,14 +12,9 @@ const StyledContainer = styled.div`
 `
 
 const Home = () => {
-    const handleButton = () => {
-        
-    }
-
-
     return (
         <StyledContainer>
-            <Main handleButton={()=> handleButton()}/>
+            <Main />
             <InfoSection />
         </StyledContainer>
     )

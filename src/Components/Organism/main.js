@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexColumn } from '../../Theme/mixins';
 import Header from '../Molecules/header';
 import Button from '../Atoms/button';
+import { FlexColumn } from '../../Theme/mixins';
+import { useDispatch } from 'react-redux';
+import { getRandomRoom } from '../../Redux/Actions/actions';
 
 const StyledContainer = styled.main`
     ${FlexColumn};
@@ -15,13 +17,23 @@ const StyledContainer = styled.main`
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.primaryWhite};
 ` 
-const Main = ({ handleButton }) => {
-    return (
-        <StyledContainer>
-           <Header />
-           <Button text={"Draw"} handleClick={()=> handleButton()}/>
-        </StyledContainer>
-    )
+const Main = () => {
+    const dispatch = useDispatch()
+    
+
+  return (
+      <StyledContainer>
+          <Header />
+          <Button 
+              route={"chat"}
+              handleClick={()=> {}}
+              text={"Draw"}
+          />
+      </StyledContainer>
+  )
 }
 
-export default Main;
+
+    
+  
+  export default Main;
