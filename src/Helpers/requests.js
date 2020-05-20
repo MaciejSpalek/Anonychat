@@ -1,4 +1,3 @@
-
 /////////////////////        users          ///////////////////////
 
 export const getUsers = async () => {
@@ -32,8 +31,9 @@ export const getGivenUser = async (id) => {
 
 /////////////////////        rooms          ///////////////////////
 
-export const addRoom = (firstID, secondID) => {
-  fetch(`http://localhost:5000/rooms/add?firstID=${firstID}&secondID=${secondID}`)
+export const createRoom = (firstID) => {
+  return fetch(`http://localhost:5000/rooms/add?firstID=${firstID}`)
+    .then(response => response.json())
     .catch(error => {
         console.error(error)
     })
@@ -53,4 +53,13 @@ export const joinToRoom = async (roomID, secondID) => {
     .catch(error => {
       console.error(error)
     })
+}
+
+
+export const getGivenRoom = (roomID) =>  {
+  return fetch(`http://localhost:5000/rooms/current_room?id=${roomID}`)
+      .then(response => response.json())
+      .catch(error => {
+          console.error(error)
+      })
 }
