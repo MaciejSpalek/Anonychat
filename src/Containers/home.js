@@ -1,21 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import InfoSection from '../Components/Organism/infoSection';
-import Main from '../Components/Organism/main';
 import { FlexCenter } from '../Theme/mixins';
+import Header from '../Components/Molecules/header';
+import Button from '../Components/Atoms/button';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
-    align-items: flex-start;
-    height: 100vh;
+    flex-direction: column;
+    position: fixed;
+    top: 70px;
+    height: calc(100vh - 70px);
     background-color: ${({theme}) => theme.colors.primaryWhite};
 `
 
 const Home = () => {
     return (
         <StyledContainer>
-            <Main />
-            <InfoSection />
+            <Header />
+            <Button 
+                route={"chat"}
+                handleClick={()=> {}}
+                text={"Draw"}
+            />
         </StyledContainer>
     )
 }

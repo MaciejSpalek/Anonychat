@@ -22,8 +22,8 @@ export const getAllRooms = () => dispatch => {
 }
         
 
-export const getRandomRoom = () => dispatch => {
-    return fetch('http://localhost:5000/rooms/empty_random_room')
+export const getRandomRoom = (firstID) => dispatch => {
+    return fetch(`http://localhost:5000/rooms/empty_random_room?firstID=${firstID}`)
         .then(res => res.json())
         .then(rooms =>
             dispatch({
@@ -37,7 +37,7 @@ export const getRandomRoom = () => dispatch => {
 
 
 export const getCurrentRoom = (roomID) => dispatch => {
-    return fetch(`http://localhost:5000/rooms/current_room?id=${roomID}`)
+    return fetch(`http://localhost:5000/rooms/given_room?id=${roomID}`)
         .then(res => res.json())
         .then(rooms =>
             dispatch({

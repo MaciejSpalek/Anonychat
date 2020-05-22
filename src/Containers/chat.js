@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import InfoSection from '../Components/Organism/InfoPanel';
 import { Link } from 'react-router-dom';
 import { FlexCenter } from '../Theme/mixins';
-import { joinToRoom, createRoom, getGivenRoom } from '../Helpers/requests';
+import { joinTheRoom, createRoom, getGivenRoom } from '../Helpers/requests';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRandomRoom, getCurrentRoom, resetRandomRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { getStorageItem } from '../Helpers/localStorage';
@@ -10,7 +11,10 @@ import { getStorageItem } from '../Helpers/localStorage';
 const StyledContainer = styled.div`
     ${FlexCenter};
     flex-direction: column;
-    height: 100vh;
+    justify-content: flex-start;
+    position: fixed;
+    top: 70px;
+    height: calc(100vh - 70px);
     background-color: ${({theme}) => theme.colors.primaryWhite};
 `
 
@@ -25,14 +29,12 @@ const Chat = () => {
 
 
     const searchEmptyRoom = async () => {
-        if(!searchStatus) { await dispatch(getRandomRoom()) }
+        if(!searchStatus) { await dispatch(getRandomRoom(getStorageItem('user').id)) }
         setSearchStatus(true);
     }
-    
     const saveCurrentRoom = (roomID) => {
         dispatch(getCurrentRoom(roomID))
     }
-    
     const handleActionType = () => {
         if(searchStatus && randomRoom.length) {
             setActionType("joining")
@@ -42,14 +44,12 @@ const Chat = () => {
             setActionType("loading")
         }
     }
-      
     const findRoomInterval = () => {
         if(actionType === "creating") {
             const tempInterval = setInterval(()=> {         
                 if(currentRoom.length) {
                     getGivenRoom(currentRoom[0].id).then(({data}) => {
                         if(data[0].second_user_id) {
-                            console.log("kasuje")
                             saveCurrentRoom(data[0].id);
                             setActionType("texting");
                             clearInterval(tempInterval)
@@ -59,18 +59,14 @@ const Chat = () => {
             }, 1000)
         }
     }
-
-
     const manageRoom = async () => {
-        console.log("Status: ", searchStatus,"Random: ", randomRoom, "CurrentRoom: ", currentRoom)
         if(actionType !== "texting") {
-            console.log("zmieniam actionType")
             await handleActionType();
         }        
 
         if(actionType === "joining") {
             console.log("Dochodzę do room'u")
-            await joinToRoom(randomRoom[0].id, getStorageItem('user').id)
+            await joinTheRoom(randomRoom[0].id, getStorageItem('user').id)
             saveCurrentRoom(randomRoom[0].id)
         } 
 
@@ -83,11 +79,16 @@ const Chat = () => {
         } 
         
         else if(actionType === "texting") {
+            await console.log("Status: ", searchStatus,"Random: ", randomRoom, "CurrentRoom: ", currentRoom)
             console.log("Rozmowy w toku...")
         }
         else {
             console.log("LOADING...")
         }
+    }
+    const comeback = () => {
+        dispatch(resetRandomRoom())
+        dispatch(resetCurrentRoom())
     }
 
     useEffect(() => {
@@ -102,11 +103,12 @@ const Chat = () => {
   
     return (
         <StyledContainer>
-            <div> {currentRoom.length ? `room's ID: ${currentRoom[0].id}`: "none room"} </div>
+            <InfoSection />
+            {/* <div> {currentRoom.length ? `room's ID: ${currentRoom[0].id}`: "none room"} </div>
             <div> {`This userID: ${getStorageItem("user").id}`} </div>
             <div> {currentRoom.length ? `First userID: ${currentRoom[0].first_user_id}`: "none user"} </div>
-            <div> {currentRoom.length ? `Second userID: ${currentRoom[0].second_user_id}`: "none user"} </div>
-            <Link to="/" onClick={()=> {dispatch(resetRandomRoom()); dispatch(resetCurrentRoom())}}>WRÓĆ</Link>
+            <div> {currentRoom.length ? `Second userID: ${currentRoom[0].second_user_id}`: "none user"} </div> */}
+            {/* <Link to="/" onClick={()=> comeback()}>WRÓĆ</Link> */}
         </StyledContainer>
     )
 }
