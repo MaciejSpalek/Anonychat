@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getRandomRoom, getCurrentRoom, resetRandomRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { getStorageItem } from '../Helpers/localStorage';
 
+
 const StyledContainer = styled.div`
     ${FlexCenter};
     flex-direction: column;
@@ -26,7 +27,8 @@ const Chat = () => {
     const currentRoom = useSelector(state => state.rooms.currentRoom)
     const randomRoom = useSelector(state => state.rooms.randomRoom)
     const dispatch = useDispatch()
-
+    const server = "http://localhost:5000/"
+    
 
     const searchEmptyRoom = async () => {
         if(!searchStatus) { await dispatch(getRandomRoom(getStorageItem('user').id)) }
@@ -101,6 +103,12 @@ const Chat = () => {
         findRoomInterval();
     }, [currentRoom.length])
   
+
+    useEffect(()=> {
+        // const io = io(server);
+        
+        
+    })
     return (
         <StyledContainer>
             <InfoSection />
