@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import InfoSection from '../Components/Organism/InfoPanel';
-import { Link } from 'react-router-dom';
 import { FlexCenter } from '../Theme/mixins';
 import { joinTheRoom, createRoom, getGivenRoom } from '../Helpers/requests';
 import { useSelector, useDispatch } from 'react-redux';
-import { getRandomRoom, getCurrentRoom, resetRandomRoom, resetCurrentRoom } from '../Redux/Actions/actions';
+import { getRandomRoom, getCurrentRoom } from '../Redux/Actions/actions';
 import { getStorageItem } from '../Helpers/localStorage';
-
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -20,16 +18,13 @@ const StyledContainer = styled.div`
 `
 
 const Chat = () => {
-
     const [ searchStatus, setSearchStatus ] = useState(false)
     const [ actionType, setActionType ] = useState(null)
     
     const currentRoom = useSelector(state => state.rooms.currentRoom)
     const randomRoom = useSelector(state => state.rooms.randomRoom)
     const dispatch = useDispatch()
-    const server = "http://localhost:5000/"
     
-
     const searchEmptyRoom = async () => {
         if(!searchStatus) { await dispatch(getRandomRoom(getStorageItem('user').id)) }
         setSearchStatus(true);
@@ -88,10 +83,7 @@ const Chat = () => {
             console.log("LOADING...")
         }
     }
-    const comeback = () => {
-        dispatch(resetRandomRoom())
-        dispatch(resetCurrentRoom())
-    }
+   
 
     useEffect(() => {
         searchEmptyRoom();
@@ -103,12 +95,7 @@ const Chat = () => {
         findRoomInterval();
     }, [currentRoom.length])
   
-
-    useEffect(()=> {
-        // const io = io(server);
-        
-        
-    })
+  
     return (
         <StyledContainer>
             <InfoSection />
@@ -116,7 +103,6 @@ const Chat = () => {
             <div> {`This userID: ${getStorageItem("user").id}`} </div>
             <div> {currentRoom.length ? `First userID: ${currentRoom[0].first_user_id}`: "none user"} </div>
             <div> {currentRoom.length ? `Second userID: ${currentRoom[0].second_user_id}`: "none user"} </div> */}
-            {/* <Link to="/" onClick={()=> comeback()}>WRÓĆ</Link> */}
         </StyledContainer>
     )
 }

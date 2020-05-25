@@ -7,10 +7,10 @@ import ComponentError from './ErrorView';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getStorageItem, setStorageItem } from '../Helpers/localStorage'
 import { getGivenUser, addUser } from '../Helpers/requests';
-
+import {socket } from '../socketClient'
 
 const App = () => {
-  const [ user, setUser ] = useState(getStorageItem("user"));
+  const [ user, setUser ] = useState(getStorageItem("user")); 
 
   // set your user and if they are not exist in LS save there
   const setStartData = async () => {
@@ -25,7 +25,13 @@ const App = () => {
         })
     }
   }
+  
 
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log(socket.id)
+  });
+  });
 
   useEffect(() => {
     setStartData();
