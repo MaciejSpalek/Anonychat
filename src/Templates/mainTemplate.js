@@ -3,7 +3,7 @@ import GlobalStyle from '../Theme/globalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../Theme/theme';
 import styled from 'styled-components';
-import SocketClient from '../socketClient'
+import SocketClient from '../SocketClient/socketClient'
 
 const Container = styled.div`
     width: 100%;

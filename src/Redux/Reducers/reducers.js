@@ -1,10 +1,11 @@
 import { 
-  FETCH_ALL_ROOMS  ,
-  FETCH_EMPTY_RANDOM_ROOM,
-  RESET_EMPTY_RANDOM_ROOM,
-  FETCH_CURRENT_ROOM,
-  RESET_CURRENT_ROOM,
+  // FETCH_ALL_ROOMS  ,
+  // FETCH_EMPTY_RANDOM_ROOM,
+  // RESET_EMPTY_RANDOM_ROOM,
+  // FETCH_CURRENT_ROOM,
+  // RESET_CURRENT_ROOM,
 
+  GET_ROOMS,
   FETCH_ALL_USERS,
   GET_CURRENT_USER_ID
 
@@ -25,36 +26,13 @@ const INITIAL_STATE_FOR_USERS = {
 
 export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
   switch (action.type) {
-    case FETCH_ALL_ROOMS:
+    case GET_ROOMS:
       return {
         ...state,
         allRooms: action.payload
       }; 
 
 
-    case FETCH_EMPTY_RANDOM_ROOM:
-      return {
-        ...state,
-        randomRoom: action.payload
-      }; 
-    
-    case RESET_EMPTY_RANDOM_ROOM:
-      return {
-        ...state,
-        randomRoom: []
-      };    
-
-    case FETCH_CURRENT_ROOM:
-      return {
-        ...state,
-        currentRoom: action.payload
-      };      
-
-    case RESET_CURRENT_ROOM:
-      return {
-        ...state,
-        currentRoom: []
-      };  
 
     default:
       return state;

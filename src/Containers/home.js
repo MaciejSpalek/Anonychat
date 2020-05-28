@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexCenter } from '../Theme/mixins';
 import Header from '../Components/Molecules/header';
 import Button from '../Components/Atoms/button';
+import { FlexCenter } from '../Theme/mixins';
+
+
 
 const StyledContainer = styled.div`
     ${FlexCenter};

@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import InfoSection from '../Components/Organism/InfoPanel';
 import { FlexCenter } from '../Theme/mixins';
-import { joinTheRoom, createRoom, getGivenRoom } from '../Helpers/requests';
 import { useSelector, useDispatch } from 'react-redux';
-import { getRandomRoom, getCurrentRoom } from '../Redux/Actions/actions';
-import { getStorageItem } from '../Helpers/localStorage';
+import { socket } from '../SocketClient/socketClient'
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -18,91 +16,42 @@ const StyledContainer = styled.div`
 `
 
 const Chat = () => {
-    const [ searchStatus, setSearchStatus ] = useState(false)
-    const [ actionType, setActionType ] = useState(null)
-    
-    const currentRoom = useSelector(state => state.rooms.currentRoom)
-    const randomRoom = useSelector(state => state.rooms.randomRoom)
-    const dispatch = useDispatch()
-    
-    const searchEmptyRoom = async () => {
-        if(!searchStatus) { await dispatch(getRandomRoom(getStorageItem('user').id)) }
-        setSearchStatus(true);
-    }
-    const saveCurrentRoom = (roomID) => {
-        dispatch(getCurrentRoom(roomID))
-    }
-    const handleActionType = () => {
-        if(searchStatus && randomRoom.length) {
-            setActionType("joining")
-        } else if(searchStatus && !randomRoom.length) {
-            setActionType("creating")
-        } else {
-            setActionType("loading")
-        }
-    }
-    const findRoomInterval = () => {
-        if(actionType === "creating") {
-            const tempInterval = setInterval(()=> {         
-                if(currentRoom.length) {
-                    getGivenRoom(currentRoom[0].id).then(({data}) => {
-                        if(data[0].second_user_id) {
-                            saveCurrentRoom(data[0].id);
-                            setActionType("texting");
-                            clearInterval(tempInterval)
-                        }
-                    });
-                }
-            }, 1000)
-        }
-    }
-    const manageRoom = async () => {
-        if(actionType !== "texting") {
-            await handleActionType();
-        }        
+    const emptyRooms = useSelector(state => state.rooms.emptyRooms)
 
-        if(actionType === "joining") {
+    const getEmptyRoom = () => {
+        return emptyRooms[0]
+    }
+
+    const doesEmptyRoomExist = () => {
+        return emptyRooms.length
+    }
+
+    const joinTheRoom = (room) => {
+        socket.emit('join', room)
+    }
+    
+    const createRoom = () => {
+        socket.emit('join', socket.id)
+    }
+    
+    const manageRoom = () => {
+        if(doesEmptyRoomExist()) {
+            const room = getEmptyRoom()
+            joinTheRoom(room)
             console.log("Dochodzę do room'u")
-            await joinTheRoom(randomRoom[0].id, getStorageItem('user').id)
-            saveCurrentRoom(randomRoom[0].id)
-        } 
-
-        else if(actionType === "creating"){
-            console.log("Tworze room")
-            await createRoom(getStorageItem('user').id)
-                .then(({data}) => {
-                    saveCurrentRoom(data.insertId)
-                })
-        } 
-        
-        else if(actionType === "texting") {
-            await console.log("Status: ", searchStatus,"Random: ", randomRoom, "CurrentRoom: ", currentRoom)
-            console.log("Rozmowy w toku...")
-        }
-        else {
-            console.log("LOADING...")
+        } else {
+            createRoom()
+            console.log("Tworzę room")
         }
     }
-   
-
-    useEffect(() => {
-        searchEmptyRoom();
-        manageRoom();
-    }, [searchStatus, actionType]);
-
 
     useEffect(()=> {
-        findRoomInterval();
-    }, [currentRoom.length])
-  
-  
+        manageRoom()
+    }, [])
+
     return (
         <StyledContainer>
             <InfoSection />
-            {/* <div> {currentRoom.length ? `room's ID: ${currentRoom[0].id}`: "none room"} </div>
-            <div> {`This userID: ${getStorageItem("user").id}`} </div>
-            <div> {currentRoom.length ? `First userID: ${currentRoom[0].first_user_id}`: "none user"} </div>
-            <div> {currentRoom.length ? `Second userID: ${currentRoom[0].second_user_id}`: "none user"} </div> */}
         </StyledContainer>
     )
 }

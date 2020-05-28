@@ -4,9 +4,8 @@ import IconButton from '../Atoms/IconButton';
 import Icon from '../Atoms/icon';
 import { FlexCenter } from '../../Theme/mixins';
 import { faComments, faTimesCircle, faPeopleArrows } from '@fortawesome/free-solid-svg-icons';
-import { resetRandomRoom, resetCurrentRoom } from '../../Redux/Actions/actions';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { socket } from '../../SocketClient/socketClient'
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -23,10 +22,8 @@ const StyledWrapper = styled.div`
     width: auto;
 `
 const InfoSection = ({theme}) => {
-    const dispatch = useDispatch();
-    const comeback = () => {
-        dispatch(resetRandomRoom())
-        dispatch(resetCurrentRoom())
+    const leaveTheRoom = () => {
+        socket.emit('leave', socket.id);
     }
 
     return (
@@ -38,7 +35,7 @@ const InfoSection = ({theme}) => {
             />
             <StyledWrapper>
                 <IconButton icon={faPeopleArrows}/>
-                <Link to="/" onClick={()=> comeback()}>
+                <Link to="/" onClick={()=> leaveTheRoom()}>
                     <IconButton icon={faTimesCircle} /> 
                 </Link>
             </StyledWrapper>
