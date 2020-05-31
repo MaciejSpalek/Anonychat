@@ -1,11 +1,6 @@
 import { 
-  // FETCH_ALL_ROOMS  ,
-  // FETCH_EMPTY_RANDOM_ROOM,
-  // RESET_EMPTY_RANDOM_ROOM,
-  // FETCH_CURRENT_ROOM,
-  // RESET_CURRENT_ROOM,
-
-  GET_ROOMS,
+  SET_ALL_ROOMS,
+  SET_EMPTY_ROOMS,
   FETCH_ALL_USERS,
   GET_CURRENT_USER_ID
 
@@ -13,9 +8,7 @@ import {
 
 const INITIAL_STATE_FOR_ROOMS = {
   allRooms: [],
-  emptyRooms: [],
-  randomRoom: [],
-  currentRoom: []
+  emptyRooms: []
 };
 
 
@@ -26,18 +19,28 @@ const INITIAL_STATE_FOR_USERS = {
 
 export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
   switch (action.type) {
-    case GET_ROOMS:
+    case SET_ALL_ROOMS:
       return {
         ...state,
         allRooms: action.payload
       }; 
 
+    case SET_EMPTY_ROOMS:
+      return {
+        ...state,
+        emptyRooms: action.payload
+      }; 
 
 
     default:
       return state;
   }
 }
+
+
+
+
+
 
 
 
@@ -48,6 +51,7 @@ export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
         ...state,
         allUsers: action.payload
       }; 
+
 
     case GET_CURRENT_USER_ID:
       return {
