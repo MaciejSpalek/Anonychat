@@ -3,6 +3,7 @@ import GlobalStyle from '../Theme/globalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../Theme/theme';
 import styled from 'styled-components';
+import SocketClient from '../SocketClient/socketClient'
 
 const Container = styled.div`
     width: 100%;
@@ -12,7 +13,8 @@ const Container = styled.div`
 
 const MainTemplate = ({ children }) => (
   <Container>
-    <GlobalStyle />
+    <GlobalStyle />        
+    <SocketClient />
     <ThemeProvider theme={theme}>
         {children}
     </ThemeProvider>

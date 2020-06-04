@@ -1,9 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Icon = ({ icon, color, fontSize }) => {
+const Icon = ({ icon, color, fontSize, padding }) => {
     return (
-        <FontAwesomeIcon icon={icon} style={{fontSize, color}}/>
+        <FontAwesomeIcon icon={icon} style={{fontSize, color, padding}}/>
     )
 }
 

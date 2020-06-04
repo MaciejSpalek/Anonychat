@@ -3,6 +3,7 @@ export const theme = {
      primaryFont: 'Montserrat',
     },
     fontSizes: {
+     xxxs: '.5rem',
      xxs: '1rem',
      xs: '1.5rem',
      sm: '2rem',

@@ -1,112 +1,101 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import InfoSection from '../Components/Organism/InfoPanel';
 import { FlexCenter } from '../Theme/mixins';
-import { joinToRoom, createRoom, getGivenRoom } from '../Helpers/requests';
 import { useSelector, useDispatch } from 'react-redux';
-import { getRandomRoom, getCurrentRoom, resetRandomRoom, resetCurrentRoom } from '../Redux/Actions/actions';
-import { getStorageItem } from '../Helpers/localStorage';
+import { socket } from '../SocketClient/socketClient';
+import TokenGenerator from 'uuid-token-generator';
+import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
+
 
 const StyledContainer = styled.div`
     ${FlexCenter};
     flex-direction: column;
-    height: 100vh;
+    justify-content: flex-start;
+    position: fixed;
+    top: 70px;
+    height: calc(100vh - 70px);
     background-color: ${({theme}) => theme.colors.primaryWhite};
 `
 
 const Chat = () => {
-
-    const [ searchStatus, setSearchStatus ] = useState(false)
-    const [ actionType, setActionType ] = useState(null)
+    const currentUserID = useSelector(state => state.users.currentUserID);
+    const currentRoom= useSelector(state => state.rooms.currentRoom);
+    const emptyRooms = useSelector(state => state.rooms.emptyRooms);
+    const dispatch = useDispatch();
     
-    const currentRoom = useSelector(state => state.rooms.currentRoom)
-    const randomRoom = useSelector(state => state.rooms.randomRoom)
-    const dispatch = useDispatch()
+    const getToken = () => {
+        const token = new TokenGenerator(256, TokenGenerator.BASE62);
+        return token.generate()
+    }
 
+    const getEmptyRoom = () => {
+        return emptyRooms[0]
+    }
 
-    const searchEmptyRoom = async () => {
-        if(!searchStatus) { await dispatch(getRandomRoom()) }
-        setSearchStatus(true);
+    const doesEmptyRoomExist = () => {
+        return emptyRooms.filter(room => !room.users.includes(currentUserID)).length
     }
     
-    const saveCurrentRoom = (roomID) => {
-        dispatch(getCurrentRoom(roomID))
+   
+    
+    const joinTheRoom = (room) => {
+        const tempObject = {
+            joiningUser: currentUserID,
+            room: room
+        }
+        socket.emit('join', tempObject)
+        dispatch(setCurrentRoom(room))
+        console.log("Join to existing room", currentUserID, room)
     }
     
-    const handleActionType = () => {
-        if(searchStatus && randomRoom.length) {
-            setActionType("joining")
-        } else if(searchStatus && !randomRoom.length) {
-            setActionType("creating")
+    const leaveTheRoom = () => {
+        const tempObject = {
+            leavingUser: currentUserID,
+            room: currentRoom /////////////////////// tu jest problem /////////////////////////
+        }
+
+        socket.emit('leave', tempObject);
+        dispatch(resetCurrentRoom());
+        console.log("Leave the room");
+    }
+
+    const createRoom = () => {
+        const tempObject = {
+            joiningUser: currentUserID,
+            room: {
+                id: getToken(),
+                users: []
+            }
+        }
+
+        if(currentUserID) {
+            console.log("Join the room created by me")
+            socket.emit('join', tempObject);
+            dispatch(setCurrentRoom(tempObject.room))
         } else {
-            setActionType("loading")
+            console.log("Still currentUserID doesn't exist!")
         }
     }
-      
-    const findRoomInterval = () => {
-        if(actionType === "creating") {
-            const tempInterval = setInterval(()=> {         
-                if(currentRoom.length) {
-                    getGivenRoom(currentRoom[0].id).then(({data}) => {
-                        if(data[0].second_user_id) {
-                            console.log("kasuje")
-                            saveCurrentRoom(data[0].id);
-                            setActionType("texting");
-                            clearInterval(tempInterval)
-                        }
-                    });
-                }
-            }, 1000)
+    
+    const manageRoom = () => {
+        if(doesEmptyRoomExist()) {
+            const room = getEmptyRoom();
+            joinTheRoom(room);
+        } else {
+            createRoom();
         }
     }
-
-
-    const manageRoom = async () => {
-        console.log("Status: ", searchStatus,"Random: ", randomRoom, "CurrentRoom: ", currentRoom)
-        if(actionType !== "texting") {
-            console.log("zmieniam actionType")
-            await handleActionType();
-        }        
-
-        if(actionType === "joining") {
-            console.log("Dochodzę do room'u")
-            await joinToRoom(randomRoom[0].id, getStorageItem('user').id)
-            saveCurrentRoom(randomRoom[0].id)
-        } 
-
-        else if(actionType === "creating"){
-            console.log("Tworze room")
-            await createRoom(getStorageItem('user').id)
-                .then(({data}) => {
-                    saveCurrentRoom(data.insertId)
-                })
-        } 
-        
-        else if(actionType === "texting") {
-            console.log("Rozmowy w toku...")
-        }
-        else {
-            console.log("LOADING...")
-        }
-    }
-
-    useEffect(() => {
-        searchEmptyRoom();
-        manageRoom();
-    }, [searchStatus, actionType]);
-
-
+    
     useEffect(()=> {
-        findRoomInterval();
-    }, [currentRoom.length])
-  
+        manageRoom()
+    }, [currentUserID])
+
     return (
         <StyledContainer>
-            <div> {currentRoom.length ? `room's ID: ${currentRoom[0].id}`: "none room"} </div>
-            <div> {`This userID: ${getStorageItem("user").id}`} </div>
-            <div> {currentRoom.length ? `First userID: ${currentRoom[0].first_user_id}`: "none user"} </div>
-            <div> {currentRoom.length ? `Second userID: ${currentRoom[0].second_user_id}`: "none user"} </div>
-            <Link to="/" onClick={()=> {dispatch(resetRandomRoom()); dispatch(resetCurrentRoom())}}>WRÓĆ</Link>
+            <InfoSection 
+                leaveTheRoom={()=> leaveTheRoom()}
+            />
         </StyledContainer>
     )
 }

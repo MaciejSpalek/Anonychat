@@ -47,9 +47,8 @@ export const getRooms = async () => {
     })
 }
 
-export const joinToRoom = async (roomID, secondID) => {
-  await fetch(`http://localhost:5000/rooms/join_to_room?roomID=${roomID}&secondID=${secondID}`)
-    .then(response => console.log("joinToRoom turns on!"))
+export const joinTheRoom = (roomID, secondID) => {
+  fetch(`http://localhost:5000/rooms/join_the_room?roomID=${roomID}&secondID=${secondID}`)
     .catch(error => {
       console.error(error)
     })
@@ -57,7 +56,7 @@ export const joinToRoom = async (roomID, secondID) => {
 
 
 export const getGivenRoom = (roomID) =>  {
-  return fetch(`http://localhost:5000/rooms/current_room?id=${roomID}`)
+  return fetch(`http://localhost:5000/rooms/given_room?id=${roomID}`)
       .then(response => response.json())
       .catch(error => {
           console.error(error)
