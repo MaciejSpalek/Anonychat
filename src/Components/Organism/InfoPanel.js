@@ -6,6 +6,7 @@ import { FlexCenter } from '../../Theme/mixins';
 import { faComments, faTimesCircle, faPeopleArrows } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { socket } from '../../SocketClient/socketClient'
+import { useSelector } from 'react-redux';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -21,10 +22,7 @@ const StyledWrapper = styled.div`
     ${FlexCenter};
     width: auto;
 `
-const InfoSection = ({theme}) => {
-    const leaveTheRoom = () => {
-        socket.emit('leave', socket.id);
-    }
+const InfoSection = ({theme, leaveTheRoom}) => {
 
     return (
         <StyledContainer>

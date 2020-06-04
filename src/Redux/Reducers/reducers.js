@@ -1,6 +1,10 @@
 import { 
   SET_ALL_ROOMS,
   SET_EMPTY_ROOMS,
+  SET_CURRENT_ROOM,
+  RESET_CURRENT_ROOM,
+
+  
   FETCH_ALL_USERS,
   GET_CURRENT_USER_ID
 
@@ -8,7 +12,8 @@ import {
 
 const INITIAL_STATE_FOR_ROOMS = {
   allRooms: [],
-  emptyRooms: []
+  emptyRooms: [],
+  currentRoom: null
 };
 
 
@@ -31,6 +36,16 @@ export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
         emptyRooms: action.payload
       }; 
 
+    case SET_CURRENT_ROOM:
+      return {
+        ...state,
+        currentRoom: action.payload
+      }; 
+    case RESET_CURRENT_ROOM:
+      return {
+        ...state,
+        currentRoom: null
+      }; 
 
     default:
       return state;
@@ -51,7 +66,6 @@ export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
         ...state,
         allUsers: action.payload
       }; 
-
 
     case GET_CURRENT_USER_ID:
       return {

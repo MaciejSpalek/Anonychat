@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import InfoSection from '../Components/Organism/InfoPanel';
 import { FlexCenter } from '../Theme/mixins';
 import { useSelector, useDispatch } from 'react-redux';
-import { socket } from '../SocketClient/socketClient'
-import TokenGenerator from 'uuid-token-generator'
+import { socket } from '../SocketClient/socketClient';
+import TokenGenerator from 'uuid-token-generator';
+import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
+
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -17,8 +19,10 @@ const StyledContainer = styled.div`
 `
 
 const Chat = () => {
-    const emptyRooms = useSelector(state => state.rooms.emptyRooms);
     const currentUserID = useSelector(state => state.users.currentUserID);
+    const currentRoom= useSelector(state => state.rooms.currentRoom);
+    const emptyRooms = useSelector(state => state.rooms.emptyRooms);
+    const dispatch = useDispatch();
     
     const getToken = () => {
         const token = new TokenGenerator(256, TokenGenerator.BASE62);
@@ -32,60 +36,66 @@ const Chat = () => {
     const doesEmptyRoomExist = () => {
         return emptyRooms.filter(room => !room.users.includes(currentUserID)).length
     }
-
-    const addSecondUserToRoom = (userID, room) => {
-        room.users.push(userID);
-        return room;
-    }
     
-    const getRoomObject = (userID) => {
-        return {
-            id: getToken(),
-            users: [userID]
+   
+    
+    const joinTheRoom = (room) => {
+        const tempObject = {
+            joiningUser: currentUserID,
+            room: room
         }
+        socket.emit('join', tempObject)
+        dispatch(setCurrentRoom(room))
+        console.log("Join to existing room", currentUserID, room)
     }
     
-    const joinTheRoom = async (room) => {
-        const modifiedRoom = await addSecondUserToRoom(currentUserID, room)
-        socket.emit('join', modifiedRoom)
-        console.log("Join to existing room")
+    const leaveTheRoom = () => {
+        const tempObject = {
+            leavingUser: currentUserID,
+            room: currentRoom /////////////////////// tu jest problem /////////////////////////
+        }
+
+        socket.emit('leave', tempObject);
+        dispatch(resetCurrentRoom());
+        console.log("Leave the room");
     }
 
     const createRoom = () => {
-        const room = getRoomObject(currentUserID);
+        const tempObject = {
+            joiningUser: currentUserID,
+            room: {
+                id: getToken(),
+                users: []
+            }
+        }
+
         if(currentUserID) {
-            console.log("Join to created room by me")
-            socket.emit('join', room)
+            console.log("Join the room created by me")
+            socket.emit('join', tempObject);
+            dispatch(setCurrentRoom(tempObject.room))
         } else {
             console.log("Still currentUserID doesn't exist!")
         }
     }
     
-    const test = () => {
-        console.log("test")
-        emptyRooms.forEach(room => {
-            console.log(room)
-        })
-    }
-    const manageRoom = async () => {
+    const manageRoom = () => {
         if(doesEmptyRoomExist()) {
-            // await test()
-            // console.log("Przefiltrowane roomy: ", emptyRooms.filter(room => !room.users.includes(currentUserID)))
-            const room = getEmptyRoom()
-            joinTheRoom(room)
+            const room = getEmptyRoom();
+            joinTheRoom(room);
         } else {
-            createRoom()
+            createRoom();
         }
     }
-
+    
     useEffect(()=> {
         manageRoom()
     }, [currentUserID])
 
-
     return (
         <StyledContainer>
-            <InfoSection />
+            <InfoSection 
+                leaveTheRoom={()=> leaveTheRoom()}
+            />
         </StyledContainer>
     )
 }
