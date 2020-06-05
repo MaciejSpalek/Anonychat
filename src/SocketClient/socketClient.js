@@ -25,10 +25,8 @@ const SocketClient = () => {
     });
 
     socket.on('room', room => {
-        if(room) {
-            if(room.users.includes(currentUserID)) {
-                dispatch(setCurrentRoom(room))
-            }
+        if(room && room.users.includes(currentUserID)) {
+            dispatch(setCurrentRoom(room))
         }
     });
 

@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const StyledContentWrapper = styled.div`
-
+import { FlexColumn } from '../../Theme/mixins'
+const StyledContainer = styled.div`
+    ${FlexColumn};
+    height: 100%;
 `
 
 const ChatContent = () => {
     return (
-        <StyledContentWrapper>
+        <StyledContainer>
 
-        </StyledContentWrapper>
+        </StyledContainer>
     )
 }
 

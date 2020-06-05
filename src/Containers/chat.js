@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import InfoSection from '../Components/Organism/InfoPanel';
-import { FlexCenter } from '../Theme/mixins';
+import TokenGenerator from 'uuid-token-generator';
+import InfoPanel from '../Components/Organism/InfoPanel';
+import Content from '../Components/Molecules/chatContent';
+import InputPanel from '../Components/Organism/inputPanel';
+
+import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
-import TokenGenerator from 'uuid-token-generator';
-import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
+import { FlexCenter } from '../Theme/mixins';
 
 
 const StyledContainer = styled.div`
@@ -36,8 +39,6 @@ const Chat = () => {
     const doesEmptyRoomExist = () => {
         return emptyRooms.filter(room => !room.users.includes(currentUserID)).length
     }
-    
-   
     
     const joinTheRoom = (room) => {
         const tempObject = {
@@ -87,14 +88,34 @@ const Chat = () => {
         }
     }
     
+
+
+
+    const sendMessage = (e) => {
+        e.preventDefault();
+        const { messageInput } = e.target.elements;
+        const messageObject = {
+            author: currentUserID,
+            text: messageInput.value,
+            room: currentRoom
+        }
+        // if(currentRoom) {
+            socket.emit("sendMessage", messageObject)
+        // }
+    }
+
     useEffect(()=> {
         manageRoom()
     }, [currentUserID])
 
     return (
         <StyledContainer>
-            <InfoSection 
+            <InfoPanel
                 leaveTheRoom={()=> leaveTheRoom()}
+            />
+            <Content />
+            <InputPanel 
+                handleFunction={(e)=> sendMessage(e)}
             />
         </StyledContainer>
     )
