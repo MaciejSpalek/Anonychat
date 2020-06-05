@@ -1,7 +1,14 @@
 import React from 'react';
 import io from 'socket.io-client'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers, getCurrentUserID, setCurrentRoom , setAllRooms, setEmptyRooms } from '../Redux/Actions/actions';
+import { 
+    getAllUsers, 
+    getCurrentUserID, 
+    setCurrentRoom , 
+    setAllRooms, 
+    setEmptyRooms,
+    setRoomMessages 
+} from '../Redux/Actions/actions';
 
 
 const ENDPOINT = 'http://localhost:5000/';
@@ -10,6 +17,7 @@ export const socket = io.connect(ENDPOINT);
 const SocketClient = () => {
     const dispatch = useDispatch();
     const currentUserID = useSelector(state => state.users.currentUserID)
+    const currentRoom = useSelector(state => state.rooms.currentRoom)
 
 
     socket.on('connect', () => {

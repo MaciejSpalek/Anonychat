@@ -3,16 +3,17 @@ import {
   SET_EMPTY_ROOMS,
   SET_CURRENT_ROOM,
   RESET_CURRENT_ROOM,
+  SET_ROOM_MESSAGES,
 
-  
   FETCH_ALL_USERS,
-  GET_CURRENT_USER_ID
+  GET_CURRENT_USER_ID,
 
 } from "../Actions/types"
 
 const INITIAL_STATE_FOR_ROOMS = {
   allRooms: [],
   emptyRooms: [],
+  roomMessages: [],
   currentRoom: null
 };
 
@@ -41,6 +42,13 @@ export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
         ...state,
         currentRoom: action.payload
       }; 
+
+    case SET_ROOM_MESSAGES:
+      return {
+        ...state,
+        roomMessages:  [...state.roomMessages, action.payload]
+      }; 
+
     case RESET_CURRENT_ROOM:
       return {
         ...state,

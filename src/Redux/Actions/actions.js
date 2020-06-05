@@ -5,7 +5,8 @@ import {
     RESET_CURRENT_ROOM,
 
     FETCH_ALL_USERS,
-    GET_CURRENT_USER_ID
+    GET_CURRENT_USER_ID,
+    SET_ROOM_MESSAGES
 } from './types'
 
 
@@ -34,8 +35,15 @@ export const setCurrentRoom = room => dispatch => {
 
 export const resetCurrentRoom = () => dispatch => {
     dispatch({
-        type: SET_CURRENT_ROOM,
+        type: RESET_CURRENT_ROOM,
         payload: null
+    })
+}
+
+export const setRoomMessages = messages => dispatch => {
+    dispatch({
+        type: SET_ROOM_MESSAGES,
+        payload: messages
     })
 }
 
