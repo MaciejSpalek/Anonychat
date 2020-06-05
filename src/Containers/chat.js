@@ -5,7 +5,7 @@ import InfoPanel from '../Components/Organism/InfoPanel';
 import Content from '../Components/Molecules/chatContent';
 import InputPanel from '../Components/Organism/inputPanel';
 
-import { setCurrentRoom, resetCurrentRoom, setRoomMessages } from '../Redux/Actions/actions';
+import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
@@ -25,7 +25,6 @@ const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom= useSelector(state => state.rooms.currentRoom);
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
-    const messages = useSelector(state => state.rooms.roomMessages);
     const dispatch = useDispatch();
     
     const getToken = () => {
@@ -90,7 +89,9 @@ const Chat = () => {
     }
     
 
-
+    const clearInput = (inputName) => {
+        inputName.value = "";
+    }
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -100,9 +101,12 @@ const Chat = () => {
             text: messageInput.value,
             room: currentRoom
         }
-        if(currentRoom) {
+
+        // if(currentRoom) {
             socket.emit("sendMessage", messageObject)
-        }
+        // }
+
+        clearInput(messageInput);
     }
 
     useEffect(()=> {
@@ -110,21 +114,13 @@ const Chat = () => {
     }, [currentUserID])
 
 
-    useEffect(()=> {        
-        socket.once('message', message => {
-            console.log(message)
-            dispatch(setRoomMessages(message))
-        });
-    }, [messages])
+   
+
     return (
         <StyledContainer>
-            <InfoPanel
-                leaveTheRoom={()=> leaveTheRoom()}
-            />
+            <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
             <Content />
-            <InputPanel 
-                handleFunction={(e)=> sendMessage(e)}
-            />
+            <InputPanel handleFunction={(e)=> sendMessage(e)} />
         </StyledContainer>
     )
 }
