@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
     left: 0;
     height: 70px;
     padding: 1rem;
-    background-color: ${({theme}) => theme.colors.secondaryGreen};
+    background-color: ${({theme}) => theme.colors.primaryBlue};
 ` 
 
 const Navbar = () => {

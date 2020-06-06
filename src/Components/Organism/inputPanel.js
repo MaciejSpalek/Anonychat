@@ -21,7 +21,7 @@ const InputPanel = ({ theme, handleFunction }) => {
             />
             <Icon
                 icon={faPaperPlane}
-                color={theme.colors.secondaryGreen}
+                color={theme.colors.primaryRed}
                 fontSize={theme.fontSizes.md}
                 margin={"0 0 0 .5rem"}
             />

@@ -26,15 +26,15 @@ const StyledContentWrapper = styled.div`
 
 const converserStyle = {
     "alignSelf": "flex-start",
-    "color": "black",
-    "backgroundColor": "gray"
+    "color": "white",
+    "backgroundColor": "#FF4643"
 }
 
 const userStyle = {
     "alignSelf": "flex-end",
     "textAlign": "right",
     "color": "white",
-    "backgroundColor": "blue"
+    "backgroundColor": "#0B2C3C"
 }
 
 const containerStyle = {

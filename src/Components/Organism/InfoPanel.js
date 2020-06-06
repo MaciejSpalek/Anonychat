@@ -10,6 +10,7 @@ const StyledContainer = styled.div`
     ${FlexCenter};
     justify-content: space-between;
     background-color: ${({theme}) => theme.colors.primaryWhite};
+    /* border-top: .2rem solid ${({theme}) => theme.colors.primaryRed}; */
     color: ${({theme}) => theme.colors.primaryWhite};
     padding: .2rem;
     padding-left: 1rem;
@@ -26,7 +27,7 @@ const InfoSection = ({theme, leaveTheRoom}) => {
         <StyledContainer>
             <Icon 
                 icon={faComments}
-                color={theme.colors.primaryGreen}
+                color={theme.colors.primaryRed}
                 fontSize={theme.fontSizes.lg}
             />
             <StyledWrapper>

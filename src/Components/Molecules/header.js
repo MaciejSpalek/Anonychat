@@ -20,7 +20,7 @@ const Main = ({theme}) => {
             <Paragraph 
                 fontSize={theme.fontSizes.sm} 
                 fontWeight={theme.fontWeights.bold} 
-                color={theme.colors.primaryGray}
+                color={theme.colors.primaryBlue}
                 text={"to talk"} 
             />
         </StyledContainer>
