@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
-import Content from '../Components/Molecules/chatContent';
-import InputPanel from '../Components/Organism/inputPanel';
+import ChatWrapper from '../Components/Organism/ChatWrapper';
 
 import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
-
+import LoadingPanel from '../Components/Organism/LoadingPanel';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -102,11 +101,17 @@ const Chat = () => {
             room: currentRoom
         }
 
-        // if(currentRoom) {
-            socket.emit("sendMessage", messageObject)
-        // }
-
+        socket.emit("sendMessage", messageObject)
         clearInput(messageInput);
+    }
+
+
+    const isCurrentRoomFull = () => {
+        if(currentRoom) {
+            return currentRoom.users.length === 2
+        } else {
+            return null;
+        }
     }
 
     useEffect(()=> {
@@ -119,8 +124,11 @@ const Chat = () => {
     return (
         <StyledContainer>
             <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
-            <Content />
-            <InputPanel handleFunction={(e)=> sendMessage(e)} />
+            {isCurrentRoomFull() ? 
+                <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
+                    :
+                <LoadingPanel />
+            }
         </StyledContainer>
     )
 }

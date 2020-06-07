@@ -18,7 +18,7 @@ const ChatContent = () => {
     const messages = useSelector(state => state.rooms.roomMessages);
     const dispatch = useDispatch();
 
-    const showMessage = () => {
+    const showMessages = () => {
         return messages.map((message, index) => {
             return (
                 <Message 
@@ -38,7 +38,7 @@ const ChatContent = () => {
 
     return (
         <StyledContainer>
-            {showMessage()}
+            {showMessages()}
         </StyledContainer>
     )
 }
