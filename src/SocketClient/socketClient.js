@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import io from 'socket.io-client'
 import { useDispatch, useSelector } from 'react-redux';
 import { 
@@ -7,7 +7,8 @@ import {
     setCurrentRoom , 
     setAllRooms, 
     setEmptyRooms,
-    setRoomMessages 
+    resetRoomMessages,
+    setRoomMessages
 } from '../Redux/Actions/actions';
 
 
@@ -17,39 +18,43 @@ export const socket = io.connect(ENDPOINT);
 const SocketClient = () => {
     const dispatch = useDispatch();
     const currentUserID = useSelector(state => state.users.currentUserID)
-    const currentRoom = useSelector(state => state.rooms.currentRoom)
+    const currentUsersRoom = useSelector(state => state.rooms.currentRoom.users.length);
+    const currentRoom = useSelector(state => state.rooms.currentRoom);
 
 
     socket.on('connect', () => {
-        // console.log(`[socketClinet], update currentUserID`)
         dispatch(getCurrentUserID(socket.id))
     });
     
-
     socket.on('users', data => {
-        // console.log(`[socketClinet], update all users`)
         const users = JSON.parse(data);
         dispatch(getAllUsers(users));
     });
 
     socket.on('room', room => {
         if(room && room.users.includes(currentUserID)) {
-            dispatch(setCurrentRoom(room))
+            dispatch(setCurrentRoom(room));
         }
     });
 
     socket.on('allRooms', rooms => {
-        // console.log(`[socketClinet], update all rooms: ${JSON.stringify(rooms)}`)
         dispatch(setAllRooms(rooms));
     });
 
-
     socket.on('emptyRooms', rooms => {
-        // console.log(`[socketClinet], update empty rooms, ${JSON.stringify(rooms)}`)
         dispatch(setEmptyRooms(rooms));
     });
 
-    
+    useEffect(()=> {
+        console.log(`Current room: [${currentUsersRoom}]`)
+        dispatch(resetRoomMessages());
+    }, [currentUsersRoom])
+
+    useEffect(()=> {        
+        socket.on('message', message => {
+            dispatch(setRoomMessages(message))
+        });
+    }, [])
     return (<></>)
 }
 

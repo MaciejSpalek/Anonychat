@@ -4,7 +4,7 @@ import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
 import ChatWrapper from '../Components/Organism/ChatWrapper';
 
-import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
+import { setCurrentRoom, resetCurrentRoom, resetRoomMessages } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
@@ -22,7 +22,8 @@ const StyledContainer = styled.div`
 
 const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
-    const currentRoom= useSelector(state => state.rooms.currentRoom);
+    const currentRoom = useSelector(state => state.rooms.currentRoom);
+
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
     const dispatch = useDispatch();
     
@@ -118,8 +119,10 @@ const Chat = () => {
         manageRoom()
     }, [currentUserID])
 
-
-   
+    // useEffect(()=> {
+    //     console.log(`Current romm: [${currentRoom.users.length}]`)
+    //     dispatch(resetRoomMessages());
+    // }, [currentUsersRoom])
 
     return (
         <StyledContainer>

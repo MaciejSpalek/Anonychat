@@ -30,11 +30,11 @@ const ChatContent = () => {
         })
     }
 
-    useEffect(()=> {        
-        socket.once('message', message => {
-            dispatch(setRoomMessages(message))
-        });
-    }, [messages])
+    // useEffect(()=> {        
+    //     socket.on('message', message => {
+    //         dispatch(setRoomMessages(message))
+    //     });
+    // }, [])
 
     return (
         <StyledContainer>
