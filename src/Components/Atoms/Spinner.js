@@ -8,8 +8,8 @@ const Spinner = () => {
             role="status" 
             style={{
                 color: "#FF4643", 
-                width: "6rem", 
-                height: "6rem"
+                width: "3.5rem", 
+                height: "3.5rem"
             }} 
         />
     )

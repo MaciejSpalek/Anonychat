@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Spinner from '../Atoms/Spinner';
 import { FlexCenter } from '../../Theme/mixins';
 
 const StyledContainer = styled.div`
@@ -8,17 +7,15 @@ const StyledContainer = styled.div`
     flex-direction: column;
     height: 100%;
 `
-const StyledParagraph = styled.p`
+const StyledParagraph = styled.h2`
     color: ${({theme}) => theme.colors.primaryRed};
     font-weight: ${({theme}) => theme.fontWeights.bold};
 `
 const LoadingPanel = () => {
     return (
         <StyledContainer>
-           <Spinner />
-           <StyledParagraph>
-               Please wait
-           </StyledParagraph>
+           <StyledParagraph> The drawing user </StyledParagraph>
+           <StyledParagraph> for you </StyledParagraph>
         </StyledContainer>
     )
 }

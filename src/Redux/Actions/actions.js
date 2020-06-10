@@ -8,6 +8,8 @@ import {
 
     FETCH_ALL_USERS,
     GET_CURRENT_USER_ID,
+
+    CHANGE_STATS_PANEL_STATUS
 } from './types'
 
 
@@ -73,5 +75,16 @@ export const getCurrentUserID = user => dispatch => {
     dispatch({
         type: GET_CURRENT_USER_ID,
         payload: user
+    })
+}
+
+
+
+// STATUSES' ACTIONS
+
+export const changeStatsPanelStatus = status => dispatch => {
+    dispatch({
+        type: CHANGE_STATS_PANEL_STATUS,
+        payload: status
     })
 }

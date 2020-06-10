@@ -19,7 +19,6 @@ const SocketClient = () => {
     const dispatch = useDispatch();
     const currentUserID = useSelector(state => state.users.currentUserID)
     const currentUsersRoom = useSelector(state => state.rooms.currentRoom.users.length);
-    const currentRoom = useSelector(state => state.rooms.currentRoom);
 
 
     socket.on('connect', () => {
@@ -45,8 +44,8 @@ const SocketClient = () => {
         dispatch(setEmptyRooms(rooms));
     });
 
+
     useEffect(()=> {
-        console.log(`Current room: [${currentUsersRoom}]`)
         dispatch(resetRoomMessages());
     }, [currentUsersRoom])
 

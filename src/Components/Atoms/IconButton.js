@@ -16,9 +16,9 @@ const StyledIcon = styled(FontAwesomeIcon)`
     color: ${({theme}) => theme.colors.primaryRed};
 `
 
-const IconButton = ({ icon }) => {
+const IconButton = ({ icon, handleFunction }) => {
     return (
-        <StyledButton>
+        <StyledButton onClick={(e)=> handleFunction(e)}>
             <StyledIcon icon={icon} />
         </StyledButton>
     )

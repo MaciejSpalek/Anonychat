@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../Molecules/logo';
+import IconButton from '../Atoms/IconButton';
 import { FlexCenter } from '../../Theme/mixins';
-
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeStatsPanelStatus } from '../../Redux/Actions/actions';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -16,9 +19,17 @@ const StyledContainer = styled.div`
 ` 
 
 const Navbar = () => {
+
+    const statsPanelStatus = useSelector(state => state.statuses.statsPanelStatus);
+    const dispatch = useDispatch();
+    const changeState = () => {
+        dispatch(changeStatsPanelStatus(!statsPanelStatus));
+    }
+
     return (
         <StyledContainer>
             <Logo />
+            <IconButton icon={faInfoCircle} handleFunction={()=> {changeState()}}/>
         </StyledContainer>
     )
 }

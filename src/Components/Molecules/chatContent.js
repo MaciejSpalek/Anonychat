@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Message from './message';
+import LoadingPanel from '../Organism/LoadingPanel';
+import { isCurrentRoomFull } from '../../Helpers/functions';
 import { FlexColumn } from '../../Theme/mixins';
-import { setRoomMessages } from '../../Redux/Actions/actions';
-import { socket } from '../../SocketClient/socketClient';
-import { useSelector, useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 
 const StyledContainer = styled.div`
     ${FlexColumn};
@@ -16,8 +15,8 @@ const StyledContainer = styled.div`
 
 const ChatContent = () => {
     const messages = useSelector(state => state.rooms.roomMessages);
-    const dispatch = useDispatch();
-
+    const currentRoom = useSelector(state => state.rooms.currentRoom);
+   
     const showMessages = () => {
         return messages.map((message, index) => {
             return (
@@ -30,15 +29,11 @@ const ChatContent = () => {
         })
     }
 
-    // useEffect(()=> {        
-    //     socket.on('message', message => {
-    //         dispatch(setRoomMessages(message))
-    //     });
-    // }, [])
+    
 
     return (
         <StyledContainer>
-            {showMessages()}
+             {isCurrentRoomFull(currentRoom) ? showMessages() : <LoadingPanel /> }
         </StyledContainer>
     )
 }

@@ -9,6 +9,8 @@ import {
   FETCH_ALL_USERS,
   GET_CURRENT_USER_ID,
 
+  CHANGE_STATS_PANEL_STATUS
+
 } from "../Actions/types"
 
 const INITIAL_STATE_FOR_ROOMS = {
@@ -26,6 +28,12 @@ const INITIAL_STATE_FOR_USERS = {
   allUsers: [],
   currentUserID: null
 };
+
+
+const INITIAL_STATE_FOR_STATUS = {
+  statsPanelStatus: false
+};
+
 
 export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
   switch (action.type) {
@@ -78,8 +86,6 @@ export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
 
 
 
-
-
 export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
   switch (action.type) {
     case FETCH_ALL_USERS:
@@ -94,6 +100,25 @@ export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
         currentUserID: action.payload
       };   
     
+    default: {
+      return state;
+    }
+  }
+}
+
+
+
+
+
+
+export const statusesReducer = (state = INITIAL_STATE_FOR_STATUS, action) => {
+  switch (action.type) {
+    case CHANGE_STATS_PANEL_STATUS:
+      return {
+        ...state,
+        statsPanelStatus: action.payload
+      }; 
+
     default: {
       return state;
     }

@@ -4,11 +4,11 @@ import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
 import ChatWrapper from '../Components/Organism/ChatWrapper';
 
-import { setCurrentRoom, resetCurrentRoom, resetRoomMessages } from '../Redux/Actions/actions';
+import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
-import LoadingPanel from '../Components/Organism/LoadingPanel';
+
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -107,31 +107,17 @@ const Chat = () => {
     }
 
 
-    const isCurrentRoomFull = () => {
-        if(currentRoom) {
-            return currentRoom.users.length === 2
-        } else {
-            return null;
-        }
-    }
+  
 
     useEffect(()=> {
         manageRoom()
     }, [currentUserID])
 
-    // useEffect(()=> {
-    //     console.log(`Current romm: [${currentRoom.users.length}]`)
-    //     dispatch(resetRoomMessages());
-    // }, [currentUsersRoom])
-
+ 
     return (
         <StyledContainer>
             <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
-            {isCurrentRoomFull() ? 
-                <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
-                    :
-                <LoadingPanel />
-            }
+            <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
         </StyledContainer>
     )
 }
