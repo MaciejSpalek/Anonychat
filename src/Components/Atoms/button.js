@@ -10,8 +10,8 @@ const StyledButton = styled.button`
     border-radius: .5rem;
     font-size: ${({theme}) => theme.fontSizes.md};
     font-weight: ${({theme}) => theme.fontWeights.bold};
-    color: ${({theme}) => theme.colors.primaryWhite};
-    background-color: ${({theme}) => theme.colors.secondaryGreen};
+    color: ${({theme}) => theme.colors.primaryRed};
+    background-color: ${({theme}) => theme.colors.primaryBlue};
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     padding: .5rem;
 `

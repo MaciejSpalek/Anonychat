@@ -23,14 +23,14 @@ const Logo = ({theme}) => {
         <StyledContainer>
                 <Icon 
                     icon={faUserSecret}
-                    color={theme.colors.secondaryGray}  
+                    color={theme.colors.primaryRed}  
                     fontSize={theme.fontSizes.xl}  
                 />
                 <StyledTextWrapper>
                     <Paragraph 
                         fontSize={theme.fontSizes.lg} 
                         fontWeight={theme.fontWeights.bold} 
-                        color={theme.colors.secondaryGray}
+                        color={theme.colors.primaryRed}
                         text={"Anony"} 
                         margin={"0 0 0 1rem"}
                         lineHeight={".9"}
@@ -38,7 +38,7 @@ const Logo = ({theme}) => {
                     <Paragraph 
                         fontSize={theme.fontSizes.sm} 
                         fontWeight={theme.fontWeights.bold} 
-                        color={theme.colors.primaryWhite}
+                        color={theme.colors.primaryRed}
                         text={"CHAT ..."} 
                         margin={"0 0 0 1rem"}
                         lineHeight={".9"}

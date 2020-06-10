@@ -2,11 +2,13 @@ import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import IconButton from '../Atoms/IconButton';
 import Icon from '../Atoms/icon';
+import Spinner from '../Atoms/Spinner';
+
+import { isCurrentRoomFull } from '../../Helpers/functions';
+import { useSelector } from 'react-redux';
 import { FlexCenter } from '../../Theme/mixins';
 import { faComments, faTimesCircle, faPeopleArrows } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { socket } from '../../SocketClient/socketClient'
-import { useSelector } from 'react-redux';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -23,18 +25,22 @@ const StyledWrapper = styled.div`
     width: auto;
 `
 const InfoSection = ({theme, leaveTheRoom}) => {
+    const currentRoom = useSelector(state => state.rooms.currentRoom);
 
     return (
         <StyledContainer>
-            <Icon 
-                icon={faComments}
-                color={theme.colors.primaryGreen}
-                fontSize={theme.fontSizes.lg}
-            />
+            {isCurrentRoomFull(currentRoom) ?
+                <Icon 
+                    icon={faComments}
+                    color={theme.colors.primaryRed}
+                    fontSize={theme.fontSizes.lg}
+                /> : 
+                <Spinner /> 
+            }
             <StyledWrapper>
-                <IconButton icon={faPeopleArrows}/>
+                <IconButton icon={faPeopleArrows} handleFunction={()=> {}}/>
                 <Link to="/" onClick={()=> leaveTheRoom()}>
-                    <IconButton icon={faTimesCircle} /> 
+                    <IconButton icon={faTimesCircle}  handleFunction={()=> {}}/> 
                 </Link>
             </StyledWrapper>
         </StyledContainer>

@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import InfoSection from '../Components/Organism/InfoPanel';
-import { FlexCenter } from '../Theme/mixins';
+import TokenGenerator from 'uuid-token-generator';
+import InfoPanel from '../Components/Organism/InfoPanel';
+import ChatWrapper from '../Components/Organism/ChatWrapper';
+
+import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
-import TokenGenerator from 'uuid-token-generator';
-import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
+import { FlexCenter } from '../Theme/mixins';
 
 
 const StyledContainer = styled.div`
@@ -20,7 +22,8 @@ const StyledContainer = styled.div`
 
 const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
-    const currentRoom= useSelector(state => state.rooms.currentRoom);
+    const currentRoom = useSelector(state => state.rooms.currentRoom);
+
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
     const dispatch = useDispatch();
     
@@ -36,8 +39,6 @@ const Chat = () => {
     const doesEmptyRoomExist = () => {
         return emptyRooms.filter(room => !room.users.includes(currentUserID)).length
     }
-    
-   
     
     const joinTheRoom = (room) => {
         const tempObject = {
@@ -87,15 +88,36 @@ const Chat = () => {
         }
     }
     
+
+    const clearInput = (inputName) => {
+        inputName.value = "";
+    }
+
+    const sendMessage = (e) => {
+        e.preventDefault();
+        const { messageInput } = e.target.elements;
+        const messageObject = {
+            author: currentUserID,
+            text: messageInput.value,
+            room: currentRoom
+        }
+
+        socket.emit("sendMessage", messageObject)
+        clearInput(messageInput);
+    }
+
+
+  
+
     useEffect(()=> {
         manageRoom()
     }, [currentUserID])
 
+ 
     return (
         <StyledContainer>
-            <InfoSection 
-                leaveTheRoom={()=> leaveTheRoom()}
-            />
+            <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
+            <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
         </StyledContainer>
     )
 }

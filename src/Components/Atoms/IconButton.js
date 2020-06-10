@@ -13,12 +13,12 @@ const StyledButton = styled.button`
 
 const StyledIcon = styled(FontAwesomeIcon)`
     font-size: ${({theme}) => theme.fontSizes.lg};
-    color: ${({theme}) => theme.colors.primaryGreen};
+    color: ${({theme}) => theme.colors.primaryRed};
 `
 
-const IconButton = ({ icon }) => {
+const IconButton = ({ icon, handleFunction }) => {
     return (
-        <StyledButton>
+        <StyledButton onClick={(e)=> handleFunction(e)}>
             <StyledIcon icon={icon} />
         </StyledButton>
     )

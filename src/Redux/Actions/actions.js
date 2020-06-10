@@ -2,10 +2,14 @@ import {
     SET_ALL_ROOMS,
     SET_EMPTY_ROOMS,
     SET_CURRENT_ROOM,
+    SET_ROOM_MESSAGES,
     RESET_CURRENT_ROOM,
+    RESET_ROOM_MESSAGES,
 
     FETCH_ALL_USERS,
-    GET_CURRENT_USER_ID
+    GET_CURRENT_USER_ID,
+
+    CHANGE_STATS_PANEL_STATUS
 } from './types'
 
 
@@ -34,11 +38,27 @@ export const setCurrentRoom = room => dispatch => {
 
 export const resetCurrentRoom = () => dispatch => {
     dispatch({
-        type: SET_CURRENT_ROOM,
-        payload: null
+        type: RESET_CURRENT_ROOM,
+        payload: {
+            id: null,
+            users: []
+          }
     })
 }
 
+export const setRoomMessages = messages => dispatch => {
+    dispatch({
+        type: SET_ROOM_MESSAGES,
+        payload: messages
+    })
+}
+
+export const resetRoomMessages = () => dispatch => {
+    dispatch({
+        type: RESET_ROOM_MESSAGES,
+        payload: []
+    })
+}
 
 
 
@@ -55,5 +75,16 @@ export const getCurrentUserID = user => dispatch => {
     dispatch({
         type: GET_CURRENT_USER_ID,
         payload: user
+    })
+}
+
+
+
+// STATUSES' ACTIONS
+
+export const changeStatsPanelStatus = status => dispatch => {
+    dispatch({
+        type: CHANGE_STATS_PANEL_STATUS,
+        payload: status
     })
 }
