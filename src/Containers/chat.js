@@ -103,8 +103,10 @@ const Chat = () => {
             room: currentRoom
         }
 
-        socket.emit("sendMessage", messageObject)
-        clearInput(messageInput);
+        if(messageInput.value) {
+            socket.emit("sendMessage", messageObject)
+            clearInput(messageInput);
+        }
     }
 
 
