@@ -11,8 +11,10 @@ import {
     setRoomMessages
 } from '../Redux/Actions/actions';
 
+const ENDPOINT = 'https://chatwithstrangersserver.herokuapp.com/';
 
-const ENDPOINT = 'http://localhost:5000/';
+
+
 export const socket = io.connect(ENDPOINT);
 
 const SocketClient = () => {

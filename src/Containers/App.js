@@ -1,9 +1,10 @@
 import React from 'react';
-import MainTemplate from '../Templates/mainTemplate'
-import Navbar from '../Components/Organism/navbar'
+import MainTemplate from '../Templates/mainTemplate';
+import Navbar from '../Components/Organism/navbar';
 import Home from './Home';
 import Chat from './Chat';
 import ComponentError from './ErrorView';
+import StatisticsPanel from '../Components/Organism/StatisticsPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
       <MainTemplate>
         <Router>  
           <Navbar />
+          <StatisticsPanel />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/chat" component={Chat} />

@@ -11,6 +11,7 @@ import { FlexCenter } from '../Theme/mixins';
 
 
 const StyledContainer = styled.div`
+    position: relative;
     ${FlexCenter};
     flex-direction: column;
     justify-content: flex-start;
