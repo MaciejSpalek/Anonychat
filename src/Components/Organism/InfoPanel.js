@@ -25,18 +25,13 @@ const StyledWrapper = styled.div`
     width: auto;
 `
 const InfoSection = ({theme, leaveTheRoom}) => {
-    const currentRoom = useSelector(state => state.rooms.currentRoom);
-
     return (
         <StyledContainer>
-            {isCurrentRoomFull(currentRoom) ?
-                <Icon 
-                    icon={faComments}
-                    color={theme.colors.primaryRed}
-                    fontSize={theme.fontSizes.lg}
-                /> : 
-                <Spinner /> 
-            }
+            <Icon 
+                icon={faComments}
+                color={theme.colors.primaryRed}
+                fontSize={theme.fontSizes.lg}
+            />
             <StyledWrapper>
                 <IconButton icon={faPeopleArrows} handleFunction={()=> {}}/>
                 <Link to="/" onClick={()=> leaveTheRoom()}>

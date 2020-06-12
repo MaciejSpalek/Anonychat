@@ -8,8 +8,6 @@ const StyledContainer = styled.div`
     justify-content: flex-start;
     padding: .5rem;
     background-color: ${({theme}) => theme.colors.primaryRed};
-    border-bottom-left-radius: .5rem;
-    border-bottom-right-radius: .5rem;
 `
 const StyledText = styled.span`
     font-size: ${({theme}) => theme.fontSizes.md};

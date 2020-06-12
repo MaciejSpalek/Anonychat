@@ -11,16 +11,15 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 const Container = styled.div`
     position: fixed;
-    top: calc(50% + 35px);
-    left: 50%;
+    top: 70px;
+    left: 0;
     ${FlexColumn};
     justify-content: space-between;
-    height: calc(100vh - 90px);
-    width: 95vw;
+    height: calc(100vh - 70px);
+    width: 100%;
     font-size: 4rem;
+    border-top: .25rem solid ${({theme}) => theme.colors.primaryWhite}; 
     background-color: ${({theme}) => theme.colors.primaryBlue};
-    border-radius: .5rem;
-    transform: translate(-50%, -50%);
     transition: .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     opacity: ${props => props.status  ? 1 : 0};
     z-index: ${props => props.status  ? 100 : 0};
@@ -43,24 +42,20 @@ const StatisticsPanel = () => {
                     text={"Online users"}
                     variable={users}
                     icon={faUsers}
-                    // iconSize={30}
                 />
                 <StatsLabel 
                     text={"All rooms"}
                     variable={allRooms}
                     icon={faDoorClosed}
-                    // iconSize={30}
                 />
                 <StatsLabel 
                     text={"Empty rooms"}
                     variable={emptyRooms}
                     icon={faDoorOpen}
-                    // iconSize={30}
                 />
             </StyledStatsWrapper>
             <InfoLabel 
                 icon={faGithub}
-                // iconSize={35}
             />
         </Container>
     )

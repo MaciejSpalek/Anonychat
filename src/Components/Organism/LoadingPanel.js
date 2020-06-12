@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FlexCenter } from '../../Theme/mixins';
+import Spinner from '../Atoms/Spinner'
 
 const StyledContainer = styled.div`
     ${FlexCenter}
@@ -14,8 +15,8 @@ const StyledParagraph = styled.h2`
 const LoadingPanel = () => {
     return (
         <StyledContainer>
-           <StyledParagraph> The drawing user </StyledParagraph>
-           <StyledParagraph> for you </StyledParagraph>
+            <Spinner /> 
+            <StyledParagraph> Wait for user</StyledParagraph>
         </StyledContainer>
     )
 }
