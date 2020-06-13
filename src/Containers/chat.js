@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
@@ -8,7 +8,7 @@ import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
-
+const scrollIntoView = require('scroll-into-view');
 
 const StyledContainer = styled.div`
     position: relative;
@@ -24,7 +24,7 @@ const StyledContainer = styled.div`
 const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
-
+    
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
     const dispatch = useDispatch();
     
@@ -89,6 +89,7 @@ const Chat = () => {
         }
     }
     
+ 
 
     const clearInput = (inputName) => {
         inputName.value = "";
@@ -120,7 +121,9 @@ const Chat = () => {
     return (
         <StyledContainer>
             <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
-            <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
+            <ChatWrapper 
+                handleFunction={(e)=> sendMessage(e)} 
+            /> 
         </StyledContainer>
     )
 }
