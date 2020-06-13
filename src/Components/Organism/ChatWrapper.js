@@ -6,7 +6,7 @@ import { FlexColumn } from '../../Theme/mixins';
 
 const Container = styled.div`
     ${FlexColumn}
-    height: 100%;
+    height: calc(100vh - 70px - 50px);
 `
 
 const ChatWrapper = ({handleFunction}) => {

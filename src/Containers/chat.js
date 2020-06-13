@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
 
-
 const StyledContainer = styled.div`
     position: relative;
     ${FlexCenter};
@@ -24,7 +23,7 @@ const StyledContainer = styled.div`
 const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
-
+    
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
     const dispatch = useDispatch();
     
@@ -89,6 +88,7 @@ const Chat = () => {
         }
     }
     
+ 
 
     const clearInput = (inputName) => {
         inputName.value = "";
@@ -103,12 +103,12 @@ const Chat = () => {
             room: currentRoom
         }
 
-        socket.emit("sendMessage", messageObject)
-        clearInput(messageInput);
+        if(messageInput.value) {
+            socket.emit("sendMessage", messageObject)
+            clearInput(messageInput);
+        }
     }
 
-
-  
 
     useEffect(()=> {
         manageRoom()
@@ -118,7 +118,9 @@ const Chat = () => {
     return (
         <StyledContainer>
             <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
-            <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
+            <ChatWrapper 
+                handleFunction={(e)=> sendMessage(e)} 
+            /> 
         </StyledContainer>
     )
 }

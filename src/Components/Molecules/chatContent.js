@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Message from './message';
 import LoadingPanel from '../Organism/LoadingPanel';
@@ -16,7 +16,12 @@ const StyledContainer = styled.div`
 const ChatContent = () => {
     const messages = useSelector(state => state.rooms.roomMessages);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
-   
+    const messageWindowRef = useRef();
+    
+    const scrollToBottom = () => {
+        messageWindowRef.current.scrollIntoView();
+    }
+
     const showMessages = () => {
         return messages.map((message, index) => {
             return (
@@ -29,11 +34,14 @@ const ChatContent = () => {
         })
     }
 
+    useEffect(()=> {
+        scrollToBottom()
+    }, [messages.length])
     
-
     return (
         <StyledContainer>
              {isCurrentRoomFull(currentRoom) ? showMessages() : <LoadingPanel /> }
+             <div ref={messageWindowRef} />
         </StyledContainer>
     )
 }
