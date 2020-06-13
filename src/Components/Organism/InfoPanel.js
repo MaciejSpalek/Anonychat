@@ -2,16 +2,14 @@ import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import IconButton from '../Atoms/IconButton';
 import Icon from '../Atoms/icon';
-import Spinner from '../Atoms/Spinner';
 
-import { isCurrentRoomFull } from '../../Helpers/functions';
-import { useSelector } from 'react-redux';
 import { FlexCenter } from '../../Theme/mixins';
 import { faComments, faTimesCircle, faPeopleArrows } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
+    height: 50px;
     justify-content: space-between;
     background-color: ${({theme}) => theme.colors.primaryWhite};
     color: ${({theme}) => theme.colors.primaryWhite};

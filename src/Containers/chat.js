@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
@@ -8,7 +8,6 @@ import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
-const scrollIntoView = require('scroll-into-view');
 
 const StyledContainer = styled.div`
     position: relative;
@@ -110,8 +109,6 @@ const Chat = () => {
         }
     }
 
-
-  
 
     useEffect(()=> {
         manageRoom()

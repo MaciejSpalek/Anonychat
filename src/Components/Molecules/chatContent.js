@@ -37,6 +37,7 @@ const ChatContent = () => {
     useEffect(()=> {
         scrollToBottom()
     }, [messages.length])
+    
     return (
         <StyledContainer>
              {isCurrentRoomFull(currentRoom) ? showMessages() : <LoadingPanel /> }
