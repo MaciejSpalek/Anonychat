@@ -1,8 +1,8 @@
 import React from 'react';
 import MainTemplate from '../Templates/mainTemplate';
 import Navbar from '../Components/Organism/navbar';
-import Home from './Home';
-import Chat from './Chat';
+import Home from './home';
+import Chat from './chat';
 import ComponentError from './ErrorView';
 import StatisticsPanel from '../Components/Organism/StatisticsPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

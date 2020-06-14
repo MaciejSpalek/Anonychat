@@ -53,7 +53,7 @@ const Chat = () => {
     const leaveTheRoom = () => {
         const tempObject = {
             leavingUser: currentUserID,
-            room: currentRoom /////////////////////// tu jest problem /////////////////////////
+            room: currentRoom 
         }
 
         socket.emit('leave', tempObject);
