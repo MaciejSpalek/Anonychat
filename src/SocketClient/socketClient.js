@@ -12,9 +12,6 @@ import {
 } from '../Redux/Actions/actions';
 
 const ENDPOINT = 'https://chatwithstrangersserver.herokuapp.com/';
-
-
-
 export const socket = io.connect(ENDPOINT);
 
 const SocketClient = () => {
@@ -56,6 +53,8 @@ const SocketClient = () => {
             dispatch(setRoomMessages(message))
         });
     }, [])
+
+   
     return (<></>)
 }
 
