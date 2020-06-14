@@ -8,6 +8,7 @@ import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
+import { leaveTheRoom } from '../Helpers/functions'
 
 const StyledContainer = styled.div`
     position: relative;
@@ -23,10 +24,10 @@ const StyledContainer = styled.div`
 const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
-    
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
     const dispatch = useDispatch();
-    
+
+
     const getToken = () => {
         const token = new TokenGenerator(256, TokenGenerator.BASE62);
         return token.generate()
@@ -50,16 +51,7 @@ const Chat = () => {
         console.log("Join to existing room", currentUserID, room)
     }
     
-    const leaveTheRoom = () => {
-        const tempObject = {
-            leavingUser: currentUserID,
-            room: currentRoom 
-        }
 
-        socket.emit('leave', tempObject);
-        dispatch(resetCurrentRoom());
-        console.log("Leave the room");
-    }
 
     const createRoom = () => {
         const tempObject = {
@@ -114,10 +106,10 @@ const Chat = () => {
         manageRoom()
     }, [currentUserID])
 
- 
+    
     return (
         <StyledContainer>
-            <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
+            <InfoPanel leaveTheRoom={()=> leaveTheRoom(currentUserID, currentRoom, socket, dispatch, resetCurrentRoom)} />
             <ChatWrapper 
                 handleFunction={(e)=> sendMessage(e)} 
             /> 

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../Components/Molecules/header';
 import Button from '../Components/Atoms/button';
 import { FlexCenter } from '../Theme/mixins';
-
-
+import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { leaveTheRoom } from '../Helpers/functions'
+import { socket } from '../SocketClient/socketClient';
+import { resetCurrentRoom } from '../Redux/Actions/actions';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -16,6 +19,17 @@ const StyledContainer = styled.div`
 `
 
 const Home = () => {
+    const currentUserID = useSelector(state => state.users.currentUserID);
+    const currentRoom = useSelector(state => state.rooms.currentRoom);
+    const dispatch = useDispatch();
+    const location = useLocation();
+    
+    useEffect(()=> {
+        if(currentRoom.id) {
+            leaveTheRoom(currentUserID, currentRoom, socket, dispatch, resetCurrentRoom);
+        }
+    }, [location.pathname])
+    
     return (
         <StyledContainer>
             <Header />

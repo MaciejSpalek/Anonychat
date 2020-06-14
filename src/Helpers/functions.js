@@ -5,3 +5,14 @@ export const isCurrentRoomFull = (currentRoom) => {
         return null;
     }
 }
+
+export const leaveTheRoom = (currentUserID, currentRoom, socket, dispatch, resetCurrentRoom) => {
+    const tempObject = {
+        leavingUser: currentUserID,
+        room: currentRoom 
+    }
+
+    socket.emit('leave', tempObject);
+    dispatch(resetCurrentRoom());
+    console.log("Leave the room");
+}
