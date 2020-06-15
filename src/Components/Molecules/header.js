@@ -18,7 +18,7 @@ const Main = ({theme}) => {
                 Find somebody
             </Heading>
             <Paragraph 
-                fontSize={theme.fontSizes.sm} 
+                fontSize={theme.fontSizes.md} 
                 fontWeight={theme.fontWeights.bold} 
                 color={theme.colors.primaryBlue}
                 text={"to talk"} 
