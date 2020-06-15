@@ -11,14 +11,21 @@ import { FlexCenter } from '../Theme/mixins';
 import { leaveTheRoom } from '../Helpers/functions'
 
 const StyledContainer = styled.div`
-    position: relative;
     ${FlexCenter};
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     position: fixed;
     top: 70px;
     height: calc(100vh - 70px);
     background-color: ${({theme}) => theme.colors.primaryWhite};
+
+    @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
+        max-width: 768px;
+        height: calc(100vh - 70px);
+        top: 70px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
 `
 
 const Chat = () => {

@@ -27,8 +27,17 @@ const Container = styled.div`
 
 const StyledStatsWrapper = styled.div`
     ${FlexColumn};
+    @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
+        ${FlexCenter}; 
+    }
 `
 
+const EmptyWrapper = styled.div`
+    display: none;
+    @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
+        display: unset;
+    }
+`
 const StatisticsPanel = () => {
     const statsPanelStatus = useSelector(state => state.statuses.statsPanelStatus)
     const emptyRooms = useSelector(state => state.rooms.emptyRooms.length)
@@ -37,9 +46,10 @@ const StatisticsPanel = () => {
 
     return (
         <Container status={statsPanelStatus}>
+            <EmptyWrapper></EmptyWrapper>
             <StyledStatsWrapper>
                 <StatsLabel 
-                    text={"Online users"}
+                    text={"Online"}
                     variable={users}
                     icon={faUsers}
                 />
