@@ -39,7 +39,7 @@ const Logo = ({theme}) => {
                         fontSize={theme.fontSizes.sm} 
                         fontWeight={theme.fontWeights.bold} 
                         color={theme.colors.primaryRed}
-                        text={"CHAT ..."} 
+                        text={"CHAT"} 
                         margin={"0 0 0 1rem"}
                         lineHeight={".9"}
                     />

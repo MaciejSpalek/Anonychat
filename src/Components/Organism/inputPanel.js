@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {withTheme} from 'styled-components';
 import Input from '../Atoms/input';
-import Icon from '../Atoms/icon';
+import IconButton from '../Atoms/IconButton';
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FlexCenter } from '../../Theme/mixins';
 
@@ -19,7 +19,8 @@ const InputPanel = ({ theme, handleFunction }) => {
             <Input 
                 styles={{ margin: ".25em 0" }} 
             />
-            <Icon
+            <IconButton
+                handleFunction={()=> {}}
                 icon={faPaperPlane}
                 color={theme.colors.primaryRed}
                 fontSize={theme.fontSizes.md}

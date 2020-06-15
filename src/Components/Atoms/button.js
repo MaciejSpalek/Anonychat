@@ -16,13 +16,18 @@ const StyledButton = styled.button`
     padding: .5rem;
 `
 
+const StyledLink = styled(Link)`
+    &:hover {
+            text-decoration: none;
+        }
+`
 const Button = ({ route, text, handleClick }) => {
     return (
-        <Link to={`/${route}`}>
+        <StyledLink to={`/${route}`}>
             <StyledButton onClick={()=> handleClick()}>
                 {text}
             </StyledButton>
-        </Link>
+        </StyledLink>
     )
 }
 

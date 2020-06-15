@@ -8,25 +8,33 @@ import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
+import { leaveTheRoom } from '../Helpers/functions'
 
 const StyledContainer = styled.div`
-    position: relative;
     ${FlexCenter};
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     position: fixed;
     top: 70px;
     height: calc(100vh - 70px);
     background-color: ${({theme}) => theme.colors.primaryWhite};
+
+    @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
+        max-width: 768px;
+        height: calc(100vh - 70px);
+        top: 70px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
 `
 
 const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
-    
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
     const dispatch = useDispatch();
-    
+
+
     const getToken = () => {
         const token = new TokenGenerator(256, TokenGenerator.BASE62);
         return token.generate()
@@ -50,16 +58,7 @@ const Chat = () => {
         console.log("Join to existing room", currentUserID, room)
     }
     
-    const leaveTheRoom = () => {
-        const tempObject = {
-            leavingUser: currentUserID,
-            room: currentRoom /////////////////////// tu jest problem /////////////////////////
-        }
 
-        socket.emit('leave', tempObject);
-        dispatch(resetCurrentRoom());
-        console.log("Leave the room");
-    }
 
     const createRoom = () => {
         const tempObject = {
@@ -114,10 +113,10 @@ const Chat = () => {
         manageRoom()
     }, [currentUserID])
 
- 
+    
     return (
         <StyledContainer>
-            <InfoPanel leaveTheRoom={()=> leaveTheRoom()} />
+            <InfoPanel leaveTheRoom={()=> leaveTheRoom(currentUserID, currentRoom, socket, dispatch, resetCurrentRoom)} />
             <ChatWrapper 
                 handleFunction={(e)=> sendMessage(e)} 
             /> 
