@@ -19,6 +19,7 @@ const Input = ({ styles }) => {
             style={styles}
             name={"messageInput"}
             placeholder={"Send message..."}
+            maxLength={200}
         />
     )
 }
