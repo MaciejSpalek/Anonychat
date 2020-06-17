@@ -1,3 +1,5 @@
+import { resetAmountOfLetters, resetCurrentRoom } from "../Redux/Actions/actions";
+
 export const isCurrentRoomFull = (currentRoom) => {
     if(currentRoom) {
         return currentRoom.users.length === 2
@@ -6,7 +8,7 @@ export const isCurrentRoomFull = (currentRoom) => {
     }
 }
 
-export const leaveTheRoom = (currentUserID, currentRoom, socket, dispatch, resetCurrentRoom) => {
+export const leaveTheRoom = (currentUserID, currentRoom, socket, dispatch) => {
     const tempObject = {
         leavingUser: currentUserID,
         room: currentRoom 
@@ -14,5 +16,6 @@ export const leaveTheRoom = (currentUserID, currentRoom, socket, dispatch, reset
 
     socket.emit('leave', tempObject);
     dispatch(resetCurrentRoom());
+    dispatch(resetAmountOfLetters())
     console.log("Leave the room");
 }

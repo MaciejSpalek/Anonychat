@@ -4,7 +4,7 @@ import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
 import ChatWrapper from '../Components/Organism/ChatWrapper';
 
-import { setCurrentRoom, resetCurrentRoom } from '../Redux/Actions/actions';
+import { setCurrentRoom, resetAmountOfLetters } from '../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
@@ -102,9 +102,11 @@ const Chat = () => {
             room: currentRoom
         }
 
+        
         if(messageInput.value) {
             socket.emit("sendMessage", messageObject)
             clearInput(messageInput);
+            dispatch(resetAmountOfLetters())
         }
     }
 
@@ -116,7 +118,7 @@ const Chat = () => {
     
     return (
         <StyledContainer>
-            <InfoPanel leaveTheRoom={()=> leaveTheRoom(currentUserID, currentRoom, socket, dispatch, resetCurrentRoom)} />
+            <InfoPanel leaveTheRoom={()=> leaveTheRoom(currentUserID, currentRoom, socket, dispatch)} />
             <ChatWrapper 
                 handleFunction={(e)=> sendMessage(e)} 
             /> 

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { updateAmountOfLetters } from '../../Redux/Actions/actions';
+import { useDispatch } from 'react-redux';
 
 const StyledInput = styled.input`
     width: 100%;
@@ -13,12 +15,18 @@ const StyledInput = styled.input`
 `
 
 const Input = ({ styles }) => {
+    const dispatch = useDispatch();
+    const updateValue = (e) => {
+        dispatch(updateAmountOfLetters(e.target.value.length))
+    }
     return (
         <StyledInput 
+            onChange={(e)=> updateValue(e)}
             type={"text"}
             style={styles}
             name={"messageInput"}
             placeholder={"Send message..."}
+            maxLength={200}
         />
     )
 }
