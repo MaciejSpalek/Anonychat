@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import { useSelector } from 'react-redux';
 
 const StyledParagraph = styled.p`
     font-size: ${({theme}) => theme.fontSizes.sm};
@@ -8,7 +9,7 @@ const StyledParagraph = styled.p`
     line-height: 1;
 `
 const Paragraph = () => {
-    const amountOfWords = 0;
+    const amountOfWords = useSelector(state => state.statuses.amountOfLetters)
     return (
         <StyledParagraph>
             {`${amountOfWords}/200`}

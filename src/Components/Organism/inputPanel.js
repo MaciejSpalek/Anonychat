@@ -2,7 +2,7 @@ import React from 'react';
 import styled, {withTheme} from 'styled-components';
 import Input from '../Atoms/input';
 import IconButton from '../Atoms/IconButton';
-import WordsParagraph from '../Atoms/wordsParagraph';
+import LettersParagraph from '../Atoms/lettersParagraph';
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FlexCenter } from '../../Theme/mixins';
 
@@ -26,7 +26,7 @@ const InputPanel = ({ theme, handleFunction }) => {
     return (
         <StyledInputPanel onSubmit = {(e) => handleFunction(e)}>
             <StyledTopWrapper>
-                <WordsParagraph />
+                <LettersParagraph />
             </StyledTopWrapper>
             <StyledBottomWrapper>
                 <Input 

@@ -9,7 +9,9 @@ import {
     FETCH_ALL_USERS,
     GET_CURRENT_USER_ID,
 
-    CHANGE_STATS_PANEL_STATUS
+    CHANGE_STATS_PANEL_STATUS,
+    UPDATE_AMOUNT_OF_LETTERS,
+    RESET_AMOUNT_OF_LETTERS
 } from './types'
 
 
@@ -86,5 +88,19 @@ export const changeStatsPanelStatus = status => dispatch => {
     dispatch({
         type: CHANGE_STATS_PANEL_STATUS,
         payload: status
+    })
+}
+
+export const updateAmountOfLetters = amountOfletters => dispatch => {
+    dispatch({
+        type: UPDATE_AMOUNT_OF_LETTERS,
+        payload: amountOfletters
+    })
+}
+
+export const resetAmountOfLetters = () => dispatch => {
+    dispatch({
+        type: RESET_AMOUNT_OF_LETTERS,
+        payload: 0
     })
 }
