@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { useSelector } from 'react-redux';
 
-const StyledParagraph = styled.p`
+const StyledParagraph = styled.span`
     font-size: ${({theme}) => theme.fontSizes.sm};
     color: ${({theme}) => theme.colors.primaryRed};
     padding: 0;

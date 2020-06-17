@@ -11,7 +11,8 @@ import {
 
   CHANGE_STATS_PANEL_STATUS,
   UPDATE_AMOUNT_OF_LETTERS,
-  RESET_AMOUNT_OF_LETTERS
+  RESET_AMOUNT_OF_LETTERS,
+  SET_LOADING_STATUS
 
 } from "../Actions/types"
 
@@ -37,6 +38,7 @@ const INITIAL_STATE_FOR_USERS = {
 
 const INITIAL_STATE_FOR_STATUS = {
   statsPanelStatus: false,
+  loadingStatus: false,
   amountOfLetters: 0
 };
 
@@ -128,12 +130,20 @@ export const statusesReducer = (state = INITIAL_STATE_FOR_STATUS, action) => {
       return {
         ...state,
         statsPanelStatus: action.payload
+      }; 
+
+    case SET_LOADING_STATUS:
+      return {
+        ...state,
+        loadingStatus: action.payload
       };
+
     case UPDATE_AMOUNT_OF_LETTERS:
       return {
         ...state,
         amountOfLetters: action.payload
       }; 
+
     case RESET_AMOUNT_OF_LETTERS:
       return {
         ...state,

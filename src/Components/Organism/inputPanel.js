@@ -15,7 +15,7 @@ const StyledTopWrapper = styled.div`
     ${FlexCenter};
     justify-content: flex-end;
     border-bottom: .15rem solid ${({theme}) => theme.colors.primaryBlue};
-    padding: 0 .5rem;
+    padding: .5rem;
 `
 const StyledBottomWrapper = styled.div`
     ${FlexCenter};

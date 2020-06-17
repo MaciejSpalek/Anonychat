@@ -111,6 +111,12 @@ const Chat = () => {
     }
 
 
+    const changeUser = () => {
+        console.log("Change user")
+        // leave the room
+        // join to some room or create own room
+    }
+
     useEffect(()=> {
         manageRoom()
     }, [currentUserID])
@@ -118,10 +124,8 @@ const Chat = () => {
     
     return (
         <StyledContainer>
-            <InfoPanel leaveTheRoom={()=> leaveTheRoom(currentUserID, currentRoom, socket, dispatch)} />
-            <ChatWrapper 
-                handleFunction={(e)=> sendMessage(e)} 
-            /> 
+            <InfoPanel changeUser={()=> {changeUser()}} />
+            <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
         </StyledContainer>
     )
 }
