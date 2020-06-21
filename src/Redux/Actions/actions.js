@@ -8,7 +8,7 @@ import {
 
     FETCH_ALL_USERS,
     GET_CURRENT_USER_ID,
-
+    
     CHANGE_STATS_PANEL_STATUS,
     SET_LOADING_STATUS,
     UPDATE_AMOUNT_OF_LETTERS,
@@ -85,7 +85,10 @@ export const getCurrentUserID = user => dispatch => {
 }
 
 
- 
+
+
+
+
 
 
 

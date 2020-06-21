@@ -26,7 +26,6 @@ const StyledWrapper = styled.div`
     width: auto;
 `
 const InfoSection = ({theme, changeUser}) => {
-    const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
     const dispatch = useDispatch();
 
@@ -45,7 +44,7 @@ const InfoSection = ({theme, changeUser}) => {
                 <Link to="/">
                     <IconButton 
                         icon={faTimesCircle}  
-                        handleFunction={()=> leaveTheRoom(currentUserID, currentRoom, socket, dispatch)}
+                        handleFunction={()=> leaveTheRoom(currentRoom, socket, dispatch)}
                     /> 
                 </Link>
             </StyledWrapper>

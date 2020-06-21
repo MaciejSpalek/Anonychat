@@ -16,6 +16,7 @@ const StyledContainer = styled.div`
 const ChatContent = () => {
     const messages = useSelector(state => state.rooms.roomMessages);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
+    const loadingStatus = useSelector(state => state.statuses.loadingStatus);
     const messageWindowRef = useRef();
     
     const scrollToBottom = () => {
@@ -40,7 +41,7 @@ const ChatContent = () => {
     
     return (
         <StyledContainer>
-             {isCurrentRoomFull(currentRoom) ? showMessages() : <LoadingPanel /> }
+             {loadingStatus ? <LoadingPanel /> : showMessages()  }
              <div ref={messageWindowRef} />
         </StyledContainer>
     )

@@ -112,7 +112,7 @@ export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
         ...state,
         currentUserID: action.payload
       };   
-    
+
     default: {
       return state;
     }
