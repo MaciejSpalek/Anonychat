@@ -3,12 +3,27 @@ import styled from 'styled-components';
 import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
 import ChatWrapper from '../Components/Organism/ChatWrapper';
-
-import { setCurrentRoom, resetAmountOfLetters } from '../Redux/Actions/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import EndWrapper from '../Components/Organism/EndWrapper';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
-import { leaveTheRoom } from '../Helpers/functions'
+
+import { 
+    setCurrentRoom, 
+    resetAmountOfLetters, 
+    setLoadingStatus, 
+} from '../Redux/Actions/actions';
+
+import { 
+    useSelector, 
+    useDispatch 
+} from 'react-redux';
+
+import { 
+    leaveTheRoom, 
+    getRandomIndex 
+} from '../Helpers/functions';
+
+
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -32,8 +47,9 @@ const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
-    const dispatch = useDispatch();
+    const converserLeftStatus = useSelector(state => state.statuses.converserLeftStatus);
 
+    const dispatch = useDispatch();
 
     const getToken = () => {
         const token = new TokenGenerator(256, TokenGenerator.BASE62);
@@ -41,7 +57,8 @@ const Chat = () => {
     }
 
     const getEmptyRoom = () => {
-        return emptyRooms[0]
+        const index = getRandomIndex(0, emptyRooms.length-1);
+        return emptyRooms[index]
     }
 
     const doesEmptyRoomExist = () => {
@@ -79,6 +96,7 @@ const Chat = () => {
     }
     
     const manageRoom = () => {
+        dispatch(setLoadingStatus(true));
         if(doesEmptyRoomExist()) {
             const room = getEmptyRoom();
             joinTheRoom(room);
@@ -87,7 +105,7 @@ const Chat = () => {
         }
     }
     
- 
+    
 
     const clearInput = (inputName) => {
         inputName.value = "";
@@ -102,7 +120,6 @@ const Chat = () => {
             room: currentRoom
         }
 
-        
         if(messageInput.value) {
             socket.emit("sendMessage", messageObject)
             clearInput(messageInput);
@@ -111,17 +128,27 @@ const Chat = () => {
     }
 
 
+    const changeUser = () => {
+        console.log("Change user")
+        leaveTheRoom(currentRoom, socket, dispatch);
+        manageRoom();
+    }
+
     useEffect(()=> {
         manageRoom()
     }, [currentUserID])
 
-    
     return (
         <StyledContainer>
-            <InfoPanel leaveTheRoom={()=> leaveTheRoom(currentUserID, currentRoom, socket, dispatch)} />
-            <ChatWrapper 
-                handleFunction={(e)=> sendMessage(e)} 
-            /> 
+            <InfoPanel changeUser={()=> {changeUser()}} />
+            {!converserLeftStatus ? 
+                <ChatWrapper 
+                    handleFunction={(e)=> sendMessage(e)} 
+                /> :
+                <EndWrapper 
+                    changeUser={()=> changeUser()} 
+                />
+            }
         </StyledContainer>
     )
 }

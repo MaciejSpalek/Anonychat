@@ -1,4 +1,4 @@
-import  { css } from 'styled-components';
+import  { css, keyframes } from 'styled-components';
 
 export const FlexColumn = css`
  display: flex;
@@ -19,5 +19,16 @@ export const FlexCenter = css`
  width: 100%;
 `;
 
+export const quickShow = keyframes`
+  from {
+    transform: scale(0);
+    opacity: .3;
+  }
+
+  to {
+    transform: scale(1)
+    opacity: 1;
+  }
+`;
 
 
