@@ -12,17 +12,17 @@ import {
   CHANGE_STATS_PANEL_STATUS,
   UPDATE_AMOUNT_OF_LETTERS,
   RESET_AMOUNT_OF_LETTERS,
-  SET_LOADING_STATUS
-
+  SET_LOADING_STATUS,
+  SET_CONVERSER_LEFT_STATUS
 } from "../Actions/types"
 
 
 
 
 const INITIAL_STATE_FOR_ROOMS = {
-  allRooms: [],
-  emptyRooms: [],
   roomMessages: [],
+  emptyRooms: [],
+  allRooms: [],
   currentRoom: {
     id: null,
     users: []
@@ -31,12 +31,13 @@ const INITIAL_STATE_FOR_ROOMS = {
 
 
 const INITIAL_STATE_FOR_USERS = {
-  allUsers: [],
-  currentUserID: null
+  currentUserID: null,
+  allUsers: []
 };
 
 
 const INITIAL_STATE_FOR_STATUS = {
+  converserLeftStatus: false,
   statsPanelStatus: false,
   loadingStatus: false,
   amountOfLetters: 0
@@ -150,6 +151,12 @@ export const statusesReducer = (state = INITIAL_STATE_FOR_STATUS, action) => {
         amountOfLetters: 0
       }; 
 
+    case SET_CONVERSER_LEFT_STATUS:
+      return {
+        ...state,
+        converserLeftStatus: action.payload
+      }; 
+  
     default: {
       return state;
     }

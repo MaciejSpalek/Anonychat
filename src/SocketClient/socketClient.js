@@ -10,7 +10,8 @@ import {
     resetRoomMessages,
     setRoomMessages,
     setLoadingStatus,
-    resetCurrentRoom
+    resetCurrentRoom,
+    setConverserLeftStatus
 } from '../Redux/Actions/actions';
 
 // const ENDPOINT = 'https://chatwithstrangersserver.herokuapp.com/';
@@ -19,10 +20,10 @@ const ENDPOINT = 'http://localhost:5000';
 export const socket = io.connect(ENDPOINT);
 
 const SocketClient = () => {
-    const dispatch = useDispatch();
-    const currentUserID = useSelector(state => state.users.currentUserID)
     const currentUsersRoom = useSelector(state => state.rooms.currentRoom.users.length);
     const currentRoomID = useSelector(state => state.rooms.currentRoom.id);
+    const currentUserID = useSelector(state => state.users.currentUserID)
+    const dispatch = useDispatch();
 
     socket.on('connect', () => {
         dispatch(getCurrentUserID(socket.id))
@@ -39,9 +40,13 @@ const SocketClient = () => {
         }
     });
 
-    socket.on('removeRoom', roomID => {
+    socket.on('removingRoom', object => {
+        const { roomID, stayingUser } = object;
         if(currentRoomID === roomID) {
             dispatch(resetCurrentRoom());
+            if(stayingUser === currentUserID) {
+                dispatch(setConverserLeftStatus(true))
+            }
         }
     });
 

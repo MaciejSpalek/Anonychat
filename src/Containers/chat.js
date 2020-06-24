@@ -3,12 +3,27 @@ import styled from 'styled-components';
 import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from '../Components/Organism/InfoPanel';
 import ChatWrapper from '../Components/Organism/ChatWrapper';
-
-import { setCurrentRoom, resetAmountOfLetters, setLoadingStatus } from '../Redux/Actions/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import EndWrapper from '../Components/Organism/EndWrapper';
 import { socket } from '../SocketClient/socketClient';
 import { FlexCenter } from '../Theme/mixins';
-import { leaveTheRoom, getRandomIndex } from '../Helpers/functions'
+
+import { 
+    setCurrentRoom, 
+    resetAmountOfLetters, 
+    setLoadingStatus, 
+} from '../Redux/Actions/actions';
+
+import { 
+    useSelector, 
+    useDispatch 
+} from 'react-redux';
+
+import { 
+    leaveTheRoom, 
+    getRandomIndex 
+} from '../Helpers/functions';
+
+
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -32,8 +47,9 @@ const Chat = () => {
     const currentUserID = useSelector(state => state.users.currentUserID);
     const currentRoom = useSelector(state => state.rooms.currentRoom);
     const emptyRooms = useSelector(state => state.rooms.emptyRooms);
-    const dispatch = useDispatch();
+    const converserLeftStatus = useSelector(state => state.statuses.converserLeftStatus);
 
+    const dispatch = useDispatch();
 
     const getToken = () => {
         const token = new TokenGenerator(256, TokenGenerator.BASE62);
@@ -112,7 +128,7 @@ const Chat = () => {
     }
 
 
-    const changeUser = async () => {
+    const changeUser = () => {
         console.log("Change user")
         leaveTheRoom(currentRoom, socket, dispatch);
         manageRoom();
@@ -122,11 +138,17 @@ const Chat = () => {
         manageRoom()
     }, [currentUserID])
 
-    
     return (
         <StyledContainer>
             <InfoPanel changeUser={()=> {changeUser()}} />
-            <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> 
+            {!converserLeftStatus ? 
+                <ChatWrapper 
+                    handleFunction={(e)=> sendMessage(e)} 
+                /> :
+                <EndWrapper 
+                    changeUser={()=> changeUser()} 
+                />
+            }
         </StyledContainer>
     )
 }

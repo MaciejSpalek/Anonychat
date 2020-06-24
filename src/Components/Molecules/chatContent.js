@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Message from './message';
 import LoadingPanel from '../Organism/LoadingPanel';
-import { isCurrentRoomFull } from '../../Helpers/functions';
 import { FlexColumn } from '../../Theme/mixins';
 import { useSelector } from 'react-redux';
 
@@ -15,7 +14,6 @@ const StyledContainer = styled.div`
 
 const ChatContent = () => {
     const messages = useSelector(state => state.rooms.roomMessages);
-    const currentRoom = useSelector(state => state.rooms.currentRoom);
     const loadingStatus = useSelector(state => state.statuses.loadingStatus);
     const messageWindowRef = useRef();
     
