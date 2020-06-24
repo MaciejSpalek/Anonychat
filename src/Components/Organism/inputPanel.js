@@ -2,30 +2,44 @@ import React from 'react';
 import styled, {withTheme} from 'styled-components';
 import Input from '../Atoms/input';
 import IconButton from '../Atoms/IconButton';
+import LettersParagraph from '../Atoms/lettersParagraph';
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FlexCenter } from '../../Theme/mixins';
 
 const StyledInputPanel = styled.form`
     ${FlexCenter};
-    width: 100%;
-    height: 45px;
-    padding: 0 1rem;
-    box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.3);
-
+    flex-direction: column;
 `
+
+const StyledTopWrapper = styled.div`
+    ${FlexCenter};
+    justify-content: flex-end;
+    border-bottom: .15rem solid ${({theme}) => theme.colors.primaryBlue};
+    padding: .5rem;
+`
+const StyledBottomWrapper = styled.div`
+    ${FlexCenter};
+    padding: .5rem;
+`
+
 const InputPanel = ({ theme, handleFunction }) => {
     return (
         <StyledInputPanel onSubmit = {(e) => handleFunction(e)}>
-            <Input 
-                styles={{ margin: ".25em 0" }} 
-            />
-            <IconButton
-                handleFunction={()=> {}}
-                icon={faPaperPlane}
-                color={theme.colors.primaryRed}
-                fontSize={theme.fontSizes.md}
-                margin={"0 0 0 .5rem"}
-            />
+            <StyledTopWrapper>
+                <LettersParagraph />
+            </StyledTopWrapper>
+            <StyledBottomWrapper>
+                <Input 
+                    styles={{ margin: ".25em 0" }} 
+                />
+                <IconButton
+                    handleFunction={()=> {}}
+                    icon={faPaperPlane}
+                    color={theme.colors.primaryRed}
+                    fontSize={theme.fontSizes.md}
+                    margin={"0 0 0 .5rem"}
+                />
+            </StyledBottomWrapper>
         </StyledInputPanel>
     )
 }

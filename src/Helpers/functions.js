@@ -1,18 +1,19 @@
-export const isCurrentRoomFull = (currentRoom) => {
-    if(currentRoom) {
-        return currentRoom.users.length === 2
-    } else {
-        return null;
+import { 
+    resetAmountOfLetters, 
+    resetCurrentRoom,
+    setLoadingStatus,
+    setConverserLeftStatus
+} from "../Redux/Actions/actions";
+
+export const leaveTheRoom = (currentRoom, socket, dispatch) => {
+    if(currentRoom.id) {
+        socket.emit('leave', currentRoom)
+        dispatch(resetCurrentRoom())
     }
+    dispatch(resetAmountOfLetters())
+    dispatch(setLoadingStatus(false))
+    dispatch(setConverserLeftStatus(false))
+
 }
 
-export const leaveTheRoom = (currentUserID, currentRoom, socket, dispatch, resetCurrentRoom) => {
-    const tempObject = {
-        leavingUser: currentUserID,
-        room: currentRoom 
-    }
-
-    socket.emit('leave', tempObject);
-    dispatch(resetCurrentRoom());
-    console.log("Leave the room");
-}
+export const getRandomIndex = (min, max) =>  Math.round(Math.random()*(max-min)) + min;

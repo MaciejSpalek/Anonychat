@@ -13,6 +13,7 @@ const StyledButton = styled.button`
     color: ${({theme}) => theme.colors.primaryRed};
     background-color: ${({theme}) => theme.colors.primaryBlue};
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    margin: ${props => props.margin};
     padding: .5rem;
 `
 
@@ -21,10 +22,13 @@ const StyledLink = styled(Link)`
             text-decoration: none;
         }
 `
-const Button = ({ route, text, handleClick }) => {
+const Button = ({ route, text, handleClick, margin }) => {
     return (
         <StyledLink to={`/${route}`}>
-            <StyledButton onClick={()=> handleClick()}>
+            <StyledButton 
+                onClick={()=> handleClick()}
+                margin={margin}
+            >
                 {text}
             </StyledButton>
         </StyledLink>

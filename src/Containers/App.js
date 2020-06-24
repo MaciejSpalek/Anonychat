@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import MainTemplate from '../Templates/mainTemplate';
 import Navbar from '../Components/Organism/navbar';
 import Home from './home';

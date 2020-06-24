@@ -2,21 +2,27 @@ import {
   SET_ALL_ROOMS,
   SET_EMPTY_ROOMS,
   SET_CURRENT_ROOM,
-  RESET_CURRENT_ROOM,
   SET_ROOM_MESSAGES,
+  RESET_CURRENT_ROOM,
   RESET_ROOM_MESSAGES,
 
   FETCH_ALL_USERS,
   GET_CURRENT_USER_ID,
 
-  CHANGE_STATS_PANEL_STATUS
-
+  CHANGE_STATS_PANEL_STATUS,
+  UPDATE_AMOUNT_OF_LETTERS,
+  RESET_AMOUNT_OF_LETTERS,
+  SET_LOADING_STATUS,
+  SET_CONVERSER_LEFT_STATUS
 } from "../Actions/types"
 
+
+
+
 const INITIAL_STATE_FOR_ROOMS = {
-  allRooms: [],
-  emptyRooms: [],
   roomMessages: [],
+  emptyRooms: [],
+  allRooms: [],
   currentRoom: {
     id: null,
     users: []
@@ -25,14 +31,22 @@ const INITIAL_STATE_FOR_ROOMS = {
 
 
 const INITIAL_STATE_FOR_USERS = {
-  allUsers: [],
-  currentUserID: null
+  currentUserID: null,
+  allUsers: []
 };
 
 
 const INITIAL_STATE_FOR_STATUS = {
-  statsPanelStatus: false
+  converserLeftStatus: false,
+  statsPanelStatus: false,
+  loadingStatus: false,
+  amountOfLetters: 0
 };
+
+
+
+
+
 
 
 export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
@@ -99,7 +113,7 @@ export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
         ...state,
         currentUserID: action.payload
       };   
-    
+
     default: {
       return state;
     }
@@ -119,6 +133,30 @@ export const statusesReducer = (state = INITIAL_STATE_FOR_STATUS, action) => {
         statsPanelStatus: action.payload
       }; 
 
+    case SET_LOADING_STATUS:
+      return {
+        ...state,
+        loadingStatus: action.payload
+      };
+
+    case UPDATE_AMOUNT_OF_LETTERS:
+      return {
+        ...state,
+        amountOfLetters: action.payload
+      }; 
+
+    case RESET_AMOUNT_OF_LETTERS:
+      return {
+        ...state,
+        amountOfLetters: 0
+      }; 
+
+    case SET_CONVERSER_LEFT_STATUS:
+      return {
+        ...state,
+        converserLeftStatus: action.payload
+      }; 
+  
     default: {
       return state;
     }
