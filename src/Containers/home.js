@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { leaveTheRoom } from '../Helpers/functions'
 import { socket } from '../SocketClient/socketClient';
-import { setConverserLeftStatus } from '../Redux/Actions/actions';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -25,7 +24,6 @@ const Home = () => {
     
     useEffect(()=> {
         leaveTheRoom(currentRoom, socket, dispatch);
-        console.log("Zmiana route'a")
     }, [location.pathname])
     
     return (

@@ -10,6 +10,7 @@ const StyledContainer = styled.div`
     height: 100%;
     padding: 1rem;
     overflow-y: scroll;
+    
 `
 
 const ChatContent = () => {

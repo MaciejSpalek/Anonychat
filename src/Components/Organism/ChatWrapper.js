@@ -5,7 +5,7 @@ import InputPanel from './inputPanel';
 import { FlexColumn } from '../../Theme/mixins';
 
 const Container = styled.div`
-    ${FlexColumn}
+    ${FlexColumn};
     height: calc(100vh - 70px - 50px);
 `
 

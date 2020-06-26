@@ -33,6 +33,9 @@ const StyledContainer = styled.div`
     top: 70px;
     height: calc(100vh - 70px);
     background-color: ${({theme}) => theme.colors.primaryWhite};
+    overflow: hidden;
+    border: .15rem solid ${({theme}) => theme.colors.primaryGray};
+
 
     @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
         max-width: 768px;

@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
     width:100%;
     height:100vh;
     font-size: 1.6rem;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Roboto", sans-serif;
     overflow-x:hidden;
     position:relative;
     margin:0;
