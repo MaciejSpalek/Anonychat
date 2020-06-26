@@ -6,14 +6,14 @@ import {
     RESET_CURRENT_ROOM,
     RESET_ROOM_MESSAGES,
 
-    FETCH_ALL_USERS,
-    GET_CURRENT_USER_ID,
+    SET_ALL_USERS,
+    SET_CURRENT_USER_ID,
     
-    CHANGE_STATS_PANEL_STATUS,
+    SET_STATS_PANEL_STATUS,
     SET_LOADING_STATUS,
-    UPDATE_AMOUNT_OF_LETTERS,
+    SET_AMOUNT_OF_LETTERS,
+    SET_CONVERSER_LEFT_STATUS,
     RESET_AMOUNT_OF_LETTERS,
-    SET_CONVERSER_LEFT_STATUS
 } from './types'
 
 
@@ -79,14 +79,14 @@ export const resetRoomMessages = () => dispatch => {
 // USERS' ACTIONS
 export const getAllUsers = users => dispatch => {
     dispatch({
-        type: FETCH_ALL_USERS,
+        type: SET_ALL_USERS,
         payload: users
     })
 }
         
 export const getCurrentUserID = user => dispatch => {
     dispatch({
-        type: GET_CURRENT_USER_ID,
+        type: SET_CURRENT_USER_ID,
         payload: user
     })
 }
@@ -103,7 +103,7 @@ export const getCurrentUserID = user => dispatch => {
 // STATUSES' ACTIONS
 export const changeStatsPanelStatus = status => dispatch => {
     dispatch({
-        type: CHANGE_STATS_PANEL_STATUS,
+        type: SET_STATS_PANEL_STATUS,
         payload: status
     })
 }
@@ -117,7 +117,7 @@ export const setLoadingStatus = status => dispatch => {
 
 export const updateAmountOfLetters = amountOfletters => dispatch => {
     dispatch({
-        type: UPDATE_AMOUNT_OF_LETTERS,
+        type: SET_AMOUNT_OF_LETTERS,
         payload: amountOfletters
     })
 }
