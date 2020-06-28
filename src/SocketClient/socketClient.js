@@ -35,7 +35,6 @@ const SocketClient = () => {
 
     socket.once('room', room => {
         if(room && room.users.includes(currentUserID)) {
-            console.log("ustawiam room")
             dispatch(setCurrentRoom(room));
         }
     });

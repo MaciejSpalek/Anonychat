@@ -75,7 +75,6 @@ const Chat = () => {
         }
         socket.emit('join', tempObject)
         dispatch(setCurrentRoom(room))
-        console.log("Join to existing room", currentUserID, room)
     }
     
 
@@ -90,11 +89,8 @@ const Chat = () => {
         }
 
         if(currentUserID) {
-            console.log("Join the room created by me")
             socket.emit('join', tempObject);
             dispatch(setCurrentRoom(tempObject.room))
-        } else {
-            console.log("Still currentUserID doesn't exist!")
         }
     }
     
@@ -132,7 +128,6 @@ const Chat = () => {
 
 
     const changeUser = () => {
-        console.log("Change user")
         leaveTheRoom(currentRoom, socket, dispatch);
         manageRoom();
     }
