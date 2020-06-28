@@ -27,7 +27,12 @@ const StyledWrapper = styled.div`
 `
 const InfoSection = ({theme, changeUser}) => {
     const currentRoom = useSelector(state => state.rooms.currentRoom);
+    const loadingStatus = useSelector(state => state.statuses.loadingStatus);
     const dispatch = useDispatch();
+
+    const isButtonDisabled = () => {
+        return loadingStatus
+    }
 
     return (
         <StyledContainer>
@@ -40,6 +45,7 @@ const InfoSection = ({theme, changeUser}) => {
                 <IconButton 
                     icon={faPeopleArrows} 
                     handleFunction={()=> changeUser()}
+                    isDisabled={isButtonDisabled()}
                 />
                 <Link to="/">
                     <IconButton 

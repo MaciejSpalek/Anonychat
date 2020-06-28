@@ -33,6 +33,9 @@ const StyledContainer = styled.div`
     top: 70px;
     height: calc(100vh - 70px);
     background-color: ${({theme}) => theme.colors.primaryWhite};
+    overflow: hidden;
+    border: .15rem solid ${({theme}) => theme.colors.primaryGray};
+
 
     @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
         max-width: 768px;
@@ -72,7 +75,6 @@ const Chat = () => {
         }
         socket.emit('join', tempObject)
         dispatch(setCurrentRoom(room))
-        console.log("Join to existing room", currentUserID, room)
     }
     
 
@@ -87,11 +89,8 @@ const Chat = () => {
         }
 
         if(currentUserID) {
-            console.log("Join the room created by me")
             socket.emit('join', tempObject);
             dispatch(setCurrentRoom(tempObject.room))
-        } else {
-            console.log("Still currentUserID doesn't exist!")
         }
     }
     
@@ -129,7 +128,6 @@ const Chat = () => {
 
 
     const changeUser = () => {
-        console.log("Change user")
         leaveTheRoom(currentRoom, socket, dispatch);
         manageRoom();
     }

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components'
+import IconButton from '../Components/Atoms/IconButton';
 import { FlexCenter } from '../Theme/mixins';
-import Icon from '../Components/Atoms/icon';
-import { faBomb } from '@fortawesome/free-solid-svg-icons';
+import { faUndo } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const StyledContainer = styled.div`
     ${FlexCenter};
@@ -39,13 +40,16 @@ const ComponentError = ({ theme }) => {
                 <Text>This page</Text>
                 <Paragraph>doesn't exist</Paragraph>
             </StyledTextWrapper>
-            <Icon 
-                icon={faBomb}
-                color={theme.colors.secondaryGray}
-                fontSize={theme.fontSizes.xxl}
-            />
+            <Link to="/">
+                <IconButton 
+                    icon={faUndo}
+                    color={theme.colors.secondaryGray}
+                    fontSize={theme.fontSizes.xxl}
+                    handleFunction={()=> {}}
+                />
+            </Link>
         </StyledContainer>
     )
 }
 
-export default withTheme( ComponentError);
+export default withTheme(ComponentError);

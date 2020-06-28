@@ -13,7 +13,6 @@ export const leaveTheRoom = (currentRoom, socket, dispatch) => {
     dispatch(resetAmountOfLetters())
     dispatch(setLoadingStatus(false))
     dispatch(setConverserLeftStatus(false))
-
 }
 
 export const getRandomIndex = (min, max) =>  Math.round(Math.random()*(max-min)) + min;

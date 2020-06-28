@@ -1,6 +1,7 @@
 export const theme = {
     fonts: {
         primaryFont: 'Montserrat',
+        secondaryFont: 'Concert One'
     },
     fontSizes: {
         xxxs: '.5rem',
@@ -21,6 +22,7 @@ export const theme = {
         primaryRed: '#FF4643',
         primaryBlue: '#0B2C3C',
         primaryBlack: 'rgb(0,0,0)',
+        primaryGray: 'rgb(223, 223, 223)'
     },
     responsive: {
         xs: '480px',
