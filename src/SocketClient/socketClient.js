@@ -14,8 +14,7 @@ import {
     setConverserLeftStatus
 } from '../Redux/Actions/actions';
 
-// const ENDPOINT = 'https://chatwithstrangersserver.herokuapp.com/';
-const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = 'https://chatwithstrangersserver.herokuapp.com/';
 
 export const socket = io.connect(ENDPOINT);
 
@@ -34,7 +33,7 @@ const SocketClient = () => {
         dispatch(getAllUsers(users));
     });
 
-    socket.on('room', room => {
+    socket.once('room', room => {
         if(room && room.users.includes(currentUserID)) {
             dispatch(setCurrentRoom(room));
         }

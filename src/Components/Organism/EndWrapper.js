@@ -14,6 +14,7 @@ const Container = styled.div`
 const StyledWrapper = styled.div`
     border-radius: .5rem;
     animation: ${quickShow} 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     background-color: ${({theme}) => theme.colors.primaryRed};
     padding: 2rem;
 `

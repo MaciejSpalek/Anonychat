@@ -1,19 +1,19 @@
 import { 
-  SET_ALL_ROOMS,
-  SET_EMPTY_ROOMS,
-  SET_CURRENT_ROOM,
-  SET_ROOM_MESSAGES,
-  RESET_CURRENT_ROOM,
-  RESET_ROOM_MESSAGES,
+    SET_ALL_ROOMS,
+    SET_EMPTY_ROOMS,
+    SET_CURRENT_ROOM,
+    SET_ROOM_MESSAGES,
+    RESET_CURRENT_ROOM,
+    RESET_ROOM_MESSAGES,
 
-  FETCH_ALL_USERS,
-  GET_CURRENT_USER_ID,
-
-  CHANGE_STATS_PANEL_STATUS,
-  UPDATE_AMOUNT_OF_LETTERS,
-  RESET_AMOUNT_OF_LETTERS,
-  SET_LOADING_STATUS,
-  SET_CONVERSER_LEFT_STATUS
+    SET_CURRENT_USER_ID,
+    SET_ALL_USERS,
+    
+    SET_CONVERSER_LEFT_STATUS,
+    SET_STATS_PANEL_STATUS,
+    SET_AMOUNT_OF_LETTERS,
+    SET_LOADING_STATUS,
+    RESET_AMOUNT_OF_LETTERS,
 } from "../Actions/types"
 
 
@@ -102,13 +102,13 @@ export const roomsReducer = (state = INITIAL_STATE_FOR_ROOMS, action) => {
 
 export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
   switch (action.type) {
-    case FETCH_ALL_USERS:
+    case SET_ALL_USERS:
       return {
         ...state,
         allUsers: action.payload
       }; 
 
-    case GET_CURRENT_USER_ID:
+    case SET_CURRENT_USER_ID:
       return {
         ...state,
         currentUserID: action.payload
@@ -127,7 +127,7 @@ export const usersReducer = (state = INITIAL_STATE_FOR_USERS, action) => {
 
 export const statusesReducer = (state = INITIAL_STATE_FOR_STATUS, action) => {
   switch (action.type) {
-    case CHANGE_STATS_PANEL_STATUS:
+    case SET_STATS_PANEL_STATUS:
       return {
         ...state,
         statsPanelStatus: action.payload
@@ -139,7 +139,7 @@ export const statusesReducer = (state = INITIAL_STATE_FOR_STATUS, action) => {
         loadingStatus: action.payload
       };
 
-    case UPDATE_AMOUNT_OF_LETTERS:
+    case SET_AMOUNT_OF_LETTERS:
       return {
         ...state,
         amountOfLetters: action.payload

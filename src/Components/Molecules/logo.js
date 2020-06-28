@@ -30,6 +30,7 @@ const Logo = ({theme}) => {
                     <Paragraph 
                         fontSize={theme.fontSizes.lg} 
                         fontWeight={theme.fontWeights.bold} 
+                        fontFamily={theme.fonts.secondaryFont}
                         color={theme.colors.primaryRed}
                         text={"Anony"} 
                         margin={"0 0 0 1rem"}
@@ -38,6 +39,7 @@ const Logo = ({theme}) => {
                     <Paragraph 
                         fontSize={theme.fontSizes.sm} 
                         fontWeight={theme.fontWeights.bold} 
+                        fontFamily={theme.fonts.secondaryFont}
                         color={theme.colors.primaryRed}
                         text={"CHAT"} 
                         margin={"0 0 0 1rem"}

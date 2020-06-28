@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { updateAmountOfLetters } from '../../Redux/Actions/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const StyledInput = styled.input`
     width: 100%;
@@ -16,9 +16,16 @@ const StyledInput = styled.input`
 
 const Input = ({ styles }) => {
     const dispatch = useDispatch();
+    const amountOfUsersInCurrentRoom = useSelector(state => state.rooms.currentRoom.users.length);
+
     const updateValue = (e) => {
         dispatch(updateAmountOfLetters(e.target.value.length))
     }
+
+    const isInputDisabled = () => {
+        return amountOfUsersInCurrentRoom < 2 
+    }
+
     return (
         <StyledInput 
             onChange={(e)=> updateValue(e)}
@@ -27,6 +34,7 @@ const Input = ({ styles }) => {
             name={"messageInput"}
             placeholder={"Send message..."}
             maxLength={200}
+            disabled={isInputDisabled()}
         />
     )
 }
