@@ -1,5 +1,5 @@
 
-<h4 align="center">The application to chat with strangers</h4>
+<h4 align="center">The application to talk to strangers</h4>
 <p align="center">
   <a >
     <img src="src/Assets/MainPhoto.png"
@@ -23,21 +23,21 @@ Anonychat is an application developed in React, used to chat with a randomly sel
 
 
 
-## Installation 
-
-## Available scripts
-
-| Command                   | Description                   |     |
-| ------------------------- | ----------------------------- | --- |
-| `npm run start`           | Open local server             |     |
-| `npm run build`           | Create optimized build        |     |
-| `npm run test`            | Run tests                     |     |
 
 
 ## Live 
-https://chatwithstrangers.netlify.app
+https://anooonychat.netlify.app/
+
 
 ## Server 
 https://github.com/MaciejSpalek/Chat-server
 
+## Installation 
 
+```
+git clone https://github.com/MaciejSpalek/ChatWithStrangers.git
+
+npm install
+
+npm run start
+```
