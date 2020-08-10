@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../Components/Molecules/header';
-import Button from '../Components/Atoms/button';
 import { FlexCenter } from '../Theme/mixins';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -29,11 +28,6 @@ const Home = () => {
     return (
         <StyledContainer>
             <Header />
-            <Button 
-                route={"chat"}
-                handleClick={()=> {}}
-                text={"Draw"}
-            />
         </StyledContainer>
     )
 }

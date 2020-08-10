@@ -1,5 +1,6 @@
 import React from 'react';
-import MainTemplate from '../Templates/mainTemplate';
+import GlobalTemplate from '../Templates/GlobalTemplate';
+import MainTemplate from '../Templates/MainTemplate';
 import Navbar from '../Components/Organism/navbar';
 import Home from './home';
 import Chat from './chat';
@@ -10,17 +11,19 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
-      <MainTemplate>
+      <GlobalTemplate>
         <Router>  
           <Navbar />
+          <MainTemplate>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/chat" component={Chat} />
+              <Route component={ComponentError} />
+            </Switch>
+          </MainTemplate>
           <StatisticsPanel />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/chat" component={Chat} />
-            <Route component={ComponentError} />
-          </Switch>
         </Router> 
-      </MainTemplate>
+      </GlobalTemplate>
   );
 }
 

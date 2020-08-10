@@ -21,11 +21,12 @@ const Container = styled.div`
     border-top: .25rem solid ${({theme}) => theme.colors.primaryWhite}; 
     background-color: ${({theme}) => theme.colors.primaryBlue};
     transition: .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    opacity: ${props => props.status  ? 1 : 0};
+    /* opacity: ${props => props.status  ? 1 : 0}; */
+    display: ${props => props.status  ? "flex" : "none"};
     z-index: ${props => props.status  ? 100 : 0};
 `
 
-const StyledStatsWrapper = styled.div`
+const StyledStatsList = styled.ul`
     ${FlexColumn};
     @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
         ${FlexCenter}; 
@@ -47,7 +48,7 @@ const StatisticsPanel = () => {
     return (
         <Container status={statsPanelStatus}>
             <EmptyWrapper></EmptyWrapper>
-            <StyledStatsWrapper>
+            <StyledStatsList>
                 <StatsLabel 
                     text={"Online"}
                     variable={users}
@@ -63,7 +64,7 @@ const StatisticsPanel = () => {
                     variable={emptyRooms}
                     icon={faDoorOpen}
                 />
-            </StyledStatsWrapper>
+            </StyledStatsList>
             <InfoLabel 
                 icon={faGithub}
             />
