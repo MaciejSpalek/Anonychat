@@ -36,6 +36,7 @@ const Input = ({ styles }) => {
             placeholder={"Send message..."}
             maxLength={200}
             aria-label="send message"
+            autoComplete="off"
             disabled={isInputDisabled()}
         />
     )
