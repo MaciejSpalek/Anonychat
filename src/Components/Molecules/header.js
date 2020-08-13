@@ -4,6 +4,9 @@ import { FlexCenter } from '../../Theme/mixins';
 import Paragraph from '../Atoms/paragraph';
 import Heading from '../Atoms/heading';
 import Button from '../Atoms/button';
+import { useSelector } from 'react-redux';
+import { isTheServerConnected } from '../../Helpers/functions';
+import LoadingPanel from '../Organism/LoadingPanel';
 
 const StyledContainer = styled.header`
     ${FlexCenter};
@@ -13,8 +16,10 @@ const StyledContainer = styled.header`
     margin-bottom: 2rem;
 ` 
 const Header = ({theme}) => {
+    const amountOfUsers = useSelector(state => state.users.allUsers.length);
     return (
         <StyledContainer>
+          {isTheServerConnected(amountOfUsers) ? <>
             <Heading>
                 Find somebody
             </Heading>
@@ -29,6 +34,11 @@ const Header = ({theme}) => {
                 handleClick={()=> {}}
                 text={"Draw"}
             />
+          </> :  
+            <LoadingPanel 
+                description="Connecting..."
+            /> 
+          }
         </StyledContainer>
     )
 }

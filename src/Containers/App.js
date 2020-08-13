@@ -8,7 +8,6 @@ import ComponentError from './ErrorView';
 import StatisticsPanel from '../Components/Organism/StatisticsPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
 const App = () => {
   return (
       <GlobalTemplate>
@@ -20,7 +19,7 @@ const App = () => {
               <Route exact path="/chat" component={Chat} />
               <Route component={ComponentError} />
             </Switch>
-          </MainTemplate>
+          </MainTemplate> 
           <StatisticsPanel />
         </Router> 
       </GlobalTemplate>

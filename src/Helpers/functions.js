@@ -16,3 +16,4 @@ export const leaveTheRoom = (currentRoom, socket, dispatch) => {
 }
 
 export const getRandomIndex = (min, max) =>  Math.round(Math.random()*(max-min)) + min;
+export const isTheServerConnected = (amountOfUsers) => amountOfUsers > 0;
