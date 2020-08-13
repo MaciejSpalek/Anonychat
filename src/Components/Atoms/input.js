@@ -28,12 +28,14 @@ const Input = ({ styles }) => {
 
     return (
         <StyledInput 
+            id="messageInput"
             onChange={(e)=> updateValue(e)}
             type={"text"}
             style={styles}
             name={"messageInput"}
             placeholder={"Send message..."}
             maxLength={200}
+            aria-label="send message"
             disabled={isInputDisabled()}
         />
     )

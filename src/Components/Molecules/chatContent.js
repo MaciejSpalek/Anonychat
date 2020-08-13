@@ -40,7 +40,7 @@ const ChatContent = () => {
     
     return (
         <StyledContainer>
-             {loadingStatus ? <LoadingPanel /> : showMessages()  }
+             { loadingStatus ? <LoadingPanel /> : showMessages() }
              <div ref={messageWindowRef} />
         </StyledContainer>
     )

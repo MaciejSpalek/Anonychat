@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import StatsLabel from '../Molecules/statsLabel';
+import StatsItem from '../Molecules/statsLabel';
 import InfoLabel from '../Molecules/infoLabel';
 
 import { useSelector } from 'react-redux';
@@ -21,7 +21,6 @@ const Container = styled.div`
     border-top: .25rem solid ${({theme}) => theme.colors.primaryWhite}; 
     background-color: ${({theme}) => theme.colors.primaryBlue};
     transition: .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    /* opacity: ${props => props.status  ? 1 : 0}; */
     display: ${props => props.status  ? "flex" : "none"};
     z-index: ${props => props.status  ? 100 : 0};
 `
@@ -49,25 +48,23 @@ const StatisticsPanel = () => {
         <Container status={statsPanelStatus}>
             <EmptyWrapper></EmptyWrapper>
             <StyledStatsList>
-                <StatsLabel 
+                <StatsItem 
                     text={"Online"}
                     variable={users}
                     icon={faUsers}
                 />
-                <StatsLabel 
+                <StatsItem 
                     text={"All rooms"}
                     variable={allRooms}
                     icon={faDoorClosed}
                 />
-                <StatsLabel 
+                <StatsItem 
                     text={"Empty rooms"}
                     variable={emptyRooms}
                     icon={faDoorOpen}
                 />
             </StyledStatsList>
-            <InfoLabel 
-                icon={faGithub}
-            />
+            <InfoLabel icon={faGithub} />
         </Container>
     )
 }
