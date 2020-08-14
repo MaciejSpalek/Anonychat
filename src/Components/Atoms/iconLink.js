@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FlexCenter } from '../../Theme/mixins';
+import { Link } from 'react-router-dom'
 
-const StyledButton = styled.button`
+const StyledLink = styled(Link)`
     ${FlexCenter};
-    width: auto;
     border: none;
     padding: ${({theme}) => theme.fontSizes.xxxs};
-    background-color: transparent;
 `
 
 const StyledIcon = styled(FontAwesomeIcon)`
@@ -16,17 +15,11 @@ const StyledIcon = styled(FontAwesomeIcon)`
     color: ${({theme}) => theme.colors.primaryRed};
 `
 
-const IconButton = ({ 
-    handleFunction, 
-    isDisabled, 
-    children, 
-    fontSize, 
-    margin, 
-    color, 
-    icon, 
-}) => {
+const IconLink = ({ to, icon, color, fontSize, margin, handleFunction }) => {
     return (
-        <StyledButton onClick={(e)=> handleFunction(e)} disabled={isDisabled}>
+        <StyledLink 
+            to={to} 
+            onClick={()=> handleFunction()}>
             <StyledIcon 
                 icon={icon}
                 style={{
@@ -35,9 +28,8 @@ const IconButton = ({
                     margin: margin
                 }}
             />
-            { children }
-        </StyledButton>
+        </StyledLink>
     )
 }
 
-export default IconButton;
+export default IconLink;

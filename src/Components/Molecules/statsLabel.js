@@ -3,7 +3,7 @@ import styled, { withTheme } from 'styled-components';
 import { FlexCenter } from '../../Theme/mixins';
 import Icon from '../Atoms/icon';
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.li`
     ${FlexCenter};
     justify-content: flex-start;
     width: auto;

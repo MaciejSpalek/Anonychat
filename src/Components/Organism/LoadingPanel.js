@@ -11,12 +11,14 @@ const StyledContainer = styled.div`
 const StyledParagraph = styled.h2`
     color: ${({theme}) => theme.colors.primaryRed};
     font-weight: ${({theme}) => theme.fontWeights.bold};
+    line-height: 2;
 `
-const LoadingPanel = () => {
+
+const LoadingPanel = ({ description }) => {
     return (
         <StyledContainer>
             <Spinner /> 
-            <StyledParagraph> Wait for user</StyledParagraph>
+            <StyledParagraph> {description} </StyledParagraph>
         </StyledContainer>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const StyledParagraph = styled.h1`
+const StyledParagraph = styled.p`
     font-weight:  ${props => props.fontWeight};
     font-size:    ${props => props.fontSize};
     font-family:  ${props => props.fontFamily};
