@@ -5,6 +5,11 @@ import {
     setConverserLeftStatus
 } from "../Redux/Actions/actions";
 
+
+export const getRandomIndex = (min, max) =>  Math.round(Math.random()*(max-min)) + min;
+
+export const isTheServerConnected = (amountOfUsers) => amountOfUsers > 0;
+
 export const leaveTheRoom = (currentRoom, socket, dispatch) => {
     if(currentRoom.id) {
         socket.emit('leave', currentRoom)
@@ -14,6 +19,3 @@ export const leaveTheRoom = (currentRoom, socket, dispatch) => {
     dispatch(setLoadingStatus(false))
     dispatch(setConverserLeftStatus(false))
 }
-
-export const getRandomIndex = (min, max) =>  Math.round(Math.random()*(max-min)) + min;
-export const isTheServerConnected = (amountOfUsers) => amountOfUsers > 0;
