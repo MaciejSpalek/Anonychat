@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useSelector } from 'react-redux';
 import { FlexCenter } from "../../Theme/mixins";
 
@@ -7,6 +7,8 @@ const StyledContainer = styled.div`
     ${FlexCenter}
     flex-direction: column;
     align-self: flex-start;
+    ${({ isItYourMessage }) => isItYourMessage ? containerStyle : null}
+    
 `
 
 const StyledContentWrapper = styled.div`
@@ -22,24 +24,26 @@ const StyledContentWrapper = styled.div`
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+    ${({ isItYourMessage }) => isItYourMessage ? userStyle : converserStyle}
 `
 
-const converserStyle = {
-    "alignSelf": "flex-start",
-    "color": "white",
-    "backgroundColor": "#FF4643"
-}
 
-const userStyle = {
-    "alignSelf": "flex-end",
-    "textAlign": "right",
-    "color": "white",
-    "backgroundColor": "#0B2C3C"
-}
+const converserStyle = css`
+    align-self: flex-start;
+    background-color: #FF4643;
+    color: white;
+`
 
-const containerStyle = {
-    "alignSelf": "flex-end",
-}
+const userStyle = css`
+    align-self: flex-end;
+    text-align: right;
+    color: white;
+    background-color: #0B2C3C;
+`
+
+const containerStyle = css`
+    align-self: flex-end;
+`
 
 const Message = ({ author, text }) => {
     const currentUserID = useSelector(state => state.users.currentUserID);
@@ -48,8 +52,8 @@ const Message = ({ author, text }) => {
     }
     
     return (
-        <StyledContainer style={isItYourMessage() ? containerStyle : null}>
-            <StyledContentWrapper style={isItYourMessage() ? userStyle : converserStyle}> { text } </StyledContentWrapper>
+        <StyledContainer isItYourMessage={isItYourMessage()}>
+            <StyledContentWrapper isItYourMessage={isItYourMessage()}> { text } </StyledContentWrapper>
         </StyledContainer>
     )
 }
