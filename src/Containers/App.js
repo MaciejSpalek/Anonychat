@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalTemplate from '../Templates/GlobalTemplate';
-import MainTemplate from '../Templates/MainTemplate';
+import MainTemplate from '../Templates/mainTemplate';
 import Navbar from '../Components/Organism/navbar';
 import Home from './home';
 import Chat from './chat';
