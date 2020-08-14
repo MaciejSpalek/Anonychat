@@ -5,8 +5,9 @@ import IconButton from '../Atoms/IconButton';
 import LettersParagraph from '../Atoms/lettersParagraph';
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FlexCenter } from '../../Theme/mixins';
+import Label from '../Atoms/label';
 
-const StyledInputPanel = styled.form`
+const StyledInputPanel = styled.div`
     ${FlexCenter};
     flex-direction: column;
 `
@@ -17,21 +18,20 @@ const StyledTopWrapper = styled.div`
     border-bottom: .15rem solid ${({theme}) => theme.colors.primaryGray};
     padding: .5rem;
 `
-const StyledBottomWrapper = styled.div`
+const StyledForm = styled.form`
     ${FlexCenter};
     padding: .5rem;
 `
 
 const InputPanel = ({ theme, handleFunction }) => {
     return (
-        <StyledInputPanel onSubmit = {(e) => handleFunction(e)}>
+        <StyledInputPanel >
             <StyledTopWrapper>
                 <LettersParagraph />
             </StyledTopWrapper>
-            <StyledBottomWrapper>
-                <Input 
-                    styles={{ margin: ".25em 0" }} 
-                />
+            <StyledForm onSubmit = {(e) => handleFunction(e)}>
+                <Label _for="messageInput" />
+                <Input styles={{ margin: ".25em 0" }} />
                 <IconButton
                     handleFunction={()=> {}}
                     icon={faPaperPlane}
@@ -39,7 +39,7 @@ const InputPanel = ({ theme, handleFunction }) => {
                     fontSize={theme.fontSizes.md}
                     margin={"0 0 0 .5rem"}
                 />
-            </StyledBottomWrapper>
+            </StyledForm>
         </StyledInputPanel>
     )
 }
