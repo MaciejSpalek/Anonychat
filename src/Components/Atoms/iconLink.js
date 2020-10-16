@@ -15,7 +15,14 @@ const StyledIcon = styled(FontAwesomeIcon)`
     color: ${({theme}) => theme.colors.primaryRed};
 `
 
-const IconLink = ({ to, icon, color, fontSize, margin, handleFunction }) => {
+const IconLink = ({ 
+    to, 
+    icon, 
+    color, 
+    fontSize, 
+    margin, 
+    handleFunction 
+}) => {
     return (
         <StyledLink 
             to={to} 

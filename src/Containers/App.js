@@ -2,9 +2,9 @@ import React from 'react';
 import GlobalTemplate from '../Templates/GlobalTemplate';
 import MainTemplate from '../Templates/MainTemplate';
 import Navbar from '../Components/Organism/navbar';
-import Home from './Home';
+import Home from './Home/Home';
 import Chat from './Chat/Chat';
-import ComponentError from './ErrorView';
+import ComponentError from './ErrorPage/ErrorPage';
 import StatisticsPanel from '../Components/Organism/StatisticsPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 

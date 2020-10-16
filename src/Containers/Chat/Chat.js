@@ -10,19 +10,14 @@ import {
     resetAmountOfLetters, 
     setLoadingStatus, 
 } from '../../Redux/Actions/actions';
-
 import { 
     useSelector, 
     useDispatch 
 } from 'react-redux';
-
 import { 
     leaveTheRoom, 
     getRandomIndex 
 } from '../../Helpers/functions';
-
-
-
 
 
 const Chat = () => {
@@ -35,25 +30,25 @@ const Chat = () => {
 
     const getToken = () => {
         const token = new TokenGenerator(256, TokenGenerator.BASE62);
-        return token.generate()
-    }
+        return token.generate();
+    };
 
     const getEmptyRoom = () => {
         const index = getRandomIndex(0, emptyRooms.length-1);
-        return emptyRooms[index]
-    }
+        return emptyRooms[index];
+    };
 
     const doesEmptyRoomExist = () => {
-        return emptyRooms.filter(room => !room.users.includes(currentUserID)).length
-    }
+        return emptyRooms.filter(room => !room.users.includes(currentUserID)).length;
+    };
     
     const joinTheRoom = (room) => {
         const tempObject = {
             joiningUser: currentUserID,
             room: room
-        }
-        socket.emit('join', tempObject)
-        dispatch(setCurrentRoom(room))
+        };
+        socket.emit('join', tempObject);
+        dispatch(setCurrentRoom(room));
     }
     
 
@@ -65,13 +60,13 @@ const Chat = () => {
                 id: getToken(),
                 users: []
             }
-        }
+        };
 
         if(currentUserID) {
             socket.emit('join', tempObject);
-            dispatch(setCurrentRoom(tempObject.room))
+            dispatch(setCurrentRoom(tempObject.room));
         }
-    }
+    };
     
     const manageRoom = () => {
         dispatch(setLoadingStatus(true));
@@ -81,13 +76,13 @@ const Chat = () => {
         } else {
             createRoom();
         }
-    }
+    };
     
     
 
     const clearInput = (inputName) => {
         inputName.value = "";
-    }
+    };
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -99,20 +94,20 @@ const Chat = () => {
         }
 
         if(messageInput.value) {
-            socket.emit("sendMessage", messageObject)
+            socket.emit("sendMessage", messageObject);
             clearInput(messageInput);
-            dispatch(resetAmountOfLetters())
+            dispatch(resetAmountOfLetters());
         }
-    }
+    };
 
 
     const changeUser = () => {
         leaveTheRoom(currentRoom, socket, dispatch);
         manageRoom();
-    }
+    };;
 
     useEffect(()=> {
-        manageRoom()
+        manageRoom();
     }, [currentUserID])
 
     return (
@@ -128,6 +123,6 @@ const Chat = () => {
             }
         </StyledContainer>
     )
-}
+};
 
 export default Chat;
