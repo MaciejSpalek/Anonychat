@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import TokenGenerator from 'uuid-token-generator';
 import InfoPanel from 'Components/Organism/InfoPanel';
-import ChatWrapper from 'Components/Organism/ChatWrapper';
-import EndWrapper from 'Components/Organism/EndWrapper';
+import ChatWrapper from 'Components/Molecules/ChatWrapper';
+import EndWrapper from 'Components/Molecules/EndWrapper';
 import { socket } from 'SocketClient/socketClient';
 import { StyledContainer } from './Chat.styled';
 import { 
     setCurrentRoom, 
     resetAmountOfLetters, 
     setLoadingStatus, 
-} from '../../Redux/Actions/actions';
+} from 'Redux/Actions/actions';
 import { 
     useSelector, 
     useDispatch 
@@ -17,7 +17,7 @@ import {
 import { 
     leaveTheRoom, 
     getRandomIndex 
-} from '../../Helpers/functions';
+} from 'Helpers/functions';
 
 
 const Chat = () => {
@@ -112,15 +112,10 @@ const Chat = () => {
 
     return (
         <StyledContainer>
-            <InfoPanel changeUser={()=> {changeUser()}} />
+            <InfoPanel changeUser={changeUser} />
             {!converserLeftStatus ? 
-                <ChatWrapper 
-                    handleFunction={(e)=> sendMessage(e)} 
-                /> :
-                <EndWrapper 
-                    changeUser={()=> changeUser()} 
-                />
-            }
+                <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> :
+                <EndWrapper changeUser={changeUser} />}
         </StyledContainer>
     )
 };

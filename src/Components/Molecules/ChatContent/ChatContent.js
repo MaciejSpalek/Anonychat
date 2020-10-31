@@ -1,17 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import Message from './message';
-import LoadingPanel from '../Organism/LoadingPanel';
-import { FlexColumn } from '../../Theme/mixins';
+import Message from '../message';
+import LoadingPanel from '../../Organism/LoadingPanel';
 import { useSelector } from 'react-redux';
-
-const StyledContainer = styled.div`
-    ${FlexColumn};
-    height: 100%;
-    padding: 1rem;
-    overflow-y: scroll;
-    
-`
+import { StyledContainer } from './ChatContent.styled'
 
 const ChatContent = () => {
     const messages = useSelector(state => state.rooms.roomMessages);
@@ -40,12 +31,7 @@ const ChatContent = () => {
     
     return (
         <StyledContainer>
-            {loadingStatus ? 
-                <LoadingPanel 
-                    description="Wait for user"
-                /> : 
-                showMessages() 
-            }
+            { loadingStatus ? <LoadingPanel description="Wait for user" /> : showMessages() }
              <div ref={messageWindowRef} />
         </StyledContainer>
     )

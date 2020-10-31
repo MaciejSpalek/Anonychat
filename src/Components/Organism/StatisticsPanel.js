@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import StatsItem from '../Molecules/statsLabel';
-import InfoLabel from '../Molecules/infoLabel';
+import Footer from '../Molecules/Footer/Footer';
 
 import { useSelector } from 'react-redux';
-import { FlexColumn, FlexCenter } from '../../Theme/mixins';
+import { FlexColumn, FlexCenter } from 'Theme/mixins';
 import { faUsers, faDoorClosed, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 
 const Container = styled.div`
@@ -64,7 +63,7 @@ const StatisticsPanel = () => {
                     icon={faDoorOpen}
                 />
             </StyledStatsList>
-            <InfoLabel icon={faGithub} />
+            <Footer />
         </Container>
     )
 }

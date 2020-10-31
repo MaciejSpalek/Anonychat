@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../Molecules/logo';
+import Logo from '../Molecules/Logo/Logo';
 import IconButton from '../Atoms/IconButton';
 import { FlexCenter } from '../../Theme/mixins';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';

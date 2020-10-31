@@ -2,9 +2,9 @@ import React from 'react';
 import GlobalTemplate from '../Templates/GlobalTemplate';
 import MainTemplate from '../Templates/MainTemplate';
 import Navbar from '../Components/Organism/navbar';
-import Home from './Home/Home';
+import Home from './Home';
 import Chat from './Chat/Chat';
-import ComponentError from './ErrorPage/ErrorPage';
+import ErrorPage from './ErrorPage';
 import StatisticsPanel from '../Components/Organism/StatisticsPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/chat" component={Chat} />
-              <Route component={ComponentError} />
+              <Route component={ErrorPage} />
             </Switch>
           </MainTemplate> 
           <StatisticsPanel />

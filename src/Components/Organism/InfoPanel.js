@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import IconButton from '../Atoms/IconButton';
-import Icon from '../Atoms/icon';
+import Icon from '../Atoms/Icon/Icon';
 import IconLink from '../Atoms/iconLink';
 import { FlexCenter } from '../../Theme/mixins';
 import { faComments, faTimesCircle, faPeopleArrows } from '@fortawesome/free-solid-svg-icons';

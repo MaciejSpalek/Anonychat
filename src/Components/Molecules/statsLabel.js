@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { FlexCenter } from '../../Theme/mixins';
-import Icon from '../Atoms/icon';
+import Icon from '../Atoms/Icon/Icon';
 
 const StyledContainer = styled.li`
     ${FlexCenter};

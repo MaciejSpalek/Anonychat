@@ -9,6 +9,7 @@ import {
     StyledText
 } from './ErrorPage.styled';
 
+
 const ErrorPage = ({ theme }) => {
     return (
         <StyledContainer>
