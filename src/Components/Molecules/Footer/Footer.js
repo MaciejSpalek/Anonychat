@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyledContainer, StyledLink, StyledIcon, StyledText } from './Footer.styled'
+import { 
+    StyledContainer, 
+    StyledLink, 
+    StyledIcon, 
+    StyledText 
+} from './Footer.styled'
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import TokenGenerator from 'uuid-token-generator';
-import InfoPanel from 'Components/Organism/InfoPanel';
+import InfoPanel from 'Components/Organism/ChatBar/ChatBar';
 import ChatWrapper from 'Components/Molecules/ChatWrapper';
 import EndWrapper from 'Components/Molecules/EndWrapper';
 import { socket } from 'SocketClient/socketClient';

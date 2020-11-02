@@ -14,8 +14,8 @@ const EndWrapper = ({ changeUser }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleOnClick = (routes, handleFunction) => {
-        handleFunction();
+    const handleOnClick = (routes, callback) => {
+        callback();
         history.push(routes);
     }
 

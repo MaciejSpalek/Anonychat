@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from 'Components/Molecules/Header';
-import LoadingPanel from 'Components/Organism/LoadingPanel';
+import LoadingPanel from 'Components/Organism/LoadingPanel/LoadingPanel';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { leaveTheRoom } from 'Helpers/functions'

@@ -1,31 +1,33 @@
-import React from 'react';
-import IconLink from 'Components/Atoms/iconLink';
-import { withTheme } from 'styled-components';
-import { faUndo } from '@fortawesome/free-solid-svg-icons';
-import { 
-    StyledContainer,
-    StyledTextWrapper,
-    StyledHeading,
-    StyledText
-} from './ErrorPage.styled';
+import React from "react";
+import { faUndo } from "@fortawesome/free-solid-svg-icons";
+import {
+  StyledTextWrapper,
+  StyledIconButton,
+  StyledContainer,
+  StyledHeading,
+  StyledText,
+} from "./ErrorPage.styled";
 
+import { useHistory } from "react-router-dom";
+const ErrorPage = () => {
+  const history = useHistory();
+  const handleOnClick = (routes, callback) => {
+    callback();
+    history.push(routes);
+  };
 
-const ErrorPage = ({ theme }) => {
-    return (
-        <StyledContainer>
-            <StyledTextWrapper>
-                <StyledHeading>This page</StyledHeading>
-                <StyledText>doesn't exist</StyledText>
-            </StyledTextWrapper>
-            <IconLink 
-                color={theme.colors.secondaryGray}
-                fontSize={theme.fontSizes.xxl}
-                handleFunction={()=> {}}
-                icon={faUndo}
-                to="/"
-            />
-        </StyledContainer>
-    )
+  return (
+    <StyledContainer>
+      <StyledTextWrapper>
+        <StyledHeading> This page </StyledHeading>
+        <StyledText> doesn't exist </StyledText>
+      </StyledTextWrapper>
+      <StyledIconButton
+        handleFunction={() => handleOnClick("/", ()=> {})}
+        icon={faUndo}
+      />
+    </StyledContainer>
+  );
 };
 
-export default withTheme(ErrorPage);
+export default ErrorPage;

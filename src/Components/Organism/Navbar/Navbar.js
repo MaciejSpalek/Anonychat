@@ -1,25 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
-import Logo from '../Molecules/Logo/Logo';
-import IconButton from '../Atoms/IconButton';
-import { FlexCenter } from '../../Theme/mixins';
+import Logo from 'Components/Molecules/Logo/Logo';
+import IconButton from 'Components/Atoms/IconButton';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeStatsPanelStatus } from '../../Redux/Actions/actions';
-
-const StyledContainer = styled.nav`
-    ${FlexCenter};
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 70px;
-    padding: 1rem;
-    background-color: ${({theme}) => theme.colors.primaryBlue};
-` 
+import { changeStatsPanelStatus } from 'Redux/Actions/actions';
+import { StyledContainer } from './Navbar.styled';
 
 const Navbar = () => {
-
     const statsPanelStatus = useSelector(state => state.statuses.statsPanelStatus);
     const dispatch = useDispatch();
     const changeState = () => {

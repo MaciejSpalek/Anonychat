@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { StyledIcon } from './Icon.styled';
 
-const Icon = ({ icon, ...props }) => <FontAwesomeIcon icon={icon} {...props} />
+const Icon = ({ icon, ...props }) => <StyledIcon icon={icon} {...props} />
 
 export default Icon;

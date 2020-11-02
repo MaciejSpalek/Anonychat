@@ -26,7 +26,7 @@ const IconLink = ({
     return (
         <StyledLink 
             to={to} 
-            onClick={()=> handleFunction()}>
+            onClick={handleFunction}>
             <StyledIcon 
                 icon={icon}
                 style={{

@@ -1,6 +1,6 @@
 import React from 'react';
 import Content from 'Components/Molecules/ChatContent';
-import InputPanel from '../../Organism/inputPanel';
+import InputPanel from 'Components/Organism/InputBar';
 import { Container } from './ChatWrapper.styled';
 
 const ChatWrapper = ({ handleFunction }) => {
