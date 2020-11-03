@@ -12,10 +12,10 @@ const Header = () => {
   return (
     <StyledContainer>
       <StyledHeading>
-        <StyledParagraph text={'Find somebody'} />
-        <StyledParagraph text={'to talk'} />
+        <StyledParagraph text='Find somebody' />
+        <StyledParagraph text='to talk' />
       </StyledHeading>
-      <Button handleOnClick={handleOnClick} text={'Draw'} />
+      <Button handleOnClick={handleOnClick} text='Draw' />
     </StyledContainer>
   );
 };

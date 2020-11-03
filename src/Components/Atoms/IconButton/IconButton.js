@@ -1,13 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { FlexCenter } from 'Theme/mixins';
 import Icon from 'Components/Atoms/Icon';
-
-const StyledButton = styled.button`
-    ${FlexCenter};
-    width: auto;
-    border: none;
-`
+import { StyledButton } from './IconButton.styled';
 
 const IconButton = ({ 
     handleFunction, 

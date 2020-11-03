@@ -1,6 +1,6 @@
 import React from 'react';
-import LettersParagraph from 'Components/Atoms/lettersParagraph';
-import Label from 'Components/Atoms/label';
+import CharactersParagraph from 'Components/Atoms/CharactersParagraph/CharactersParagraph';
+import Label from 'Components/Atoms/Label';
 
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { 
@@ -12,18 +12,16 @@ import {
 } from './InputBar.styled';
 
 
-const InputBar = ({ handleFunction }) => {
+const InputBar = ({ onSubmit }) => {
     return (
         <StyledContainer >
             <StyledWrapper>
-                <LettersParagraph />
+                <CharactersParagraph />
             </StyledWrapper>
-            <StyledForm onSubmit = {(e) => handleFunction(e)}>
+            <StyledForm onSubmit={onSubmit}>
                 <Label _for="messageInput" />
                 <StyledInput />
-                <StyledIconButton
-                    icon={faPaperPlane}
-                />
+                <StyledIconButton icon={faPaperPlane} />
             </StyledForm>
         </StyledContainer>
     )

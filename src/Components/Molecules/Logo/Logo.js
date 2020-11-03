@@ -12,8 +12,8 @@ const Logo = () => {
         <StyledContainer>
                 <StyledIcon icon={faUserSecret} />
                 <StyledTextWrapper>
-                    <StyledParagraph text={"Anony"} />
-                    <StyledParagraph text={"CHAT"} />
+                    <StyledParagraph text='Anony' />
+                    <StyledParagraph text='CHAT' />
                 </StyledTextWrapper>
         </StyledContainer>
     )

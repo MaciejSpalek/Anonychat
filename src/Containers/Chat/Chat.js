@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import TokenGenerator from 'uuid-token-generator';
-import InfoPanel from 'Components/Organism/ChatBar/ChatBar';
+import ChatBar from 'Components/Organism/ChatBar';
 import ChatWrapper from 'Components/Molecules/ChatWrapper';
 import EndWrapper from 'Components/Molecules/EndWrapper';
 import { socket } from 'SocketClient/socketClient';
@@ -112,9 +112,9 @@ const Chat = () => {
 
     return (
         <StyledContainer>
-            <InfoPanel changeUser={changeUser} />
+            <ChatBar changeUser={changeUser} />
             {!converserLeftStatus ? 
-                <ChatWrapper handleFunction={(e)=> sendMessage(e)} /> :
+                <ChatWrapper onSubmit={(e)=> sendMessage(e)} /> :
                 <EndWrapper changeUser={changeUser} />}
         </StyledContainer>
     )

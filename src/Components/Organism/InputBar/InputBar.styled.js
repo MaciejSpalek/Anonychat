@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FlexCenter } from 'Theme/mixins';
 import IconButton from 'Components/Atoms/IconButton';
-import Input from 'Components/Atoms/input';
+import Input from 'Components/Atoms/Input';
 
 export const StyledContainer = styled.div`
     ${FlexCenter};

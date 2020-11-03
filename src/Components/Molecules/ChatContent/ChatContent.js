@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Message from '../Message/message';
-import LoadingPanel from '../../Organism/LoadingPanel/LoadingPanel';
+import LoadingPanel from 'Components/Organism/LoadingPanel/LoadingPanel';
 import { useSelector } from 'react-redux';
 import { StyledContainer } from './ChatContent.styled'
 

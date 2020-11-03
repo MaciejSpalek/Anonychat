@@ -9,14 +9,12 @@ import { StyledContainer } from './Navbar.styled';
 const Navbar = () => {
     const statsPanelStatus = useSelector(state => state.statuses.statsPanelStatus);
     const dispatch = useDispatch();
-    const changeState = () => {
-        dispatch(changeStatsPanelStatus(!statsPanelStatus));
-    }
+    const changeState = () => dispatch(changeStatsPanelStatus(!statsPanelStatus));
 
     return (
         <StyledContainer>
             <Logo />
-            <IconButton icon={faInfoCircle} handleFunction={()=> {changeState()}}/>
+            <IconButton icon={faInfoCircle} handleFunction={changeState}/>
         </StyledContainer>
     )
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FlexCenter } from 'Theme/mixins';
-import Icon from '../../Atoms/Icon/Icon';
+import Icon from 'Components/Atoms/Icon';
 
 export const StyledContainer = styled.li`
     ${FlexCenter};
@@ -21,6 +21,5 @@ export const StyledText = styled.span`
 `
 
 export const StyledIcon = styled(Icon)`
-    font-size: ${({theme}) => theme.fontSizes.md};
-    color: white;
-`
+    font-size: ${({theme}) => theme.fontSizes.lg};
+    color: ${({theme}) => theme.colors.primaryRed};`

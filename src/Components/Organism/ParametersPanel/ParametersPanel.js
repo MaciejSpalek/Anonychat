@@ -1,6 +1,6 @@
 import React from 'react';
-import Parameter from '../../Molecules/Parameter';
-import Footer from '../../Molecules/Footer/Footer';
+import Parameter from 'Components/Molecules/Parameter';
+import Footer from 'Components/Molecules/Footer';
 import { useSelector } from 'react-redux';
 import { 
     faDoorClosed, 
