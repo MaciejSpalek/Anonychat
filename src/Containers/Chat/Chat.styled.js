@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexCenter } from '../../Theme/mixins';
+import { FlexCenter } from '../../theme/mixins';
 
 
 export const StyledContainer = styled.div`

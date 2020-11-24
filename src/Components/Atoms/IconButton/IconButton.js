@@ -13,6 +13,6 @@ const IconButton = ({
             <Icon icon={icon} />
         </StyledButton>
     )
-}
+};
 
 export default IconButton;

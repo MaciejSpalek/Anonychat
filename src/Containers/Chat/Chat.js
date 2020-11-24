@@ -3,7 +3,7 @@ import TokenGenerator from 'uuid-token-generator';
 import ChatBar from 'Components/Organism/ChatBar';
 import ChatWrapper from 'Components/Molecules/ChatWrapper';
 import EndWrapper from 'Components/Molecules/EndWrapper';
-import { socket } from 'SocketClient/socketClient';
+import { socket } from 'socketClient/socketClient';
 import { StyledContainer } from './Chat.styled';
 import { 
     setCurrentRoom, 
@@ -17,7 +17,7 @@ import {
 import { 
     leaveTheRoom, 
     getRandomIndex 
-} from 'Helpers/functions';
+} from 'helpers/functions';
 
 
 const Chat = () => {

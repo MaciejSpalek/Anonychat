@@ -1,2 +1,2 @@
-import ChatWrapper from './ChatWrapper'
+import ChatWrapper from './ChatWrapper';
 export default ChatWrapper;

@@ -6,8 +6,8 @@ import {
     StyledWrapper, 
     StyledButton, 
     StyledText,
-    Container, 
-} from './EndWrapper.styled'
+    Container
+} from './EndWrapper.styled';
 
 
 const EndWrapper = ({ changeUser }) => {
@@ -22,14 +22,14 @@ const EndWrapper = ({ changeUser }) => {
     return (
         <Container>
             <StyledWrapper>
-                <StyledText>User has just left</StyledText>
+                <StyledText> User has just left </StyledText>
                 <StyledButton 
                     handleOnClick={() => handleOnClick('/chat', changeUser)}
-                    text={"Draw next"}
+                    text='Draw next'
                 />
                 <StyledButton 
                     handleOnClick={() => handleOnClick('/', ()=> dispatch(setConverserLeftStatus(false)))}
-                    text={"Exit"}
+                    text='Exit'
                 />
             </StyledWrapper>
         </Container>

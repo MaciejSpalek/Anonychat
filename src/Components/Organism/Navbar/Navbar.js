@@ -14,9 +14,12 @@ const Navbar = () => {
     return (
         <StyledContainer>
             <Logo />
-            <IconButton icon={faInfoCircle} handleFunction={changeState}/>
+            <IconButton 
+                icon={faInfoCircle} 
+                handleFunction={changeState}
+            />
         </StyledContainer>
-    )
-}
+    );
+};
 
 export default Navbar;

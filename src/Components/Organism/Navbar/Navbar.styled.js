@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexCenter } from 'Theme/mixins';
+import { FlexCenter } from 'theme/mixins';
 
 export const StyledContainer = styled.nav`
     ${FlexCenter};
@@ -10,4 +10,4 @@ export const StyledContainer = styled.nav`
     height: 70px;
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.primaryBlue};
-` 
+`;

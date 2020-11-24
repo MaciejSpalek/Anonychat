@@ -1,2 +1,2 @@
-import EndWrapper from './EndWrapper'
+import EndWrapper from './EndWrapper';
 export default EndWrapper;

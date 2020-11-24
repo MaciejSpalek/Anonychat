@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexColumn } from 'Theme/mixins';
+import { FlexColumn } from 'theme/mixins';
 
 export const StyledContainer = styled.div`
     ${FlexColumn};

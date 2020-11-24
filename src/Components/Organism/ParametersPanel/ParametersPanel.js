@@ -15,27 +15,27 @@ import {
 
 
 const ParametersPanel = () => {
-    const statsPanelStatus = useSelector(state => state.statuses.statsPanelStatus)
-    const emptyRooms = useSelector(state => state.rooms.emptyRooms.length)
-    const allRooms = useSelector(state => state.rooms.allRooms.length)
-    const users = useSelector(state => state.users.allUsers.length)
+    const statsPanelStatus = useSelector(state => state.statuses.statsPanelStatus);
+    const emptyRooms = useSelector(state => state.rooms.emptyRooms.length);
+    const allRooms = useSelector(state => state.rooms.allRooms.length);
+    const users = useSelector(state => state.users.allUsers.length);
 
     return (
         <StyledContainer status={statsPanelStatus}>
             <StyledEmptyWrapper></StyledEmptyWrapper>
             <StyledParametersList>
                 <Parameter 
-                    text={"Online"}
+                    text={'Online'}
                     variable={users}
                     icon={faUsers}
                 />
                 <Parameter 
-                    text={"All rooms"}
+                    text={'All rooms'}
                     variable={allRooms}
                     icon={faDoorClosed}
                 />
                 <Parameter 
-                    text={"Empty rooms"}
+                    text={'Empty rooms'}
                     variable={emptyRooms}
                     icon={faDoorOpen}
                 />

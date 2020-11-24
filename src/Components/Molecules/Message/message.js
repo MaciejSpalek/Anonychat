@@ -10,7 +10,7 @@ const Message = ({ author, text }) => {
         <StyledContainer isItCurrentUserMessage={isItCurrentUserMessage()}>
             <StyledContentWrapper isItCurrentUserMessage={isItCurrentUserMessage()}> { text } </StyledContentWrapper>
         </StyledContainer>
-    )
-}
+    );
+};
 
 export default Message;

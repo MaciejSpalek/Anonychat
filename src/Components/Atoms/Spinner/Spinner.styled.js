@@ -1,4 +1,4 @@
-import {Spinner as Loader} from 'react-bootstrap';
+import { Spinner as Loader } from 'react-bootstrap';
 import styled from 'styled-components';
 
 export const StyledSpinner = styled(Loader)`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledButton } from './Button.styled'
+import { StyledButton } from './Button.styled';
 
 
 const Button = ({ 
@@ -12,6 +12,6 @@ const Button = ({
             {text}
         </StyledButton>
     )
-}
+};
 
 export default Button;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from 'Components/Atoms/Button';
-import { FlexCenter, quickShow } from 'Theme/mixins';
+import { FlexCenter, quickShow } from 'theme/mixins';
 
 
 export const Container = styled.div`

@@ -8,9 +8,9 @@ const CharactersParagraph = () => {
 
     return (
         <StyledParagraph>
-            {getString()}
+            { getString() }
         </StyledParagraph>
     )
-}
+};
 
 export default CharactersParagraph;

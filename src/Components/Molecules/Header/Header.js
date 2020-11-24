@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../Atoms/Button';
+import Button from 'Components/Atoms/Button';
 import { useHistory } from 'react-router-dom';
 import { StyledContainer, StyledHeading, StyledParagraph } from './Header.styled';
 

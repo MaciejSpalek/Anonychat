@@ -1,8 +1,7 @@
 import React from 'react';
-import CharactersParagraph from 'Components/Atoms/CharactersParagraph/CharactersParagraph';
+import CharactersParagraph from 'Components/Atoms/CharactersParagraph';
 import Label from 'Components/Atoms/Label';
-
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { 
     StyledIconButton,
     StyledContainer, 
@@ -19,13 +18,13 @@ const InputBar = ({ onSubmit }) => {
                 <CharactersParagraph />
             </StyledWrapper>
             <StyledForm onSubmit={onSubmit}>
-                <Label _for="messageInput" />
+                <Label _for='messageInput' />
                 <StyledInput />
                 <StyledIconButton icon={faPaperPlane} />
             </StyledForm>
         </StyledContainer>
-    )
-}
+    );
+};
 
 export default InputBar;
 

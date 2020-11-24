@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexCenter } from 'Theme/mixins';
+import { FlexCenter } from 'theme/mixins';
 
 export const StyledButton = styled.button`
     ${FlexCenter};
@@ -13,4 +13,4 @@ export const StyledButton = styled.button`
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     margin: ${props => props.margin};
     padding: .5rem;
-`
+`;

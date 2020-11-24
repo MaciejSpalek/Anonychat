@@ -3,10 +3,10 @@ import Header from 'Components/Molecules/Header';
 import LoadingPanel from 'Components/Organism/LoadingPanel/LoadingPanel';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { leaveTheRoom } from 'Helpers/functions'
-import { socket } from 'SocketClient/socketClient';
+import { leaveTheRoom } from 'helpers/functions'
+import { socket } from 'socketClient/socketClient';
 import { StyledContainer } from './Home.styled';
-import { isTheServerConnected } from 'Helpers/functions';
+import { isTheServerConnected } from 'helpers/functions';
 
 const Home = () => {
     const amountOfUsers = useSelector((state) => state.users.allUsers.length);

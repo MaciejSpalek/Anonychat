@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexColumn, FlexCenter } from 'Theme/mixins';
+import { FlexColumn, FlexCenter } from 'theme/mixins';
 
 export const StyledContainer = styled.div`
     position: fixed;
@@ -13,20 +13,20 @@ export const StyledContainer = styled.div`
     border-top: .25rem solid ${({theme}) => theme.colors.primaryWhite}; 
     background-color: ${({theme}) => theme.colors.primaryBlue};
     transition: .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    display: ${props => props.status  ? "flex" : "none"};
+    display: ${props => props.status  ? 'flex' : 'none'};
     z-index: ${props => props.status  ? 100 : 0};
-`
+`;
 
 export const StyledParametersList = styled.ul`
     ${FlexColumn};
     @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
         ${FlexCenter}; 
     }
-`
+`;
 
 export const StyledEmptyWrapper = styled.div`
     display: none;
     @media only screen and (min-width: ${({theme}) => theme.responsive.sm}) {
         display: unset;
     }
-`
+`;

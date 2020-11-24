@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { FlexCenter } from 'Theme/mixins';
+import { FlexCenter } from 'theme/mixins';
 
 export const StyledContainer = styled.div`
     ${FlexCenter}
@@ -23,22 +23,22 @@ export const StyledContentWrapper = styled.div`
     -ms-hyphens: auto;
     hyphens: auto;
     ${({ isItCurrentUserMessage }) => isItCurrentUserMessage ? userStyle : converserStyle}
-`
+`;
 
 
 export const converserStyle = css`
     align-self: flex-start;
     background-color: #FF4643;
     color: white;
-`
+`;
 
 export const userStyle = css`
     align-self: flex-end;
     text-align: right;
     color: white;
     background-color: #0B2C3C;
-`
+`;
 
 export const containerStyle = css`
     align-self: flex-end;
-`
+`;

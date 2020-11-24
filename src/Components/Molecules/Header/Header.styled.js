@@ -1,6 +1,6 @@
-import Paragraph from 'Components/Atoms/Paragraph/Paragraph';
+import Paragraph from 'Components/Atoms/Paragraph';
 import styled from 'styled-components';
-import { FlexCenter, FlexColumn } from 'Theme/mixins';
+import { FlexCenter, FlexColumn } from 'theme/mixins';
 
 
 export const StyledContainer = styled.header`

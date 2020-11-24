@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
+import { socket } from 'socketClient/socketClient';
+import { leaveTheRoom } from 'helpers/functions';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   faComments,
   faTimesCircle,
   faPeopleArrows,
-} from "@fortawesome/free-solid-svg-icons";
-import { socket } from "SocketClient/socketClient";
-import { leaveTheRoom } from "Helpers/functions";
-import { useDispatch, useSelector } from "react-redux";
-import { 
-  StyledIconButton, 
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  StyledIconButton,
   StyledContainer,
-  StyledWrapper, 
-  StyledIcon 
-} from "./ChatBar.styled";
-import { useHistory } from 'react-router-dom'
+  StyledWrapper,
+  StyledIcon,
+} from './ChatBar.styled';
 
 const ChatBar = ({ changeUser }) => {
   const loadingStatus = useSelector((state) => state.statuses.loadingStatus);
@@ -35,14 +35,13 @@ const ChatBar = ({ changeUser }) => {
           isDisabled={loadingStatus}
           icon={faPeopleArrows}
         />
-
         <StyledIconButton
+          icon={faTimesCircle}
           handleFunction={() =>
-            handleOnClick("/", () =>
+            handleOnClick('/', () =>
               leaveTheRoom(currentRoom, socket, dispatch)
             )
           }
-          icon={faTimesCircle}
         />
       </StyledWrapper>
     </StyledContainer>

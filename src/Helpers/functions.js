@@ -3,7 +3,7 @@ import {
     resetCurrentRoom,
     setLoadingStatus,
     setConverserLeftStatus
-} from "../Redux/Actions/actions";
+} from "Redux/Actions/actions";
 
 
 export const getRandomIndex = (min, max) =>  Math.round(Math.random()*(max-min)) + min;
