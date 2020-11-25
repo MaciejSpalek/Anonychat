@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { setConverserLeftStatus } from 'Redux/Actions/actions';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -8,7 +9,6 @@ import {
     StyledText,
     Container
 } from './EndWrapper.styled';
-
 
 const EndWrapper = ({ changeUser }) => {
     const dispatch = useDispatch();
@@ -37,3 +37,7 @@ const EndWrapper = ({ changeUser }) => {
 }
 
 export default EndWrapper;
+
+EndWrapper.propTypes = {
+    changeUser: PropTypes.func.isRequired
+}

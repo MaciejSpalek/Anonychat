@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { 
     StyledContainer, 
     StyledIcon, 
@@ -20,3 +21,9 @@ const Parameter = ({
 }
 
 export default Parameter;
+
+Parameter.propTypes = {
+    icon: PropTypes.object,
+    variable: PropTypes.number,
+    text: PropTypes.string
+}

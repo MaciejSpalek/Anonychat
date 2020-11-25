@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { StyledContentWrapper, StyledContainer } from './Message.styled';
 
@@ -14,3 +15,8 @@ const Message = ({ author, text }) => {
 };
 
 export default Message;
+
+Message.propTypes = {
+    author: PropTypes.string,
+    text: PropTypes.string,
+}
