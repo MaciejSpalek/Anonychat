@@ -31,13 +31,13 @@ const ChatBar = ({ changeUser }) => {
       <StyledIcon icon={faComments} />
       <StyledWrapper>
         <StyledIconButton
-          handleFunction={changeUser}
+          onClick={changeUser}
           isDisabled={loadingStatus}
           icon={faPeopleArrows}
         />
         <StyledIconButton
           icon={faTimesCircle}
-          handleFunction={() =>
+          onClick={() =>
             handleOnClick('/', () =>
               leaveTheRoom(currentRoom, socket, dispatch)
             )

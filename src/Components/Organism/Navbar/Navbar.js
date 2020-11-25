@@ -16,7 +16,7 @@ const Navbar = () => {
             <Logo />
             <IconButton 
                 icon={faInfoCircle} 
-                handleFunction={changeState}
+                onClick={changeState}
             />
         </StyledContainer>
     );

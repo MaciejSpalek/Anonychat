@@ -15,7 +15,7 @@ const Header = () => {
         <StyledParagraph text='Find somebody' />
         <StyledParagraph text='to talk' />
       </StyledHeading>
-      <Button handleOnClick={handleOnClick} text='Draw' />
+      <Button onClick={handleOnClick} text='Draw' />
     </StyledContainer>
   );
 };

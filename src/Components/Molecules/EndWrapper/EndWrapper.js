@@ -24,11 +24,11 @@ const EndWrapper = ({ changeUser }) => {
             <StyledWrapper>
                 <StyledText> User has just left </StyledText>
                 <StyledButton 
-                    handleOnClick={() => handleOnClick('/chat', changeUser)}
+                    onClick={() => handleOnClick('/chat', changeUser)}
                     text='Draw next'
                 />
                 <StyledButton 
-                    handleOnClick={() => handleOnClick('/', ()=> dispatch(setConverserLeftStatus(false)))}
+                    onClick={() => handleOnClick('/', ()=> dispatch(setConverserLeftStatus(false)))}
                     text='Exit'
                 />
             </StyledWrapper>

@@ -15,7 +15,7 @@ const Input = ({ ...props }) => {
 
   return (
     <StyledInput
-      onChange={(e) => updateValue(e)}
+      onChange={updateValue}
       placeholder='Send message...'
       disabled={isInputDisabled()}
       aria-label='send message'

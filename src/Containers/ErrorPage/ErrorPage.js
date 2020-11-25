@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { faUndo } from "@fortawesome/free-solid-svg-icons";
 import {
   StyledTextWrapper,
@@ -8,7 +9,6 @@ import {
   StyledText,
 } from "./ErrorPage.styled";
 
-import { useHistory } from "react-router-dom";
 const ErrorPage = () => {
   const history = useHistory();
   const handleOnClick = (routes, callback) => {
@@ -23,7 +23,7 @@ const ErrorPage = () => {
         <StyledText> doesn't exist </StyledText>
       </StyledTextWrapper>
       <StyledIconButton
-        handleFunction={() => handleOnClick("/", ()=> {})}
+        onClick={() => handleOnClick("/", ()=> {})}
         icon={faUndo}
       />
     </StyledContainer>

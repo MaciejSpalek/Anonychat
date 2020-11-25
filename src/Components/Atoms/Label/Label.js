@@ -1,14 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledLabel } from './Label.styled';
 
-const Label = ({ styles, text, _for }) => {
+const Label = ({ text, _for }) => {
     return (
         <StyledLabel 
             htmlFor={_for}
-            style={styles}
             name={text}
         />
     )
 }
 
 export default Label;
+
+Label.propTypes = {
+    text: PropTypes.string,
+    _for: PropTypes.string
+}
