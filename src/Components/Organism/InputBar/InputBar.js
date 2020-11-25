@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CharactersParagraph from 'Components/Atoms/CharactersParagraph';
 import Label from 'Components/Atoms/Label';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,6 @@ import {
     StyledInput,
     StyledForm
 } from './InputBar.styled';
-
 
 const InputBar = ({ onSubmit }) => {
     return (
@@ -29,3 +29,6 @@ const InputBar = ({ onSubmit }) => {
 export default InputBar;
 
 
+InputBar.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+}

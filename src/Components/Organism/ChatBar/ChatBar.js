@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { socket } from 'socketClient/socketClient';
 import { leaveTheRoom } from 'helpers/functions';
 import { useHistory } from 'react-router-dom';
@@ -49,3 +50,7 @@ const ChatBar = ({ changeUser }) => {
 };
 
 export default ChatBar;
+
+ChatBar.propTypes = {
+  changeUser: PropTypes.func.isRequired
+}
