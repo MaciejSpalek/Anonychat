@@ -1,11 +1,11 @@
 import React from 'react';
-import GlobalTemplate from '../Templates/GlobalTemplate';
-import MainTemplate from '../Templates/MainTemplate';
-import Navbar from '../Components/Organism/navbar';
-import Home from './home';
-import Chat from './chat';
-import ComponentError from './ErrorView';
-import StatisticsPanel from '../Components/Organism/StatisticsPanel';
+import GlobalTemplate from 'templates/GlobalTemplate';
+import MainTemplate from 'templates/MainTemplate';
+import Navbar from '../Components/Organism/Navbar';
+import Home from './Home';
+import Chat from './Chat/Chat';
+import ErrorPage from './ErrorPage';
+import StatisticsPanel from 'Components/Organism/ParametersPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/chat" component={Chat} />
-              <Route component={ComponentError} />
+              <Route component={ErrorPage} />
             </Switch>
           </MainTemplate> 
           <StatisticsPanel />

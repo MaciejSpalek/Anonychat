@@ -15,14 +15,14 @@ export const theme = {
     },
     fontWeights: {
         normal: 400,
-        bold: "bold"
+        bold: 'bold'
     },
     colors: {
-        primaryWhite: 'rgb(255,255,255)',
+        primaryWhite: '#ffffff',
         primaryRed: '#FF4643',
         primaryBlue: '#0B2C3C',
-        primaryBlack: 'rgb(0,0,0)',
-        primaryGray: 'rgb(223, 223, 223)'
+        primaryBlack: '#000000',
+        primaryGray: '#dfdfdf'
     },
     responsive: {
         xs: '480px',
