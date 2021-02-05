@@ -15,7 +15,6 @@ import {
 } from '../Redux/Actions/actions';
 
 const ENDPOINT = 'https://chatwithstrangersserver.herokuapp.com/';
-
 export const socket = io.connect(ENDPOINT);
 
 const SocketClient = () => {
@@ -25,7 +24,7 @@ const SocketClient = () => {
     const dispatch = useDispatch();
 
     socket.on('connect', () => {
-        dispatch(getCurrentUserID(socket.id))
+        dispatch(getCurrentUserID(socket.id));
     });
     
     socket.on('users', data => {
@@ -44,7 +43,7 @@ const SocketClient = () => {
         if(currentRoomID === roomID) {
             dispatch(resetCurrentRoom());
             if(stayingUser === currentUserID) {
-                dispatch(setConverserLeftStatus(true))
+                dispatch(setConverserLeftStatus(true));
             }
         }
     });
@@ -62,13 +61,13 @@ const SocketClient = () => {
             dispatch(setLoadingStatus(false))
             dispatch(resetRoomMessages());
         }
-    }, [currentUsersRoom])
+    }, [currentUsersRoom]);
 
     useEffect(()=> {        
         socket.on('message', message => {
-            dispatch(setRoomMessages(message))
+            dispatch(setRoomMessages(message));
         });
-    }, [])
+    }, []);
 
    
     return (<></>)
