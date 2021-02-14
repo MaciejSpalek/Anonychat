@@ -1,13 +1,12 @@
 import React from 'react';
 import GlobalTemplate from 'templates/GlobalTemplate';
 import MainTemplate from 'templates/MainTemplate';
-import Navbar from '../Components/Organism/Navbar';
+import Navbar from 'Components/Organism/Navbar';
 import Home from './Home';
 import Chat from './Chat/Chat';
 import ErrorPage from './ErrorPage';
 import StatisticsPanel from 'Components/Organism/ParametersPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 const App = () => {
   return (
       <GlobalTemplate>

@@ -19,4 +19,4 @@ export default Message;
 Message.propTypes = {
     author: PropTypes.string,
     text: PropTypes.string,
-}
+};

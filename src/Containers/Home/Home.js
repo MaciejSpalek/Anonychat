@@ -16,7 +16,7 @@ const Home = () => {
 
     useEffect(()=> {
         leaveTheRoom(currentRoom, socket, dispatch);
-    }, [location.pathname, currentRoom]);
+    }, [location.pathname, currentRoom, dispatch]);
     
     return (
       <StyledContainer>
