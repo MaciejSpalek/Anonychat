@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { socket } from 'socketClient/socketClient';
-import { leaveTheRoom } from 'helpers/functions';
+import { leaveTheRoom } from 'Helpers/functions';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {

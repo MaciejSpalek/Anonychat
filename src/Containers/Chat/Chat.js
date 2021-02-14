@@ -17,7 +17,7 @@ import {
 import { 
     leaveTheRoom, 
     getRandomIndex 
-} from 'helpers/functions';
+} from 'Helpers/functions';
 
 
 const Chat = () => {
