@@ -1,7 +1,7 @@
 import Paragraph from 'Components/Atoms/Paragraph';
 import styled from 'styled-components';
 import Icon from 'Components/Atoms/Icon/Icon';
-import { FlexCenter, FlexColumn } from 'theme/mixins';
+import { FlexCenter, FlexColumn } from 'Theme/mixins';
 
 export const StyledContainer = styled.div`
   ${FlexCenter};

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexColumn, FlexCenter } from 'theme/mixins';
+import { FlexColumn, FlexCenter } from 'Theme/mixins';
 
 export const StyledContainer = styled.div`
     position: fixed;

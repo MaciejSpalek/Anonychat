@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexCenter } from 'theme/mixins';
+import { FlexCenter } from 'Theme/mixins';
 import Icon from 'Components/Atoms/Icon/Icon';
 
 export const StyledContainer = styled.div`

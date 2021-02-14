@@ -61,13 +61,13 @@ const SocketClient = () => {
             dispatch(setLoadingStatus(false))
             dispatch(resetRoomMessages());
         }
-    }, [currentUsersRoom]);
+    }, [currentUsersRoom, dispatch]);
 
     useEffect(()=> {        
         socket.on('message', message => {
             dispatch(setRoomMessages(message));
         });
-    }, []);
+    }, [dispatch]);
 
    
     return (<></>)

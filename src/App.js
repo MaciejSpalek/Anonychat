@@ -1,10 +1,10 @@
 import React from 'react';
-import GlobalTemplate from 'templates/GlobalTemplate';
-import MainTemplate from 'templates/MainTemplate';
-import Navbar from '../Components/Organism/Navbar';
-import Home from './Home';
-import Chat from './Chat/Chat';
-import ErrorPage from './ErrorPage';
+import GlobalTemplate from 'Templates/GlobalTemplate';
+import MainTemplate from 'Templates/MainTemplate';
+import Navbar from 'Components/Organism/Navbar';
+import Home from './Containers/Home';
+import Chat from './Containers/Chat/Chat';
+import ErrorPage from './Containers/ErrorPage';
 import StatisticsPanel from 'Components/Organism/ParametersPanel';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 

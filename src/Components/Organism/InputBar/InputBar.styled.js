@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexCenter } from 'theme/mixins';
+import { FlexCenter } from 'Theme/mixins';
 import IconButton from 'Components/Atoms/IconButton';
 import Input from 'Components/Atoms/Input';
 

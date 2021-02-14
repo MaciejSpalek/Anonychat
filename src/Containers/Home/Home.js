@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import Header from 'Components/Molecules/Header';
-import LoadingPanel from 'Components/Organism/LoadingPanel/LoadingPanel';
+import LoadingPanel from 'Components/Organism/LoadingPanel';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { leaveTheRoom } from 'helpers/functions'
-import { socket } from 'socketClient/socketClient';
+import { socket } from 'SocketClient/socketClient';
 import { StyledContainer } from './Home.styled';
-import { isTheServerConnected } from 'helpers/functions';
+import { isTheServerConnected, leaveTheRoom } from 'Helpers/functions';
 
 const Home = () => {
     const amountOfUsers = useSelector((state) => state.users.allUsers.length);
@@ -16,7 +15,7 @@ const Home = () => {
 
     useEffect(()=> {
         leaveTheRoom(currentRoom, socket, dispatch);
-    }, [location.pathname, currentRoom]);
+    }, [location.pathname, currentRoom, dispatch]);
     
     return (
       <StyledContainer>
